@@ -25,7 +25,6 @@ export default {
   },
   async created() {
     this.datas = await getData();
-    console.log(this.datas);
   },
 };
 </script>

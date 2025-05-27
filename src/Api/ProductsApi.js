@@ -3,9 +3,10 @@ import axios from "axios";
 export async function getData() {
   try {
     const response = await axios.get("https://dummyjson.com/products");
-    return response.data;
+    const data = response.data.products;
+    console.log(data);
+    return data;
   } catch (err) {
-    console.error("error", err);
-    // return null;
+    console.log(err);
   }
 }

@@ -15,12 +15,6 @@
 </template>
 <script>
 export default {
-  // props: {
-  //   datas: {
-  //     type:Array,
-  //     required: true,
-  //   },
-  // },
   props: ["data"],
 };
 </script>
