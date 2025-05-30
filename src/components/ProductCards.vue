@@ -1,14 +1,17 @@
 <template>
-  <div class="product">
+  <div class="product" @click="toSingleProduct(data.id)">
     <div class="image">
-      <button class="fav"><i class="fa-solid fa-heart"></i></button
+      <button class="fav" @click.stop>
+        <i class="fa-solid fa-heart"></i></button
       ><img :src="data.images" alt="product image" />
     </div>
     <div>
-      <h3>{{ data.title }}</h3>
+      <div>
+        <h3>{{ data.title | uppercase }}</h3>
+      </div>
       <div class="flex">
         <p class="price">${{ data.price }}</p>
-        <button class="addCart">+ Add</button>
+        <button @click.stop="addCart()" class="addCart">+ Add</button>
       </div>
     </div>
   </div>
@@ -16,27 +19,33 @@
 <script>
 export default {
   props: ["data"],
+  data() {
+    return {};
+  },
+  filters: {
+    uppercase: function (value) {
+      if (!value) return "";
+      return value.toUpperCase();
+    },
+  },
+  methods: {
+    toSingleProduct(id) {
+      this.$router.push(`/product/${id}`);
+    },
+    addCart() {
+      alert("clicked cart");
+    },
+  },
 };
 </script>
-<style>
+<style scoped>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: lato;
 }
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem;
-  display: flex;
-}
-.products {
-  display: grid;
-  grid-template-columns: repeat(4, 250px);
-  gap: 2.8rem;
-  flex: 1;
-}
+
 .product {
   border-radius: 26px;
   max-height: 450px;
@@ -45,7 +54,7 @@ export default {
 }
 
 .image {
-  background-color: rgb(243, 241, 241);
+  background-color: rgb(240, 240, 240);
   border-radius: 26px;
   overflow: hidden;
   position: relative;
@@ -58,8 +67,9 @@ img {
 }
 
 .product h3 {
-  font-size: 1.3rem;
-  margin: 1rem;
+  font-size: 1.1rem;
+  margin: 1.3rem;
+  height: 55px;
 }
 
 .product .price {
@@ -74,7 +84,7 @@ img {
 }
 .addCart {
   border: none;
-  background-color: rgb(252, 166, 5);
+  background-color: rgb(236, 152, 84);
   color: white;
   padding: 0.5em 1.2rem;
   font-size: 1.2rem;
@@ -94,7 +104,7 @@ img {
   border: none;
   border-radius: 50%;
 }
-.fav :hover {
+.fav:hover {
   color: rgb(224, 32, 32);
 }
 </style>

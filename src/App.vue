@@ -7,28 +7,21 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <MobileCards />
+    <ProductHeader />
+    <router-link to="/products"></router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import MobileCards from "./components/MobileCards.vue";
-
+import ProductHeader from "./components/ProductHeader.vue";
 export default {
   name: "App",
-  components: {
-    MobileCards,
-  },
+  components: { ProductHeader },
 };
 </script>
-
 <style scoped>
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
+* {
+  margin: 0;
+}
 </style>
