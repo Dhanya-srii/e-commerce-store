@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="brand">
+    <div class="brand" @click="handleHome()">
       <h1>PLUGO</h1>
     </div>
     <div class="searchProduct">
@@ -8,11 +8,26 @@
       <button class="find">Find</button>
     </div>
     <div class="userProducts">
-      <button class="fav"><i class="fa-solid fa-heart"></i></button>
+      <button class="fav" @click="listFavourites()"><i class="fa-solid fa-heart"></i></button>
       <button class="find">Cart</button>
     </div>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    handleHome() {
+      const targetRoute= '/products';
+      if (this.$route.path!=targetRoute) {
+        this.$router.push("/products");
+      }
+    },
+    listFavourites(){
+      this.$router.push("/favourites")
+    }
+  },
+};
+</script>
 <style scoped>
 * {
   margin: 0;
@@ -33,7 +48,8 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-button {
+button,
+.brand {
   border: none;
   cursor: pointer;
 }
@@ -73,6 +89,6 @@ input {
   justify-content: center;
 }
 .fav:hover {
-  color: red;
+  color: #ff0000;
 }
 </style>

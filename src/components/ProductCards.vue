@@ -1,5 +1,5 @@
 <template>
-  <div class="product" @click="toSingleProduct(data.id)">
+  <div class="product" @click="handleSingleProduct(data.id)">
     <div class="image">
       <button class="fav" @click.stop>
         <i class="fa-solid fa-heart"></i></button
@@ -9,7 +9,7 @@
       <div>
         <h3>{{ data.title | uppercase }}</h3>
       </div>
-      <div class="flex">
+      <div class="flex"> 
         <p class="price">${{ data.price }}</p>
         <button @click.stop class="addCart">+ Add</button>
       </div>
@@ -29,9 +29,12 @@ export default {
     },
   },
   methods: {
-    toSingleProduct(id) {
+    handleSingleProduct(id) {
       this.$router.push(`/product/${id}`);
     },
+    addFavProducts(){
+      
+    }
   },
 };
 </script>

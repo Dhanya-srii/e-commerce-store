@@ -1,25 +1,31 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import ProductsListing from "@/components/ProductsListing.vue";
-import SingleProduct from "@/components/SingleProduct.vue";
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import ProductsListing from '@/components/ProductsListing.vue';
+import SingleProduct from '@/components/SingleProduct.vue';
+import FavouriteProducts from '@/components/FavouriteProducts.vue';
 Vue.use(VueRouter);
 const routes = [
   {
-    path: "/",
-    redirect: { name: "ProductsListing" },
+    path: '/',
+    redirect: { name: 'ProductsListing' },
   },
   {
-    path: "/products",
+    path: '/products',
     component: ProductsListing,
-    name: "ProductsListing",
+    name: 'ProductsListing',
   },
   {
-    path: "/product/:id",
+    path: '/favourites',
+    component: FavouriteProducts,
+    name: "FavouriteProducts",
+  },
+  {
+    path: '/product/:id',
     component: SingleProduct,
   },
 ];
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   routes,
 });
 export default router;
