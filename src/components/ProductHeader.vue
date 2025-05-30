@@ -76,12 +76,3 @@ input {
   color: red;
 }
 </style>
-<!-- | Modifier   | Description                                | Example                      |
-| ---------- | ------------------------------------------ | ---------------------------- |
-| `.stop`    | Stops event from bubbling up               | `@click.stop="handler"`      |
-| `.prevent` | Prevents default browser action            | `@submit.prevent="submit"`   |
-| `.self`    | Only triggers if event is on exact element | `@click.self="handler"`      |
-| `.once`    | Runs the handler once only                 | `@click.once="handler"`      |
-| `.capture` | Triggers in capturing phase                | `@click.capture="handler"`   |
-| `.passive` | Improves scroll performance (read-only)    | `@scroll.passive="onScroll"` |
- -->

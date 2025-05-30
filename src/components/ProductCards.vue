@@ -11,7 +11,7 @@
       </div>
       <div class="flex">
         <p class="price">${{ data.price }}</p>
-        <button @click.stop="addCart()" class="addCart">+ Add</button>
+        <button @click.stop class="addCart">+ Add</button>
       </div>
     </div>
   </div>
@@ -31,9 +31,6 @@ export default {
   methods: {
     toSingleProduct(id) {
       this.$router.push(`/product/${id}`);
-    },
-    addCart() {
-      alert("clicked cart");
     },
   },
 };
