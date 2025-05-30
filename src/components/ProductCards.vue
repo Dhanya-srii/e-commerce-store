@@ -1,8 +1,8 @@
 <template>
   <div class="product" @click="handleSingleProduct(data.id)">
     <div class="image">
-      <button class="fav" @click.stop>
-        <i class="fa-solid fa-heart"></i></button
+      <button class="fav" @click.stop='addFavProducts()'>
+        <i class="fa-solid fa-heart" :style="{ color: isFav ? 'red' : 'gray' }"></i></button
       ><img :src="data.images" alt="product image" />
     </div>
     <div>
@@ -17,10 +17,15 @@
   </div>
 </template>
 <script>
+import {EventBus} from '../main'
+
 export default {
   props: ["data"],
   data() {
-    return {};
+    return {
+      isFav:false,
+      favourites:[],
+    };
   },
   filters: {
     uppercase: function (value) {
@@ -32,12 +37,26 @@ export default {
     handleSingleProduct(id) {
       this.$router.push(`/product/${id}`);
     },
-    addFavProducts(){
-      
-    }
+    addFavProducts() {
+  this.isFav = !this.isFav;
+  const favProduct = {
+    id: this.data.id,
+    title: this.data.title,
+    price: this.data.price,
+    image: this.data.images
+  };
+
+  EventBus.$emit('add-to-favourites', favProduct);
+},
+
+
+
+
   },
+ 
 };
 </script>
+
 <style scoped>
 * {
   margin: 0;

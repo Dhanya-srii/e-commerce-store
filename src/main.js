@@ -1,6 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./route/index";
+export const EventBus = new Vue();
 
 import { Rate } from "element-ui";
 import { Button } from "element-ui";
