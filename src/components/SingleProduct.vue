@@ -29,7 +29,7 @@
           <button class="quantity">100ml</button>
         </div>
 
-        <div class="btn-container" >
+        <div class="btn-container">
           <div class="count">
             <button class="counter" @click="decrement">-</button>
             <p class="countValue">{{ count }}</p>
@@ -37,8 +37,11 @@
           </div>
           <button class="addCart">Add to Cart</button>
           <button class="fav" @click="toggleFav">
-          <i class="fa-solid fa-heart" :style="{ color: isFav ? 'red' : 'gray' }"></i>
-        </button>
+            <i
+              class="fa-solid fa-heart"
+              :style="{ color: isFav ? 'red' : 'gray' }"
+            ></i>
+          </button>
         </div>
       </div>
     </div>
@@ -46,7 +49,7 @@
 </template>
 
 <script>
-import { products } from "../api/products";
+import { products } from '../api/products';
 
 export default {
   data() {
@@ -71,24 +74,24 @@ export default {
           this.$route.params.id
         );
       } catch (error) {
-        console.error("Failed to fetch product:", error);
+        console.error('Failed to fetch product:', error);
       }
     },
-    goBackRoute(){
-    return  this.$router.go(-1);
+    goBackRoute() {
+      return this.$router.go(-1);
     },
     decrement() {
       if (this.count > 0) this.count--;
     },
     toggleFav() {
-      this.$store.dispatch("toggleFavourite", this.productData);
+      this.$store.dispatch('toggleFavourite', this.productData);
     },
   },
 };
 </script>
 
 <style scoped>
-@import url("//unpkg.com/element-ui@2.15.14/lib/theme-chalk/index.css");
+@import url('//unpkg.com/element-ui@2.15.14/lib/theme-chalk/index.css');
 
 * {
   font-family: Lato, sans-serif;
@@ -107,14 +110,14 @@ export default {
   margin-top: 5rem;
 }
 .goBackBtn {
-  width:85px;
-  padding:0.5rem;
-  font-size:1.2rem;
+  width: 85px;
+  padding: 0.5rem;
+  font-size: 1.2rem;
   border-radius: 8px;
 }
 
-.goBackBtn:hover{
-  border:2px solid  #ec9854
+.goBackBtn:hover {
+  border: 2px solid #ec9854;
 }
 
 .sub-images {
@@ -151,6 +154,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  transition: ease 1s;
 }
 
 .heading {
