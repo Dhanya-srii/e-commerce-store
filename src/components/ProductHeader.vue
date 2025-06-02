@@ -4,32 +4,53 @@
       <h1>PLUGO</h1>
     </div>
     <div class="searchProduct">
-      <input type="text" placeholder="Search..." />
-      <button class="find">Find</button>
+      <input type="text" placeholder="Search..." v-model="userSearch">
+      <button  class="find">Find</button>
     </div>
     <div class="userProducts">
-      <button class="fav" @click="listFavourites()"><i class="fa-solid fa-heart"></i></button>
+      <button class="fav" @click="listFavourites()">
+        <i class="fa-solid fa-heart"></i>
+      </button>
       <button class="find">Cart</button>
     </div>
   </div>
 </template>
 <script>
+import { products } from '../api/products';
 export default {
+  data() {
+    return {
+      userSearch: '',
+      data: '',
+    };
+  },
+  async created() {
+    this.data = await products.fetchAllProducts();
+  },
   methods: {
     handleHome() {
-      const targetRoute= '/products';
-      if (this.$route.path!=targetRoute) {
-        this.$router.push("/products");
+      const targetRoute = '/products';
+      if (this.$route.path != targetRoute) {
+        this.$router.push('/products');
       }
     },
-    listFavourites(){
-      this.$router.push("/favourites")
-    }
+    listFavourites() {
+      if (this.$route.path != '/favourites') {
+        this.$router.push('/favourites');
+      }
+    },
+    // searchProduct() {
+    //   const search = this.data.find(
+    //     (s) => s.title.toLowerCase() === this.userSearch.toLowerCase()
+    //   )
+    //      console.log(search)
+    //     this.userSearch = '';
+    // },
   },
   computed: {
     favourites() {
       return this.$store.getters.getFavourites;
-    }
+    },
   },
 };
 </script>

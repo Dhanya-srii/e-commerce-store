@@ -1,17 +1,20 @@
-
-
-
 <template>
   <div class="favourites">
-    <h2 v-if="!favourites.length">No Favourites listed</h2>
-    <div class="products">
-      <ProductCards v-for="product in favourites" :key="product.id" :data="product" />
+    <div>
+      <h2 v-if="!favourites.length">No Favourites</h2>
+      <div class="products">
+        <ProductCards
+          v-for="product in favourites"
+          :key="product.id"
+          :data="product"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import ProductCards from "./ProductCards.vue";
+import ProductCards from './ProductCards.vue';
 
 export default {
   components: { ProductCards },
@@ -24,7 +27,11 @@ export default {
 </script>
 
 <style scoped>
-.favourites{
-margin-top:8rem;
+* {
+  font-family: lato;
+}
+.favourites {
+  margin-top: 8rem;
+  margin-left:20rem;
 }
 </style>

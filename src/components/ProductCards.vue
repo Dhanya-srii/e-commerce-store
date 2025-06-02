@@ -25,7 +25,7 @@ export default {
     },
   },
   computed: {
-    isFav() {
+    isFav() {      
       return this.$store.getters.isFavourite(this.data.id);
     },
   },
@@ -54,6 +54,7 @@ export default {
   max-height: 450px;
   text-align: center;
   max-width: 280px;
+  cursor: pointer;
 }
 
 .image {

@@ -1,20 +1,26 @@
-import axios from "axios";
+import axios from 'axios';
+import { parseProduct } from './parser';
 
 export const products = {
   async fetchAllProducts() {
     try {
-      const response = await axios.get("https://dummyjson.com/products");
+      const response = await axios.get('https://dummyjson.com/products');
       const data = response.data.products;
-      return data;
+      console.log(data.map(parseProduct.parseDailyProducts));
+
+      return data.map(parseProduct.parseDailyProducts);
     } catch (err) {
       throw new Error(err.message);
     }
   },
+
   async fetchSingleProduct(id) {
     try {
       const response = await axios.get(`https://dummyjson.com/products/${id}`);
       const data = response.data;
-      return data;
+      console.log(parseProduct.parseDailyProducts(data));
+      
+      return parseProduct.parseDailyProducts(data);
     } catch (err) {
       throw new Error(err.message);
     }

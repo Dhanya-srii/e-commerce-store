@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
-import router from "./route/index";
+import router from "./route";
 import store from './store'
 
 import { Rate } from "element-ui";

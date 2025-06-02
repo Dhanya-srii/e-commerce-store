@@ -1,5 +1,6 @@
 <template>
   <div class="product-container">
+    <button @click="goBackRoute" class="goBackBtn">go back</button>
     <div class="sub-images">
       <div class="sub-img" v-for="n in 6" :key="n"></div>
     </div>
@@ -32,7 +33,7 @@
           <div class="count">
             <button class="counter" @click="decrement">-</button>
             <p class="countValue">{{ count }}</p>
-            <button class="counter" @click="increment">+</button>
+            <button class="counter" @click="count++">+</button>
           </div>
           <button class="addCart">Add to Cart</button>
           <button class="fav" @click="toggleFav">
@@ -73,8 +74,8 @@ export default {
         console.error("Failed to fetch product:", error);
       }
     },
-    increment() {
-      this.count++;
+    goBackRoute(){
+    return  this.$router.go(-1);
     },
     decrement() {
       if (this.count > 0) this.count--;
@@ -95,7 +96,7 @@ export default {
 }
 
 .product-container {
-  max-width: 1200px;
+  max-width: 1300px;
   min-height: 85vh;
   display: flex;
   justify-content: center;
@@ -104,6 +105,16 @@ export default {
   gap: 2rem;
   padding: 2rem;
   margin-top: 5rem;
+}
+.goBackBtn {
+  width:85px;
+  padding:0.5rem;
+  font-size:1.2rem;
+  border-radius: 8px;
+}
+
+.goBackBtn:hover{
+  border:2px solid  #ec9854
 }
 
 .sub-images {
@@ -158,7 +169,7 @@ export default {
 }
 
 .description {
-  color: grey;
+  color: #808080;
   font-size: 1rem;
 }
 
@@ -178,7 +189,7 @@ button {
   padding: 0.5rem;
   border-radius: 12px;
   font-size: 1rem;
-  background-color: white;
+  background-color: #ffffff;
   border: 1px solid #ccc;
 }
 

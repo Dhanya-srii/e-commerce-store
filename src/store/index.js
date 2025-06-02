@@ -8,18 +8,18 @@ export default new Vuex.Store({
     favourites: [],
   },
   mutations: {
-    TOGGLE_FAVOURITE(state, product) {
+    toggle_fav(state, product) {
       const index = state.favourites.findIndex((p) => p.id === product.id);
       if (index === -1) {
         state.favourites.push(product);
       } else {
         state.favourites.splice(index, 1);
-      }
+      }      
     },
   },
   actions: {
-    toggleFavourite({ commit }, product) {
-      commit("TOGGLE_FAVOURITE", product);
+    toggleFavourite({ commit }, product) {      
+      commit("toggle_fav", product);
     },
   },
   getters: {
@@ -27,5 +27,6 @@ export default new Vuex.Store({
       return state.favourites.some((p) => p.id === id);
     },
     allFavourites: (state) => state.favourites,
+
   },
 });
