@@ -24,8 +24,8 @@ const routes = [
     component: SingleProduct,
   },
   {
-    path: "*",
-    redirect: "/products"
+    path: '*',
+    redirect: '/products',
   },
 ];
 const router = new VueRouter({
@@ -33,4 +33,3 @@ const router = new VueRouter({
   routes,
 });
 export default router;
-

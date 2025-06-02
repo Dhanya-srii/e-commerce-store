@@ -6,8 +6,6 @@ export const products = {
     try {
       const response = await axios.get('https://dummyjson.com/products');
       const data = response.data.products;
-      console.log(data.map(parseProduct.parseDailyProducts));
-
       return data.map(parseProduct.parseDailyProducts);
     } catch (err) {
       throw new Error(err.message);
@@ -18,8 +16,6 @@ export const products = {
     try {
       const response = await axios.get(`https://dummyjson.com/products/${id}`);
       const data = response.data;
-      console.log(parseProduct.parseDailyProducts(data));
-      
       return parseProduct.parseDailyProducts(data);
     } catch (err) {
       throw new Error(err.message);
