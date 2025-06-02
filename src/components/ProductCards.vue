@@ -1,14 +1,13 @@
 <template>
   <div class="product" @click="handleSingleProduct(data.id)">
     <div class="image">
-      <button class="fav" @click.stop='addFavProducts()'>
-        <i class="fa-solid fa-heart" :style="{ color: isFav ? 'red' : 'gray' }"></i></button
-      ><img :src="data.images" alt="product image" />
+      <button class="fav" @click.stop="toggleFav">
+        <i class="fa-solid fa-heart" :style="{ color: isFav ? 'red' : 'gray' }"></i>
+      </button>
+      <img :src="data.images" alt="product image" />
     </div>
     <div>
-      <div>
-        <h3>{{ data.title | uppercase }}</h3>
-      </div>
+      <h3>{{ data.title | uppercase }}</h3>
       <div class="flex"> 
         <p class="price">${{ data.price }}</p>
         <button @click.stop class="addCart">+ Add</button>
@@ -16,46 +15,31 @@
     </div>
   </div>
 </template>
-<script>
-import {EventBus} from '../main'
 
+<script>
 export default {
   props: ["data"],
-  data() {
-    return {
-      isFav:false,
-      favourites:[],
-    };
-  },
   filters: {
-    uppercase: function (value) {
-      if (!value) return "";
-      return value.toUpperCase();
+    uppercase(value) {
+      return value ? value.toUpperCase() : "";
+    },
+  },
+  computed: {
+    isFav() {
+      return this.$store.getters.isFavourite(this.data.id);
     },
   },
   methods: {
+    toggleFav() {
+      this.$store.dispatch("toggleFavourite", this.data);
+    },
     handleSingleProduct(id) {
       this.$router.push(`/product/${id}`);
     },
-    addFavProducts() {
-  this.isFav = !this.isFav;
-  const favProduct = {
-    id: this.data.id,
-    title: this.data.title,
-    price: this.data.price,
-    image: this.data.images
-  };
-
-  EventBus.$emit('add-to-favourites', favProduct);
-},
-
-
-
-
   },
- 
 };
 </script>
+
 
 <style scoped>
 * {

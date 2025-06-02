@@ -28,14 +28,16 @@
           <button class="quantity">100ml</button>
         </div>
 
-        <div class="btn-container">
+        <div class="btn-container" >
           <div class="count">
             <button class="counter" @click="decrement">-</button>
             <p class="countValue">{{ count }}</p>
             <button class="counter" @click="increment">+</button>
           </div>
           <button class="addCart">Add to Cart</button>
-          <button class="fav"><i class="fa-solid fa-heart"></i></button>
+          <button class="fav" @click="toggleFav">
+          <i class="fa-solid fa-heart" :style="{ color: isFav ? 'red' : 'gray' }"></i>
+        </button>
         </div>
       </div>
     </div>
@@ -44,6 +46,7 @@
 
 <script>
 import { products } from "../api/products";
+
 export default {
   data() {
     return {
@@ -51,6 +54,11 @@ export default {
       count: 0,
       productData: {},
     };
+  },
+  computed: {
+    isFav() {
+      return this.$store.getters.isFavourite(this.productData.id);
+    },
   },
   async mounted() {
     await this.displaySingleProduct();
@@ -66,14 +74,18 @@ export default {
       }
     },
     increment() {
-      return this.count++;
+      this.count++;
     },
     decrement() {
-      if (this.count > 0) return this.count--;
+      if (this.count > 0) this.count--;
+    },
+    toggleFav() {
+      this.$store.dispatch("toggleFavourite", this.productData);
     },
   },
 };
 </script>
+
 <style scoped>
 @import url("//unpkg.com/element-ui@2.15.14/lib/theme-chalk/index.css");
 

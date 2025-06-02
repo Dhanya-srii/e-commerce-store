@@ -26,6 +26,11 @@ export default {
       this.$router.push("/favourites")
     }
   },
+  computed: {
+    favourites() {
+      return this.$store.getters.getFavourites;
+    }
+  },
 };
 </script>
 <style scoped>
