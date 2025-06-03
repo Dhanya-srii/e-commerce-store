@@ -1,7 +1,7 @@
 <template>
   <div class="favourites">
     <div>
-      <h2 v-if="!favourites.length">NO FAVOURITES!!</h2>
+      <h2 v-if="!Object.keys(favourites).length">NO FAVOURITES!!</h2>
       <div class="products">
         <ProductCards
           v-for="product in favourites"
@@ -18,9 +18,10 @@ import ProductCards from './ProductCards.vue';
 
 export default {
   components: { ProductCards },
+
   computed: {
     favourites() {
-      return this.$store.getters.allFavourites;
+      return this.$store.state.favourites;
     },
   },
 };

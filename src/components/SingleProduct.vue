@@ -36,12 +36,12 @@
             <button class="counter" @click="count++">+</button>
           </div>
           <button class="addCart">Add to Cart</button>
-          <button class="fav" @click="toggleFav">
+          <!-- <button class="fav" @click="toggleFav">
             <i
               class="fa-solid fa-heart"
               :style="{ color: isFav ? 'red' : 'gray' }"
             ></i>
-          </button>
+          </button> -->
         </div>
       </div>
     </div>
@@ -60,9 +60,9 @@ export default {
     };
   },
   computed: {
-    isFav() {
-      return this.$store.getters.isFavourite(this.productData.id);
-    },
+    // isFav() {
+    //   return this.$store.getters.isFavourite(this.productData.id);
+    // },
   },
   async mounted() {
     await this.displaySingleProduct();
@@ -83,9 +83,9 @@ export default {
     decrement() {
       if (this.count > 0) this.count--;
     },
-    toggleFav() {
-      this.$store.dispatch('toggleFavourite', this.productData);
-    },
+    // toggleFav() {
+    //   this.$store.dispatch('toggleFavourite', this.productData);
+    // },
   },
 };
 </script>

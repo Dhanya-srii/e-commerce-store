@@ -1,14 +1,17 @@
 <template>
   <div class="product" @click="handleSingleProduct(data.id)">
     <div class="image">
-      <button class="fav" @click.stop="toggleFav">
-        <i class="fa-solid fa-heart" :style="{ color: isFav ? 'red' : 'gray' }"></i>
+      <button class="fav" @click.stop="toggleFav(data)">
+        <i
+          class="fa-solid fa-heart"
+          :style="{ color: isFav ? 'red' : 'gray' }"
+        ></i>
       </button>
-      <img :src="data.images" alt="product image" />
+      <img :src="data.images[0]" alt="product image" />
     </div>
     <div>
       <h3>{{ data.title | uppercase }}</h3>
-      <div class="flex"> 
+      <div class="flex">
         <p class="price">${{ data.price }}</p>
         <button @click.stop class="addCart">+ Add</button>
       </div>
@@ -18,20 +21,28 @@
 
 <script>
 export default {
-  props: ["data"],
+  props: ['data'],
   filters: {
     uppercase(value) {
-      return value ? value.toUpperCase() : "";
+      return value ? value.toUpperCase() : '';
     },
   },
+
   computed: {
-    isFav() {      
-      return this.$store.getters.isFavourite(this.data.id);
+    isFav() {
+      return this.$store.state.favourites[this.data.id] !== undefined;
     },
   },
   methods: {
-    toggleFav() {
-      this.$store.dispatch("toggleFavourite", this.data);
+    toggleFav(product) {
+      const id = product.id;
+      const favs = this.$store.state.favourites;
+
+      if (favs[id]) {
+        this.$store.commit('removeFav', id);
+      } else {
+        this.$store.commit('addFav', { id, product });
+      }
     },
     handleSingleProduct(id) {
       this.$router.push(`/product/${id}`);
@@ -39,7 +50,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 * {
@@ -110,5 +120,8 @@ img {
 }
 .fav:hover {
   color: rgb(224, 32, 32);
+}
+.isFav {
+  color: red;
 }
 </style>
