@@ -5,15 +5,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    favourites: [],
+    favourites: {},
   },
   mutations: {
     toggle_fav(state, product) {
-      const index = state.favourites.findIndex((p) => p.id === product.id);
-      if (index === -1) {
-        state.favourites.push(product);
+      const id = product.id;
+      if (state.favourites[id]) {
+        // Vue.delete(state.favourites, id);
       } else {
-        state.favourites.splice(index, 1);
+        Vue.set(state.favourites, id, product);
       }
     },
   },
@@ -24,8 +24,10 @@ export default new Vuex.Store({
   },
   getters: {
     isFavourite: (state) => (id) => {
-      return state.favourites.some((p) => p.id === id);
+      return state.favourites[id];
     },
-    allFavourites: (state) => state.favourites,
+    allFavourites: (state) => {
+      return Object.values(state.favourites);
+    },
   },
 });
