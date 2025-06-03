@@ -1,5 +1,5 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue';
+import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
@@ -14,12 +14,12 @@ export default new Vuex.Store({
         state.favourites.push(product);
       } else {
         state.favourites.splice(index, 1);
-      }      
+      }
     },
   },
   actions: {
-    toggleFavourite({ commit }, product) {      
-      commit("toggle_fav", product);
+    toggleFavourite({ commit }, product) {
+      commit('toggle_fav', product);
     },
   },
   getters: {
@@ -27,6 +27,5 @@ export default new Vuex.Store({
       return state.favourites.some((p) => p.id === id);
     },
     allFavourites: (state) => state.favourites,
-
   },
 });

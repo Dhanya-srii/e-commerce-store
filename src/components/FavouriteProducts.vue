@@ -1,7 +1,7 @@
 <template>
   <div class="favourites">
     <div>
-      <h2 v-if="!favourites.length">No Favourites</h2>
+      <h2 v-if="!favourites.length">NO FAVOURITES!!</h2>
       <div class="products">
         <ProductCards
           v-for="product in favourites"
@@ -32,6 +32,8 @@ export default {
 }
 .favourites {
   margin-top: 8rem;
-  margin-left:20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
