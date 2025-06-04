@@ -1,7 +1,7 @@
 import Vue from 'vue';
 export const products = {
   state: {
-    favourites: {},
+    favourites: JSON.parse(localStorage.getItem('favourites')) || {},
   },
   mutations: {
     updateFavList(state, val) {
@@ -15,7 +15,10 @@ export const products = {
           ...state.favourites,
           ...favProduct,
         };
+        console.log('fav', state.favourites);
       }
+
+      localStorage.setItem('favourites', JSON.stringify(state.favourites));
     },
   },
 };

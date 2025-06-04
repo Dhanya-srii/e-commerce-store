@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div v-if="datas.length" class="container">
+    <div v-if="productList.length" class="container">
       <div class="products">
         <ProductCards
           :data="data"
-          v-for="(data, index) in datas"
+          v-for="(data, index) in productList"
           :key="index"
         />
       </div>
@@ -12,19 +12,20 @@
   </div>
 </template>
 <script>
-import { products } from "../api/products";
-import ProductCards from "./ProductCards.vue";
+import { products } from '../api/products';
+import ProductCards from './ProductCards.vue';
 export default {
   data() {
     return {
-      datas: "",
+      productList: '',
     };
   },
+
   components: {
     ProductCards,
   },
   async created() {
-    this.datas = await products.fetchAllProducts();
+    this.productList = await products.fetchAllProducts();
   },
 };
 </script>

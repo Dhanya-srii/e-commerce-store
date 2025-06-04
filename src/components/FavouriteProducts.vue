@@ -1,7 +1,7 @@
 <template>
   <div class="favourites">
     <div>
-      <!-- <h2 v-if="!Object.keys(favourites).length">NO FAVOURITES!!</h2> -->
+      <h2 v-if="!Object.keys(favourites).length">NO FAVOURITES!!</h2>
       <div class="products">
         <ProductCards
           v-for="(product, key) in favourites"
@@ -24,15 +24,7 @@ export default {
     ...mapState({
       favourites: (state) => state.products.favourites,
     }),
-    isFavProdcuts () {
-      return this.favourites;
-    }
   },
-  watch: {
-    isFavProdcuts(newVal) {
-      console.log(newVal);
-    }
-  }
 };
 </script>
 

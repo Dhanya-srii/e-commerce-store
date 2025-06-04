@@ -1,10 +1,7 @@
 <template>
   <div class="product" @click="handleSingleProduct(data.id)">
     <div class="image">
-      <button
-        class="fav"
-        @click.stop="updateFavList(data)"
-      >
+      <button class="fav" @click.stop="updateFavList(data)">
         <i
           class="fa-solid fa-heart"
           :style="{ color: isFav() ? 'red' : 'gray' }"
@@ -31,35 +28,17 @@ export default {
       return value ? value.toUpperCase() : '';
     },
   },
-
   computed: {
-    // ...mapState(['favourites']),
-
     ...mapState({
       favourites: (state) => state.products.favourites,
     }),
   },
   methods: {
-    // toggleFav(product) {
-    //   console.log('toggled');
-
-    //   const id = product.id;
-    //   const favs = this.favourites;
-
-    //   if (favs[id]) {
-    //     // console.log('commited');
-    //     this.$store.commit('removeFav', id);
-    //   } else {
-    //     // console.log('commited');
-    //     this.$store.commit('addFav', { id, product });
-    //   }
-    // },
     ...mapMutations(['updateFavList']),
     handleSingleProduct(id) {
       this.$router.push(`/product/${id}`);
     },
     isFav() {
-      // console.log(this.favourites);
       return this.favourites[this.data.id] !== undefined;
     },
   },

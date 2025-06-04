@@ -36,10 +36,10 @@
             <button class="counter" @click="count++">+</button>
           </div>
           <button class="addCart">Add to Cart</button>
-          <button class="fav" @click="toggleFav">
+          <button class="fav" @click="updateFavList(productData)">
             <i
               class="fa-solid fa-heart"
-              :style="{ color: isFav ? 'red' : 'gray' }"
+              :style="{ color: isFav() ? 'red' : 'gray' }"
             ></i>
           </button>
         </div>
@@ -49,8 +49,8 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex';
 import { products } from '../api/products';
-
 export default {
   data() {
     return {
@@ -60,9 +60,9 @@ export default {
     };
   },
   computed: {
-    // isFav() {
-    //   return this.$store.getters.isFavourite(this.productData.id);
-    // },
+    ...mapState({
+      favourites: (state) => state.products.favourites,
+    }),
   },
   async mounted() {
     await this.displaySingleProduct();
@@ -83,9 +83,10 @@ export default {
     decrement() {
       if (this.count > 0) this.count--;
     },
-    // toggleFav() {
-    //   this.$store.dispatch('toggleFavourite', this.productData);
-    // },
+    ...mapMutations(['updateFavList']),
+    isFav() {
+      return this.favourites[this.productData.id] != undefined;
+    },
   },
 };
 </script>
