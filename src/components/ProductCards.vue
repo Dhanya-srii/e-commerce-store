@@ -1,10 +1,13 @@
 <template>
   <div class="product" @click="handleSingleProduct(data.id)">
     <div class="image">
-      <button class="fav" @click.stop="toggleFav(data)">
+      <button
+        class="fav"
+        @click.stop="updateFavList(data)"
+      >
         <i
           class="fa-solid fa-heart"
-          :style="{ color: isFav ? 'red' : 'gray' }"
+          :style="{ color: isFav() ? 'red' : 'gray' }"
         ></i>
       </button>
       <img :src="data.images[0]" alt="product image" />
@@ -20,6 +23,7 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex';
 export default {
   props: ['data'],
   filters: {
@@ -29,23 +33,34 @@ export default {
   },
 
   computed: {
-    isFav() {
-      return this.$store.state.favourites[this.data.id] !== undefined;
-    },
+    // ...mapState(['favourites']),
+
+    ...mapState({
+      favourites: (state) => state.products.favourites,
+    }),
   },
   methods: {
-    toggleFav(product) {
-      const id = product.id;
-      const favs = this.$store.state.favourites;
+    // toggleFav(product) {
+    //   console.log('toggled');
 
-      if (favs[id]) {
-        this.$store.commit('removeFav', id);
-      } else {
-        this.$store.commit('addFav', { id, product });
-      }
-    },
+    //   const id = product.id;
+    //   const favs = this.favourites;
+
+    //   if (favs[id]) {
+    //     // console.log('commited');
+    //     this.$store.commit('removeFav', id);
+    //   } else {
+    //     // console.log('commited');
+    //     this.$store.commit('addFav', { id, product });
+    //   }
+    // },
+    ...mapMutations(['updateFavList']),
     handleSingleProduct(id) {
       this.$router.push(`/product/${id}`);
+    },
+    isFav() {
+      // console.log(this.favourites);
+      return this.favourites[this.data.id] !== undefined;
     },
   },
 };

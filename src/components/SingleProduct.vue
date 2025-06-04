@@ -36,12 +36,12 @@
             <button class="counter" @click="count++">+</button>
           </div>
           <button class="addCart">Add to Cart</button>
-          <!-- <button class="fav" @click="toggleFav">
+          <button class="fav" @click="toggleFav">
             <i
               class="fa-solid fa-heart"
               :style="{ color: isFav ? 'red' : 'gray' }"
             ></i>
-          </button> -->
+          </button>
         </div>
       </div>
     </div>

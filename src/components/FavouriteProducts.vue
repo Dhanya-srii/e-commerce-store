@@ -1,11 +1,11 @@
 <template>
   <div class="favourites">
     <div>
-      <h2 v-if="!Object.keys(favourites).length">NO FAVOURITES!!</h2>
+      <!-- <h2 v-if="!Object.keys(favourites).length">NO FAVOURITES!!</h2> -->
       <div class="products">
         <ProductCards
-          v-for="product in favourites"
-          :key="product.id"
+          v-for="(product, key) in favourites"
+          :key="key"
           :data="product"
         />
       </div>
@@ -15,15 +15,24 @@
 
 <script>
 import ProductCards from './ProductCards.vue';
+import { mapState } from 'vuex';
 
 export default {
   components: { ProductCards },
 
   computed: {
-    favourites() {
-      return this.$store.state.favourites;
-    },
+    ...mapState({
+      favourites: (state) => state.products.favourites,
+    }),
+    isFavProdcuts () {
+      return this.favourites;
+    }
   },
+  watch: {
+    isFavProdcuts(newVal) {
+      console.log(newVal);
+    }
+  }
 };
 </script>
 
