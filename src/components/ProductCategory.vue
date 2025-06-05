@@ -1,29 +1,36 @@
 <template>
   <div class="category">
     <input
+      id="input"
       type="checkbox"
-      :value="data"
-      :checked="value === data"
+      :value="categoryData"
+      :checked="value === categoryData"
       @change="handleChange"
     />
-    {{ data }}
+    <p>{{ categoryData }}</p>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    data: String,
+    categoryData: String,
     value: String,
   },
   methods: {
     handleChange() {
-      if (this.value === this.data) {
+      if (this.value === this.categoryData) {
         this.$emit('input', '');
       } else {
-        this.$emit('input', this.data);
+        this.$emit('input', this.categoryData);
       }
     },
   },
 };
 </script>
+<style scoped>
+.category {
+  display: flex;
+  gap: 1rem;
+}
+</style>
