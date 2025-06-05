@@ -8,6 +8,7 @@
       referrerpolicy="no-referrer"
     />
     <ProductHeader />
+
     <router-link to="/products"></router-link>
     <router-link to="/favourites"></router-link>
     <router-view></router-view>

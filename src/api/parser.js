@@ -5,5 +5,7 @@ export function parseDailyProducts(product) {
     price: product.price,
     images: product.images,
     description: product.description,
+    category: product.category,
+    brand: product.brand,
   };
 }
