@@ -8,7 +8,8 @@
           :categoryData="category"
           v-model="selectedCategory"
         />
-      </div> 
+      </div>    
+      <!-- dhanya sri -->
       <div class="brands">
         <ProductBrands
           v-for="(brand, index) in brandsByCategory[selectedCategory] || []"
