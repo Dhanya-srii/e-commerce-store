@@ -1,6 +1,7 @@
 <template>
   <div class="brand">
     <input
+      id="input"
       type="checkbox"
       :value="brandData"
       :checked="value === brandData"
@@ -12,18 +13,18 @@
 
 <script>
 export default {
-  props: {
-    brandData: String,
-    value: String,
+  props: ['value', 'brandData'],
+
+  data() {
+    return {};
   },
   methods: {
     handleChange() {
-      this.$emit('input', this.value === this.brandData ? '' : this.brandData);
+      this.$emit('input', this.brandData);
     },
   },
 };
 </script>
-
 <style scoped>
 .brand {
   display: flex;

@@ -66,6 +66,7 @@ export default {
   },
   async mounted() {
     await this.displaySingleProduct();
+    console.log(this.productData.images['0']);
   },
   methods: {
     async displaySingleProduct() {
