@@ -16,11 +16,11 @@
           :brandData="brand"
           v-model="selectedBrands"
         />
-      </div>
+      </div> 
       <div class="products">
         <ProductCards
           v-for="(product, index) in filteredProducts"
-          :key="index"
+          :key="index" 
           :data="product"
         />
       </div>
