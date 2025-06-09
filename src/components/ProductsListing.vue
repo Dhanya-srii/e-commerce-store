@@ -2,25 +2,27 @@
   <div>
     <div v-if="productList.length" class="container">
       <div class="categories">
-        <ProductCategory
+        <SelectableCheckbox
           v-for="(category, index) in uniqueCategories"
           :key="index"
-          :categoryData="category"
-          v-model="selectedCategory"
+          v-model="selectedCategories"
+          :item="category"
         />
       </div>
+
       <div class="brands">
-        <ProductBrands
-          v-for="(brand, index) in brandsByCategory[selectedCategory] || []"
+        <SelectableCheckbox
+          v-for="(brand, index) in allBrandsForSelectedCategories"
           :key="index"
-          :brandData="brand"
+          :item="brand"
           v-model="selectedBrands"
         />
-      </div> 
+      </div>
+
       <div class="products">
         <ProductCards
           v-for="(product, index) in filteredProducts"
-          :key="index" 
+          :key="index"
           :data="product"
         />
       </div>
@@ -31,41 +33,61 @@
 <script>
 import { products } from '../api/products';
 import ProductCards from './ProductCards.vue';
-import ProductCategory from './ProductCategory.vue';
-import ProductBrands from './ProductBrands.vue';
+// import ProductCategory from './ProductCategory.vue';
+// import ProductBrands from './ProductBrands.vue';
+import SelectableCheckbox from './SelectableCheckBox.vue';
 export default {
   components: {
     ProductCards,
-    ProductCategory,
-    ProductBrands,
+    // ProductCategory,
+    // ProductBrands,
+    SelectableCheckbox,
   },
 
   data() {
     return {
       productList: [],
       uniqueCategories: [],
-      selectedCategory: '',
-      selectedBrands: '',
+      selectedCategories: [],
+      selectedBrands: [],
       brandsByCategory: {},
     };
   },
 
   computed: {
     filteredProducts() {
-      if (!this.selectedCategory) return this.productList;
+      if (!this.selectedCategories.length) return this.productList;
+
       return this.productList.filter((p) => {
-        const categoryMatch = p.category === this.selectedCategory;
+        const categoryMatch = this.selectedCategories.includes(p.category);
 
-        console.log(this.selectedBrands);
-
-        const brandMatch = this.selectedBrands.includes(p.brand);
-        if (!this.selectedBrands) {
+        if (!this.selectedBrands.length) {
           return categoryMatch;
         }
+
+        const brandMatch = this.selectedBrands.includes(p.brand);
+        console.log(this.selectedCategories);
+
         return categoryMatch && brandMatch;
       });
     },
+    allBrandsForSelectedCategories() {
+      const allBrands = new Set();
+
+      this.selectedCategories.forEach((category) => {
+        const brands = this.brandsByCategory[category] || [];
+        // console.log(brands);
+
+        brands.forEach((b) => {
+          allBrands.add(b);
+          // console.log(allBrands.add(b));
+        });
+      });
+
+      return [...allBrands];
+    },
   },
+
   async created() {
     this.productList = await products.fetchAllProducts();
 
@@ -88,7 +110,6 @@ export default {
   },
 };
 </script>
-
 <style>
 .container {
   max-width: 1200px;
