@@ -6,20 +6,23 @@
       :checked="isChecked"
       @change="handleChange"
     />
-    <p>{{ item }}</p>
+    <p class="item">{{ item || 'All groceries' | firstLetterUpperCase }}</p>
   </div>
 </template>
 
 <script>
 export default {
+  filters: {
+    firstLetterUpperCase(value) {
+      return value ? value.charAt(0).toUpperCase() + value.slice(1) : '';
+    },
+  },
   props: {
     value: {
       type: Array,
-      default: () => [],
     },
     item: {
       type: String,
-      required: true,
     },
   },
   computed: {
@@ -30,6 +33,7 @@ export default {
   methods: {
     handleChange(event) {
       const updated = [...this.value];
+
       if (event.target.checked && !updated.includes(this.item)) {
         updated.push(this.item);
       } else if (!event.target.checked && updated.includes(this.item)) {
@@ -46,5 +50,11 @@ export default {
 .selectable-item {
   display: flex;
   gap: 1rem;
+}
+input {
+  width: 1.3rem;
+}
+.item {
+  font-size: 1.1rem;
 }
 </style>

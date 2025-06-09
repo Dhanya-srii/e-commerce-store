@@ -25,5 +25,6 @@ export default {
 <style scoped>
 * {
   margin: 0;
+  font-family: lato;
 }
 </style>

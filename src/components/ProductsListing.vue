@@ -1,30 +1,35 @@
 <template>
   <div>
     <div v-if="productList.length" class="container">
-      <div class="categories">
-        <SelectableCheckbox
-          v-for="(category, index) in uniqueCategories"
-          :key="index"
-          v-model="selectedCategories"
-          :item="category"
-        />
-      </div>
+      <div>
+        <div class="categories">
+          <h1>Category</h1>
+          <SelectableCheckbox
+            v-for="(category, index) in uniqueCategories"
+            :key="index"
+            v-model="selectedCategories"
+            :item="category"
+          />
+        </div>
 
-      <div class="brands">
-        <SelectableCheckbox
-          v-for="(brand, index) in allBrandsForSelectedCategories"
-          :key="index"
-          :item="brand"
-          v-model="selectedBrands"
-        />
+        <div class="brands">
+          <h1>Brand</h1>
+          <SelectableCheckbox
+            v-for="(brand, index) in allBrandsForSelectedCategories"
+            :key="index"
+            :item="brand"
+            v-model="selectedBrands"
+          />
+        </div>
       </div>
-
-      <div class="products">
-        <ProductCards
-          v-for="(product, index) in filteredProducts"
-          :key="index"
-          :data="product"
-        />
+      <div>
+        <div class="products">
+          <ProductCards
+            v-for="(product, index) in filteredProducts"
+            :key="index"
+            :data="product"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -33,14 +38,10 @@
 <script>
 import { products } from '../api/products';
 import ProductCards from './ProductCards.vue';
-// import ProductCategory from './ProductCategory.vue';
-// import ProductBrands from './ProductBrands.vue';
 import SelectableCheckbox from './SelectableCheckBox.vue';
 export default {
   components: {
     ProductCards,
-    // ProductCategory,
-    // ProductBrands,
     SelectableCheckbox,
   },
 
@@ -56,17 +57,12 @@ export default {
 
   computed: {
     filteredProducts() {
-      if (!this.selectedCategories.length) return this.productList;
-
       return this.productList.filter((p) => {
-        const categoryMatch = this.selectedCategories.includes(p.category);
-
-        if (!this.selectedBrands.length) {
-          return categoryMatch;
-        }
-
-        const brandMatch = this.selectedBrands.includes(p.brand);
-        console.log(this.selectedCategories);
+        const categoryMatch =
+          !this.selectedCategories.length ||
+          this.selectedCategories.includes(p.category);
+        const brandMatch =
+          !this.selectedBrands.length || this.selectedBrands.includes(p.brand);
 
         return categoryMatch && brandMatch;
       });
@@ -74,15 +70,18 @@ export default {
     allBrandsForSelectedCategories() {
       const allBrands = new Set();
 
-      this.selectedCategories.forEach((category) => {
-        const brands = this.brandsByCategory[category] || [];
-        // console.log(brands);
-
-        brands.forEach((b) => {
-          allBrands.add(b);
-          // console.log(allBrands.add(b));
+      if (!this.selectedCategories.length) {
+        Object.values(this.brandsByCategory).forEach((brandList) => {
+          brandList.forEach((b) => allBrands.add(b));
         });
-      });
+      } else {
+        this.selectedCategories.forEach((category) => {
+          const brands = this.brandsByCategory[category] || [];
+          console.log(brands);
+
+          brands.forEach((b) => allBrands.add(b));
+        });
+      }
 
       return [...allBrands];
     },
@@ -90,6 +89,7 @@ export default {
 
   async created() {
     this.productList = await products.fetchAllProducts();
+    // console.log(this.productList);
 
     const allCategories = this.productList.map((p) => p.category);
     this.uniqueCategories = [...new Set(allCategories)];
@@ -104,6 +104,7 @@ export default {
 
     for (const category in brandMap) {
       brandMap[category] = [...brandMap[category]];
+      // console.log(brandMap[category]);
     }
 
     this.brandsByCategory = brandMap;
@@ -112,12 +113,14 @@ export default {
 </script>
 <style>
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1400px;
+  margin: 5rem auto;
   margin-top: 5rem;
   padding: 1rem;
   display: flex;
-  gap: 4rem;
+  justify-content: space-between;
+  /* align-items: center; */
+  /* gap: 10rem; */
   /* flex-direction: column; */
 }
 
