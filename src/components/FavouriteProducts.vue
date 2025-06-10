@@ -37,5 +37,13 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* flex-direction: column; */
 }
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 250px);
+  gap: 2.8rem;
+  flex: 2;
+}
+
 </style>

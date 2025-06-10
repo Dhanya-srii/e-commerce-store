@@ -47,10 +47,16 @@ export default {
 </script>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
 .selectable-item {
   display: flex;
   gap: 1rem;
+  cursor: pointer;
 }
+
 input {
   width: 1.3rem;
 }
