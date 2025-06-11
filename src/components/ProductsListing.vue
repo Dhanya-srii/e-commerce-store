@@ -35,7 +35,7 @@
             >
               <span>{{ category | firstLetterUpperCase }}</span>
               <button class="removeFilter" @click="removeCategory(category)">
-                x
+                <i class="fa-solid fa-xmark"></i>
               </button>
             </span>
             <span
@@ -45,7 +45,7 @@
             >
               <span>{{ brand || 'All Groceries' | firstLetterUpperCase }}</span>
               <button class="removeFilter" @click="removeBrand(brand)">
-                x
+                <i class="fa-solid fa-xmark"></i>
               </button>
             </span>
           </div>
@@ -177,7 +177,7 @@ h1 {
 }
 .container {
   max-width: 1800px;
-  margin: 5rem 0rem 0rem 6rem;
+  margin: 5rem 0rem 0rem 5rem;
   display: flex;
   justify-content: center;
   position: relative;
@@ -186,22 +186,14 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-height: 650px;
-  overflow-y: scroll;
   position: fixed;
   left: 0%;
   margin: 16px;
   z-index: 1000;
+  width: 240px;
+  height: 855px;
 }
-/* .CategoryandBrandData {
-  min-width: 1100px;
-  max-height: 50px;
-  border-bottom: 1px solid rgb(172, 166, 166);
-  margin: 1.2rem;
-  padding: 1rem;
-  border: 1px solid black;
-  position: fixed;
-} */
+
 .categories,
 .brands {
   margin-bottom: 2rem;
@@ -209,51 +201,49 @@ h1 {
   flex-direction: column;
   gap: 1rem;
   flex-wrap: wrap;
-  width: 240px;
 }
 .brand {
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  height: 400px;
-  /* overflow-y: scroll; */
 }
 ::-webkit-scrollbar {
   width: 8px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: rgb(220, 171, 130);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: rgb(191, 118, 2);
 }
-.products {
+.products,
+.noProducts {
   display: grid;
   grid-template-columns: repeat(4, 250px);
   gap: 2.8rem;
-  margin-top: 6rem;
+  margin-top: 8rem;
   flex: 2;
-  /* border: 1px solid black; */
-  /* margin: 20px; */
-  /* margin-left:32px; */
 }
 .noProducts {
-  text-align: center;
-  margin: 1rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
+  padding: 32px;
 }
 
 .filters {
   display: flex;
-  border-bottom: 1px solid rgb(172, 166, 166);
+  background-color: rgba(110, 110, 109, 0.3);
   width: 1120px;
-  justify-content: center;
   align-items: center;
+  z-index: 1001;
   position: fixed;
+  padding: 2.2rem;
+  border-radius: 16px;
+  max-height: 10px;
 }
 .filterContainer {
   display: flex;
@@ -261,30 +251,32 @@ h1 {
   flex-wrap: nowrap;
   width: calc(100% - 100px);
   overflow-y: hidden;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 .filter-pill {
   background-color: #f0f0f0;
   color: #605e5e;
-  /* border: 1px solid black; */
   border-radius: 8px;
-  font-size: 18px;
   flex: 1;
   display: flex;
   align-items: center;
   height: 32px;
   flex-wrap: nowrap;
   margin: 4px;
-  padding: 0.8rem;
-  width: 50px;
+  padding: 0.5rem;
+  min-width: 150px;
+  gap: 16px;
 }
 
-.removeFilter {
+.removeFilter,
+i {
   border: none;
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: #605e5e;
   font-weight: 700;
+    cursor: pointer;
+
 }
 .fixed-clear {
   display: block;
@@ -292,10 +284,9 @@ h1 {
   width: 100px;
   color: rgb(236, 152, 84);
   border: none;
-  font-size: 18px;
+  font-size: 24px;
   cursor: pointer;
-  background-color: #ffffff;
+  background-color: rgba(236, 152, 84, 0.1);
+  cursor: pointer;
 }
-/*  */
 </style>
-

@@ -59,8 +59,10 @@ export default {
 
 input {
   width: 1.3rem;
+  cursor: pointer;
 }
 .item {
   font-size: 1.1rem;
+  cursor: pointer;
 }
 </style>

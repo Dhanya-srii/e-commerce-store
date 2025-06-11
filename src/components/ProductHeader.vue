@@ -4,8 +4,8 @@
       <h1>PLUGO</h1>
     </div>
     <div class="searchProduct">
-      <input type="text" placeholder="Search..." v-model="userSearch">
-      <button  class="find">Find</button>
+      <input type="text" placeholder="Search..." v-model="userSearch" />
+      <button @click="searchProduct()" class="find">Find</button>
     </div>
     <div class="userProducts">
       <button class="fav" @click="listFavourites()">
@@ -39,13 +39,14 @@ export default {
         this.$router.push('/favourites');
       }
     },
-    // searchProduct() {
-    //   const search = this.data.find(
-    //     (s) => s.title.toLowerCase() === this.userSearch.toLowerCase()
-    //   )
-    //      console.log(search)
-    //     this.userSearch = '';
-    // },
+    searchProduct() {
+      const search = this.data.find(
+        (s) => s.title.toLowerCase() === this.userSearch.toLowerCase()
+      );
+      console.log(search);
+      this.userSearch = '';
+      return search;
+    },
   },
   computed: {
     favourites() {

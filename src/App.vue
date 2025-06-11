@@ -22,9 +22,11 @@ export default {
   components: { ProductHeader },
 };
 </script>
-<style scoped>
+<style>
 * {
-  margin: 0;
+  margin: 0px;
+  padding: 0px;
   font-family: lato;
+  box-sizing: border-box;
 }
 </style>
