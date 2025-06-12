@@ -68,7 +68,7 @@
           />
         </div>
         <div v-else class="noProducts">
-          <p class="message">No products listed</p>
+          <p class="message">{{ message }}</p>
         </div>
       </div>
     </div>
@@ -76,6 +76,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { products } from '../api/products';
 import ProductCards from './ProductCards.vue';
 import SelectableCheckbox from './SelectableCheckBox.vue';
@@ -96,11 +97,17 @@ export default {
       selectedCategories: [],
       selectedBrands: [],
       brandsByCategory: {},
+      message: '',
     };
   },
 
   computed: {
+    ...mapGetters(['getSearchedProduct']),
     filteredProducts() {
+      if (this.getSearchedProduct) {
+        return [this.getSearchedProduct];
+      }
+
       return this.productList.filter((p) => {
         const categoryMatch =
           !this.selectedCategories.length ||
@@ -111,6 +118,7 @@ export default {
         return categoryMatch && brandMatch;
       });
     },
+
     allBrandsForSelectedCategories() {
       const allBrands = new Set();
 
@@ -155,6 +163,7 @@ export default {
   methods: {
     clearAll() {
       (this.selectedCategories = []), (this.selectedBrands = []);
+      this.$store.commit('getSearchedProduct', null);
     },
     removeCategory(cat) {
       this.selectedCategories = this.selectedCategories.filter(
@@ -251,7 +260,6 @@ h1 {
   flex-wrap: nowrap;
   width: calc(100% - 100px);
   overflow-y: hidden;
-  /* justify-content: center; */
   align-items: center;
 }
 .filter-pill {
@@ -275,8 +283,7 @@ i {
   font-size: 1.3rem;
   color: #605e5e;
   font-weight: 700;
-    cursor: pointer;
-
+  cursor: pointer;
 }
 .fixed-clear {
   display: block;
@@ -284,6 +291,7 @@ i {
   width: 100px;
   color: rgb(236, 152, 84);
   border: none;
+  font-weight: 500;
   font-size: 24px;
   cursor: pointer;
   background-color: rgba(236, 152, 84, 0.1);

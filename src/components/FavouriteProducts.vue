@@ -1,7 +1,7 @@
 <template>
   <div class="favourites">
     <div>
-      <h2 v-if="!Object.keys(favourites).length">NO FAVOURITES!!</h2>
+      <h2 v-if="!Object.keys(favourites).length">NO FAVOURITES ADDED!!</h2>
       <div class="products">
         <ProductCards
           v-for="(product, key) in favourites"
@@ -37,7 +37,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* flex-direction: column; */
 }
 .products {
   display: grid;

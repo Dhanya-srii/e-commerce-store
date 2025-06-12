@@ -2,6 +2,7 @@ import Vue from 'vue';
 export const products = {
   state: {
     favourites: JSON.parse(localStorage.getItem('favourites')) || {},
+    searchedProduct: null,
   },
   mutations: {
     updateFavList(state, val) {
@@ -15,10 +16,15 @@ export const products = {
           ...state.favourites,
           ...favProduct,
         };
-        console.log('fav', state.favourites);
       }
 
       localStorage.setItem('favourites', JSON.stringify(state.favourites));
     },
+    getSearchedProduct(state, product) {
+      state.searchedProduct = product;
+    },
+  },
+  getters: {
+    getSearchedProduct: (state) => state.searchedProduct,
   },
 };

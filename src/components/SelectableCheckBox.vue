@@ -27,6 +27,7 @@ export default {
   },
   computed: {
     isChecked() {
+      // console.log(this.item);
       return this.value.includes(this.item);
     },
   },

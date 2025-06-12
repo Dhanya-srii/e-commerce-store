@@ -4,7 +4,12 @@
       <h1>PLUGO</h1>
     </div>
     <div class="searchProduct">
-      <input type="text" placeholder="Search..." v-model="userSearch" />
+      <input
+        type="text"
+        placeholder="Search..."
+        v-model="userSearch"
+        @keyup.enter="searchProduct()"
+      />
       <button @click="searchProduct()" class="find">Find</button>
     </div>
     <div class="userProducts">
@@ -43,9 +48,13 @@ export default {
       const search = this.data.find(
         (s) => s.title.toLowerCase() === this.userSearch.toLowerCase()
       );
-      console.log(search);
       this.userSearch = '';
-      return search;
+      if (search) {
+        this.$store.commit('getSearchedProduct', search);
+        // console.log(search);
+      } else {
+        return;
+      }
     },
   },
   computed: {
