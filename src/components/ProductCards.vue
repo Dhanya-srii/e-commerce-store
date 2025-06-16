@@ -47,4 +47,5 @@ export default {
 };
 </script>
 <style src="@/assets/styles/components/product-card.css"></style>
+<style src="@/assets/styles/components/button.css"></style>
 <style src="@/assets/styles/abstracts/root.css"></style>

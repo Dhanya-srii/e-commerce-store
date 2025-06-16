@@ -38,34 +38,6 @@ img {
   margin: 1rem;
 }
 
-.addCart {
-  border: none;
-  background-color:var(--primary-color);
-  color: white;
-  padding: 0.5em 1.2rem;
-  font-size: 1.2rem;
-  border-radius: 32px;
-  cursor: pointer;
-}
-
-.fav {
-  position: absolute;
-  right: 0;
-  background-color: rgb(216, 213, 213);
-  font-size: 1.4rem;
-  padding: 0.5rem;
-  color: rgb(99, 97, 97);
-  margin: 1rem;
-  font-weight: 300;
-  cursor: pointer;
-  border: none;
-  border-radius: 50%;
-}
-
-.fav:hover {
-  color: rgb(224, 32, 32);
-}
-
 .isFav {
   color: red;
 }

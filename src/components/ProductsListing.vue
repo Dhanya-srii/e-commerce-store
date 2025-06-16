@@ -44,7 +44,7 @@
 
         <div class="brands">
           <h1>Brand</h1>
-          <div class="brand">
+          <div class="productBrand">
             <SelectableCheckbox
               v-for="(brand, index) in allBrandsForSelectedCategories"
               :key="index"
@@ -72,7 +72,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import { products } from '../api/products';
 import ProductCards from './ProductCards.vue';
 import SelectableCheckbox from './SelectableCheckBox.vue';
@@ -97,7 +96,6 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['getSearchedProduct']),
 
     filteredProducts() {
       if (this.getSearchedProduct) {

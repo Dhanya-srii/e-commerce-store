@@ -29,3 +29,83 @@ button,
 .favHeader:hover {
   color: #ff0000;
 }
+
+.addCart {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.5em 1.2rem;
+  font-size: 1.2rem;
+  border-radius: 32px;
+
+}
+
+
+.fav {
+  position: absolute;
+  right: 0;
+  background-color: rgb(216, 213, 213);
+  font-size: 1.4rem;
+  padding: 0.5rem;
+  color: rgb(99, 97, 97);
+  margin: 1rem;
+  font-weight: 300;
+  border-radius: 50%;
+}
+
+.fav:hover {
+  color: rgb(224, 32, 32);
+}
+
+.goBackBtn {
+  width: 85px;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 8px;
+}
+
+.goBackBtn:hover {
+  border: 2px solid var(--primary-color);
+}
+
+.quantity {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+}
+
+.quantity:hover {
+  background-color: #f8f8f8;
+  border-color: var(--primary-color);
+}
+
+.counter {
+  background: none;
+  font-size: 1.5rem;
+}
+
+.addCart-details {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 0.5rem 5rem;
+  border-radius: 24px;
+  font-size: 1rem;
+}
+
+.fav-detail {
+  background-color: #d8d5d5;
+  color: #636161;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fav-detail:hover {
+  color: red;
+}

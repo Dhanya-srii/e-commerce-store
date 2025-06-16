@@ -66,7 +66,6 @@ export default {
   },
   async mounted() {
     await this.displaySingleProduct();
-    console.log(this.productData.images['0']);
   },
   methods: {
     async displaySingleProduct() {
@@ -93,5 +92,6 @@ export default {
 </script>
 
 <style src="@/assets/styles/components/product-detail.css"></style>
+<style src="@/assets/styles/components/button.css"></style>
 <style src="@/assets/styles/vendors/ratings.css"></style>
 <style src="@/assets/styles/abstracts/root.css"></style>

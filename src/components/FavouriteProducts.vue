@@ -28,5 +28,5 @@ export default {
 };
 </script>
 
-<style src="@/assets/styles/components/favourites.css"></style>
+<style src="@/assets/styles/layout/favourites.css"></style>
 <style src="@/assets/styles/layout/base-products.css"></style>

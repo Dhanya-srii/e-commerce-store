@@ -5,6 +5,7 @@
       :value="item"
       :checked="isChecked"
       @change="handleChange"
+      class="checkbox"
     />
     <label for="checkbox" class="item">{{
       item || 'All groceries' | firstLetterUpperCase

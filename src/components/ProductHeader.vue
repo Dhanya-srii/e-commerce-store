@@ -9,9 +9,11 @@
         type="text"
         placeholder="Search..."
         v-model.trim="userSearch"
-        @keyup.enter="searchProduct()"
+        @keyup.enter="displaySearchedProduct(userSearch)"
       />
-      <button @click="searchProduct()" class="find">Find</button>
+      <button @click="displaySearchedProduct(userSearch)" class="find">
+        Find
+      </button>
     </div>
     <div class="userProducts">
       <button class="favHeader" @click="listFavourites()">
@@ -28,11 +30,15 @@ export default {
     return {
       userSearch: '',
       data: '',
+      searchedProduct: {},
     };
   },
   async created() {
     this.data = await products.fetchAllProducts();
+
+    // console.log(this.data);
   },
+
   methods: {
     handleHome() {
       const targetRoute = '/products';
@@ -45,13 +51,18 @@ export default {
         this.$router.push('/favourites');
       }
     },
-    searchProduct() {
-      const search = this.data.find(
-        (s) => s.title.toLowerCase() === this.userSearch.toLowerCase()
-      );
-      this.userSearch = '';
-      if (search) {
-        this.$store.commit('getSearchedProduct', search);
+    // handleSearch(product) {
+    //   this.userSearch = product;
+    //   this.$router.push(`/product/search?q=${product}`);
+    //   console.log(this.userSearch);
+    // },
+    async displaySearchedProduct(product) {
+      try {
+        this.searchedProduct = await products.searchProduct(product);
+        this.$router.push(`/search?q=${product}`);
+        console.log('searched', this.searchedProduct);
+      } catch (error) {
+        console.error('Failed to fetch product:', error);
       }
     },
   },

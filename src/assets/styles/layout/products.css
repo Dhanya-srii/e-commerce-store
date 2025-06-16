@@ -1,6 +1,8 @@
 .productList {
   display: flex;
   justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
 }
 
 .container {
@@ -9,6 +11,7 @@
   display: flex;
   justify-content: center;
   position: relative;
+  /* border: 1px solid black; */
 }
 
 .categoryAndBrandContainer {
@@ -33,7 +36,7 @@
   flex-wrap: wrap;
 }
 
-.brand {
+.productBrand {
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
@@ -51,14 +54,14 @@
   /* background-color: rgba(0, 0, 0, 0.2); */
   background-color: white;
   width: 80%;
-  margin-left: 230px;
+  /* margin-left: 230px; */
   position: fixed;
   top: 10.2%;
   padding: 1rem;
   border-radius: 16px;
   z-index: 1001;
-  /* margin-top: 10px; */
   gap: 1rem;
+  border: 1px solid black;
 }
 
 .filterContainer {
