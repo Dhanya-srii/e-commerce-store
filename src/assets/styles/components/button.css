@@ -5,7 +5,7 @@ button,
 }
 
 .find {
-  background-color: rgb(236, 152, 84);
+  background-color: var(--primary-color);
   color: white;
   padding: 0.5rem;
   width: 100px;
