@@ -16,6 +16,7 @@
   flex-direction: column;
   gap: 1rem;
   position: fixed;
+  top: 10%;
   left: 0%;
   margin: 16px 0px 0px 16px;
   z-index: 1000;
@@ -47,15 +48,18 @@
 
 .filters {
   display: flex;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.2);
   width: 80%;
-  margin-left: 200px;
+  margin-left: 230px;
   position: fixed;
+  top: 11%;
   padding: 1rem;
   border-radius: 16px;
   z-index: 1001;
   margin-top: 0px;
   gap: 1rem;
+
+  /* border: 1px solid black; */
 }
 
 .filterContainer {

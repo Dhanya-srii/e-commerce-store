@@ -35,7 +35,7 @@
             <p class="countValue">{{ count }}</p>
             <button class="counter" @click="count++">+</button>
           </div>
-          <button class="addCart">Add to Cart</button>
+          <button class="addCart-details">Add to Cart</button>
           <button class="fav-detail" @click="updateFavList(productData)">
             <i
               class="fa-solid fa-heart"

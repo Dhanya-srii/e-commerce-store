@@ -9,7 +9,7 @@
   margin: auto;
   gap: 2rem;
   padding: 2rem;
-  margin-top: 5rem;
+  margin-top: 5.7rem;
 }
 
 .goBackBtn {
@@ -134,7 +134,7 @@ button {
   font-size: 1.2rem;
 }
 
-.addCart {
+.addCart-details {
   background-color: #ec9854;
   color: white;
   padding: 0.5rem 5rem;

@@ -1,10 +1,11 @@
 <template>
   <div class="header">
     <div class="brand" @click="handleHome()">
-      <h1>PLUGO</h1>
+      <h1 class="brandName">PLUGO</h1>
     </div>
     <div class="searchProduct">
-      <input class="userSearch"
+      <input
+        class="userSearch"
         type="text"
         placeholder="Search..."
         v-model.trim="userSearch"

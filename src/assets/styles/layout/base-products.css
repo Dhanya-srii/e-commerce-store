@@ -3,6 +3,6 @@
   display: grid;
   grid-template-columns: repeat(4, 250px);
   gap: 2.8rem;
-  margin-top: 8rem;
+  margin-top: 7.5rem;
   flex: 2;
 }

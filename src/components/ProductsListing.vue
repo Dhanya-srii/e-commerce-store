@@ -161,9 +161,7 @@ export default {
   },
 };
 </script>
-<style src="@/assets/styles/base/typography.css"></style>
 <style src="@/assets/styles/base/scrollbar.css"></style>
 <style src="@/assets/styles/layout/base-products.css"></style>
-
 <style src="@/assets/styles/layout/products.css"></style>
 <style src="@/assets/styles/components/filter.css"></style>
