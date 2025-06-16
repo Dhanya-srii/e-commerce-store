@@ -36,7 +36,7 @@
             <button class="counter" @click="count++">+</button>
           </div>
           <button class="addCart">Add to Cart</button>
-          <button class="fav" @click="updateFavList(productData)">
+          <button class="fav-detail" @click="updateFavList(productData)">
             <i
               class="fa-solid fa-heart"
               :style="{ color: isFav() ? 'red' : 'gray' }"

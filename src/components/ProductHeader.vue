@@ -4,7 +4,7 @@
       <h1>PLUGO</h1>
     </div>
     <div class="searchProduct">
-      <input
+      <input class="userSearch"
         type="text"
         placeholder="Search..."
         v-model.trim="userSearch"
@@ -13,7 +13,7 @@
       <button @click="searchProduct()" class="find">Find</button>
     </div>
     <div class="userProducts">
-      <button class="fav" @click="listFavourites()">
+      <button class="favHeader" @click="listFavourites()">
         <i class="fa-solid fa-heart"></i>
       </button>
       <button class="find">Cart</button>
