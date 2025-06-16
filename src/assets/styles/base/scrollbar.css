@@ -12,5 +12,5 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(191, 118, 2);
+  background:var(--primary-color)
 }

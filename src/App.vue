@@ -22,14 +22,10 @@ export default {
   components: { ProductHeader },
 };
 </script>
+
+<style src="@/assets/styles/base/reset.css"></style>
 <style>
 * {
-  margin: 0px;
-  padding: 0px;
-  font-family: lato;
-  box-sizing: border-box;
-}
-#app {
-  margin: 0px;
+  font-family: var(--font-family);
 }
 </style>

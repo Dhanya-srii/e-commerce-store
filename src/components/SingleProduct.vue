@@ -16,7 +16,7 @@
         v-model="value"
         disabled
         show-score
-        text-color="#ff9900"
+        text-color="#ec9854"
         score-template="{value} points"
       ></el-rate>
       <p class="price">${{ productData.price }}</p>
@@ -93,3 +93,5 @@ export default {
 </script>
 
 <style src="@/assets/styles/components/product-detail.css"></style>
+<style src="@/assets/styles/vendors/ratings.css"></style>
+<style src="@/assets/styles/abstracts/root.css"></style>

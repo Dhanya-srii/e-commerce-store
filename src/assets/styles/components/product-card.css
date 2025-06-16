@@ -40,7 +40,7 @@ img {
 
 .addCart {
   border: none;
-  background-color: rgb(236, 152, 84);
+  background-color:var(--primary-color);
   color: white;
   padding: 0.5em 1.2rem;
   font-size: 1.2rem;

@@ -37,8 +37,9 @@
           <SelectableCheckbox
             v-for="(category, index) in uniqueCategories"
             :key="index"
-            v-model="selectedCategories"
             :item="category"
+            :model-value="selectedCategories"
+            @update:modelValue="selectedCategories = $event"
           />
         </div>
 
@@ -49,7 +50,8 @@
               v-for="(brand, index) in allBrandsForSelectedCategories"
               :key="index"
               :item="brand"
-              v-model="selectedBrands"
+              :model-value="selectedBrands"
+              @update:modelValue="selectedBrands = $event"
             />
           </div>
         </div>
