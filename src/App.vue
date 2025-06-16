@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import ProductHeader from "./components/ProductHeader.vue";
+import ProductHeader from './components/ProductHeader.vue';
 export default {
-  name: "App",
+  name: 'App',
   components: { ProductHeader },
 };
 </script>
@@ -28,5 +28,8 @@ export default {
   padding: 0px;
   font-family: lato;
   box-sizing: border-box;
+}
+#app {
+  margin: 0px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="product" @click="handleSingleProduct(data.id)">
-      <div class="image">
+      <div class="imageContainer">
         <button class="fav" @click.stop="updateFavList(data)">
           <i
             class="fa-solid fa-heart"
@@ -48,12 +48,7 @@ export default {
 </script>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: lato;
-}
+
 
 .product {
   border-radius: 26px;
@@ -63,12 +58,13 @@ export default {
   cursor: pointer;
 }
 
-.image {
+.imageContainer {
   background-color: rgb(240, 240, 240);
   border-radius: 26px;
   overflow: hidden;
   position: relative;
 }
+
 img {
   padding: 1rem;
   width: 100%;

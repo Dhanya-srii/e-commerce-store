@@ -1,0 +1,35 @@
+.filter-pill {
+  background-color: rgba(110, 110, 109, 0.3);
+  color: #605e5e;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 12px;
+  min-width: 150px;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+.removeFilter,
+i {
+  background: none;
+  border: none;
+  color: #605e5e;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.fixed-clear {
+  flex-shrink: 0;
+  background-color: rgba(236, 152, 84, 0.1);
+  color: rgb(236, 152, 84);
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}

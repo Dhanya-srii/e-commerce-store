@@ -95,10 +95,6 @@ export default {
 <style scoped>
 @import url('//unpkg.com/element-ui@2.15.14/lib/theme-chalk/index.css');
 
-* {
-  font-family: Lato, sans-serif;
-  box-sizing: border-box;
-}
 
 .product-container {
   max-width: 1300px;

@@ -29,9 +29,7 @@ export default {
 </script>
 
 <style scoped>
-* {
-  font-family: lato;
-}
+
 .favourites {
   margin-top: 8rem;
   display: flex;
@@ -44,5 +42,4 @@ export default {
   gap: 2.8rem;
   flex: 2;
 }
-
 </style>

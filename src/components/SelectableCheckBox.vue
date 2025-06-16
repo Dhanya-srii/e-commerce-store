@@ -2,11 +2,14 @@
   <div class="selectable-item">
     <input
       type="checkbox"
+      :id="id++ + 'checkbox'"
       :value="item"
       :checked="isChecked"
       @change="handleChange"
     />
-    <p class="item">{{ item || 'All groceries' | firstLetterUpperCase }}</p>
+    <label for="checkbox" class="item">{{
+      item || 'All groceries' | firstLetterUpperCase
+    }}</label>
   </div>
 </template>
 
@@ -16,6 +19,11 @@ export default {
     firstLetterUpperCase(value) {
       return value ? value.charAt(0).toUpperCase() + value.slice(1) : '';
     },
+  },
+  data() {
+    return {
+      id: 0,
+    };
   },
   props: {
     value: {
@@ -48,10 +56,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-}
 .selectable-item {
   display: flex;
   gap: 1rem;
