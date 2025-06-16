@@ -39,14 +39,6 @@
   gap: 1rem;
 }
 
-.products,
-.noProducts {
-  display: grid;
-  grid-template-columns: repeat(4, 250px);
-  gap: 2.8rem;
-  margin-top: 8rem;
-  flex: 2;
-}
 
 .noProducts {
   font-size: 1.8rem;

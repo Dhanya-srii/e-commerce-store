@@ -2,7 +2,7 @@
   <div class="selectable-item">
     <input
       type="checkbox"
-      :id="id++ + 'checkbox'"
+      
       :value="item"
       :checked="isChecked"
       @change="handleChange"
@@ -54,20 +54,4 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.selectable-item {
-  display: flex;
-  gap: 1rem;
-  cursor: pointer;
-}
-
-input {
-  width: 1.3rem;
-  cursor: pointer;
-}
-.item {
-  font-size: 1.1rem;
-  cursor: pointer;
-}
-</style>
+<style src="@/assets/styles/components/selectable-item.css"></style>
