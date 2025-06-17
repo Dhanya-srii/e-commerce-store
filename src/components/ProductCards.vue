@@ -2,7 +2,7 @@
   <div>
     <div class="product" @click="handleSingleProduct(data.id)">
       <div class="imageContainer">
-        <button class="fav" @click.stop="updateFavList(data)">
+        <button class="fav" @click.stop="setFavList(data)">
           <i
             class="fa-solid fa-heart"
             :style="{ color: isFav() ? 'red' : 'gray' }"
@@ -32,11 +32,11 @@ export default {
   },
   computed: {
     ...mapState({
-      favourites: (state) => state.products.favourites,
+      favourites: (state) => state.storeProducts.favourites,
     }),
   },
   methods: {
-    ...mapMutations(['updateFavList']),
+    ...mapMutations(['setFavList']),
     handleSingleProduct(id) {
       this.$router.push(`/product/${id}`);
     },

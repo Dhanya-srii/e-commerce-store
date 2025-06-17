@@ -38,7 +38,7 @@
             <button class="counter" @click="count++">+</button>
           </div>
           <button class="addCart-details">Add to Cart</button>
-          <button class="fav-detail" @click="updateFavList(productData)">
+          <button class="fav-detail" @click="setFavList(productData)">
             <i
               class="fa-solid fa-heart"
               :style="{ color: isFav() ? 'red' : 'gray' }"
@@ -63,7 +63,7 @@ export default {
   },
   computed: {
     ...mapState({
-      favourites: (state) => state.products.favourites,
+      favourites: (state) => state.storeProducts.favourites,
     }),
   },
   async created() {
@@ -86,7 +86,7 @@ export default {
     decrement() {
       if (this.count > 0) this.count--;
     },
-    ...mapMutations(['updateFavList']),
+    ...mapMutations(['setFavList']),
     isFav() {
       return this.favourites[this.productData.id] != undefined;
     },

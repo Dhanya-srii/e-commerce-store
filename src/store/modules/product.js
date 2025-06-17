@@ -1,11 +1,14 @@
 import Vue from 'vue';
-export const products = {
+
+import { products } from '/src/api/products.js';
+export const storeProducts = {
   state: {
     favourites: JSON.parse(localStorage.getItem('favourites')) || {},
     searchedProduct: null,
+    productList: [],
   },
   mutations: {
-    updateFavList(state, val) {
+    setFavList(state, val) {
       if (state.favourites[val.id]) {
         Vue.delete(state.favourites, val.id);
       } else {
@@ -22,6 +25,13 @@ export const products = {
     },
     getSearchedProduct(state, product) {
       state.searchedProduct = product;
+    },
+  },
+  actions: {
+    async fetchData({ state }) {
+      const data = await products.fetchAllProducts();
+      state.productList = data;
+      return state.productList;
     },
   },
   getters: {

@@ -54,7 +54,7 @@ export default {
       try {
         this.searchedProduct = await products.searchProduct(product);
         this.$router.replace(`/products/search?q=${product}`);
-        this.userSearch = '';
+        // this.userSearch = '';
         this.$store.commit('getSearchedProduct', this.searchedProduct);
         console.log('after commit', this.searchedProduct);
       } catch (error) {

@@ -22,11 +22,10 @@ export default {
 
   computed: {
     ...mapState({
-      favourites: (state) => state.products.favourites,
+      favourites: (state) => state.storeProducts.favourites,
     }),
   },
 };
 </script>
 
 <style src="@/assets/styles/layout/favourites.css"></style>
-<style src="@/assets/styles/layout/base-products.css"></style>

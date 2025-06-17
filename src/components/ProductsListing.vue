@@ -40,16 +40,13 @@
             :key="index"
             class="selectable-item"
           >
-            <input
-              type="checkbox"
-              :value="category"
-              v-model="selectedCategories"
-              class="checkbox"
+            <el-checkbox
               :id="'category-' + index"
-            />
-            <label :for="'category-' + index" class="item">{{
-              category | firstLetterUpperCase
-            }}</label>
+              v-model="selectedCategories"
+              :label="category"
+            >
+              {{ category | firstLetterUpperCase }}
+            </el-checkbox>
           </div>
         </div>
 
@@ -61,16 +58,14 @@
               :key="index"
               class="selectable-item"
             >
-              <input
-                type="checkbox"
-                :value="brand"
-                v-model="selectedBrands"
-                class="checkbox"
+              <el-checkbox
                 :id="'brand-' + index"
-              />
-              <label :for="'brand-' + index" class="item">
-                {{ (brand || 'All Groceries') | firstLetterUpperCase }}
-              </label>
+                :label="brand"
+                v-model="selectedBrands"
+                >{{
+                  brand || 'All Groceries' | firstLetterUpperCase
+                }}</el-checkbox
+              >
             </div>
           </div>
         </div>
@@ -93,14 +88,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import { products } from '../api/products';
+import { mapGetters, mapActions } from 'vuex';
 import ProductCards from './ProductCards.vue';
-import SelectableCheckbox from './SelectableCheckBox.vue';
 export default {
   components: {
     ProductCards,
-    SelectableCheckbox,
   },
   filters: {
     firstLetterUpperCase(value) {
@@ -119,7 +111,6 @@ export default {
 
   computed: {
     ...mapGetters(['getSearchedProduct']),
-
     filteredProducts() {
       if (this.getSearchedProduct) {
         console.log('searching......', this.getSearchedProduct);
@@ -146,12 +137,11 @@ export default {
   },
 
   async created() {
-    this.productList = await products.fetchAllProducts();
-    // console.log(this.productList);
+    this.productList = await this.fetchData();
+    console.log(this.productList);
 
     const allCategories = this.productList.map((p) => p.category);
     this.uniqueCategories = [...new Set(allCategories)];
-
     const brandMap = {};
     this.productList.forEach(({ category, brand }) => {
       if (!brandMap[category]) {
@@ -162,12 +152,12 @@ export default {
 
     for (const category in brandMap) {
       brandMap[category] = [...brandMap[category]];
-      // console.log(brandMap[category]);
     }
-
     this.brandsByCategory = brandMap;
   },
   methods: {
+    ...mapActions(['fetchData']),
+
     clearAll() {
       (this.selectedCategories = []), (this.selectedBrands = []);
       this.$store.commit('getSearchedProduct', null);
@@ -183,7 +173,7 @@ export default {
   },
 };
 </script>
-
+<style src="@/assets/styles/vendors/ratings.css"></style>
 <style src="@/assets/styles/base/scrollbar.css"></style>
 <style src="@/assets/styles/layout/base-products.css"></style>
 <style src="@/assets/styles/layout/products.css"></style>
