@@ -20,11 +20,7 @@ const routes = [
     component: FavouriteProducts,
     name: 'FavouriteProducts',
   },
-  {
-    path: '/products/search',
-    component: ProductsListing,
-    name: 'ProductListing',
-  },
+
   {
     path: '/product/:id',
     component: SingleProduct,

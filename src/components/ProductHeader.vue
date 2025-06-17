@@ -25,16 +25,13 @@
 </template>
 <script>
 import { products } from '../api/products';
+
 export default {
   data() {
     return {
       userSearch: '',
-      data: '',
       searchedProduct: {},
     };
-  },
-  async created() {
-    this.data = await products.fetchAllProducts();
   },
 
   methods: {
@@ -53,10 +50,7 @@ export default {
     async displaySearchedProduct(product) {
       try {
         this.searchedProduct = await products.searchProduct(product);
-        this.$router.replace(`/products/search?q=${product}`);
-        // this.userSearch = '';
-        this.$store.commit('getSearchedProduct', this.searchedProduct);
-        console.log('after commit', this.searchedProduct);
+        console.log(this.searchedProduct);
       } catch (error) {
         console.error('Failed to fetch product:', error);
       }

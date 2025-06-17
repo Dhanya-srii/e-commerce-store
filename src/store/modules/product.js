@@ -4,7 +4,6 @@ import { products } from '/src/api/products.js';
 export const storeProducts = {
   state: {
     favourites: JSON.parse(localStorage.getItem('favourites')) || {},
-    searchedProduct: null,
     productList: [],
   },
   mutations: {
@@ -23,8 +22,8 @@ export const storeProducts = {
 
       localStorage.setItem('favourites', JSON.stringify(state.favourites));
     },
-    getSearchedProduct(state, product) {
-      state.searchedProduct = product;
+
+    setFetchData(state) {
     },
   },
   actions: {
@@ -33,8 +32,5 @@ export const storeProducts = {
       state.productList = data;
       return state.productList;
     },
-  },
-  getters: {
-    getSearchedProduct: (state) => state.searchedProduct,
   },
 };

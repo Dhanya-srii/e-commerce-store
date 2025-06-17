@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 import ProductCards from './ProductCards.vue';
 export default {
   components: {
@@ -110,13 +110,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['getSearchedProduct']),
     filteredProducts() {
-      if (this.getSearchedProduct) {
-        console.log('searching......', this.getSearchedProduct);
-        return this.getSearchedProduct;
-      }
-
       return this.productList.filter((p) => {
         const categoryMatch =
           !this.selectedCategories.length ||
@@ -160,7 +154,6 @@ export default {
 
     clearAll() {
       (this.selectedCategories = []), (this.selectedBrands = []);
-      this.$store.commit('getSearchedProduct', null);
     },
     removeCategory(cat) {
       this.selectedCategories = this.selectedCategories.filter(
