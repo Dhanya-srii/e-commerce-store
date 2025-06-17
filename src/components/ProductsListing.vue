@@ -21,7 +21,7 @@
           :key="'B' + Bindex"
           class="filter-pill"
         >
-          <span>{{ brand || 'All Groceries' | firstLetterUpperCase }}</span>
+          <span>{{ (brand || 'All Groceries') | firstLetterUpperCase }}</span>
           <button class="removeFilter" @click="removeBrand(brand)">
             <i class="fa-solid fa-xmark"></i>
           </button>
@@ -30,27 +30,48 @@
 
       <div class="fixed-clear" @click="clearAll">Clear All</div>
     </div>
+
     <div class="container">
       <div class="categoryAndBrandContainer">
         <div class="categories">
           <h1>Category</h1>
-          <SelectableCheckbox
+          <div
             v-for="(category, index) in uniqueCategories"
             :key="index"
-            v-model="selectedCategories"
-            :item="category"
-          />
+            class="selectable-item"
+          >
+            <input
+              type="checkbox"
+              :value="category"
+              v-model="selectedCategories"
+              class="checkbox"
+              :id="'category-' + index"
+            />
+            <label :for="'category-' + index" class="item">{{
+              category | firstLetterUpperCase
+            }}</label>
+          </div>
         </div>
 
         <div class="brands">
           <h1>Brand</h1>
           <div class="productBrand">
-            <SelectableCheckbox
+            <div
               v-for="(brand, index) in allBrandsForSelectedCategories"
               :key="index"
-              :item="brand"
-              v-model="selectedBrands"
-            />
+              class="selectable-item"
+            >
+              <input
+                type="checkbox"
+                :value="brand"
+                v-model="selectedBrands"
+                class="checkbox"
+                :id="'brand-' + index"
+              />
+              <label :for="'brand-' + index" class="item">
+                {{ (brand || 'All Groceries') | firstLetterUpperCase }}
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -72,6 +93,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { products } from '../api/products';
 import ProductCards from './ProductCards.vue';
 import SelectableCheckbox from './SelectableCheckBox.vue';
@@ -96,10 +118,12 @@ export default {
   },
 
   computed: {
+    ...mapGetters(['getSearchedProduct']),
 
     filteredProducts() {
       if (this.getSearchedProduct) {
-        return [this.getSearchedProduct];
+        console.log('searching......', this.getSearchedProduct);
+        return this.getSearchedProduct;
       }
 
       return this.productList.filter((p) => {
@@ -159,7 +183,9 @@ export default {
   },
 };
 </script>
+
 <style src="@/assets/styles/base/scrollbar.css"></style>
 <style src="@/assets/styles/layout/base-products.css"></style>
 <style src="@/assets/styles/layout/products.css"></style>
 <style src="@/assets/styles/components/filter.css"></style>
+<style src="@/assets/styles/components/selectable-item.css"></style>

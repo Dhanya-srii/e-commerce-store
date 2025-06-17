@@ -53,15 +53,14 @@
   display: flex;
   /* background-color: rgba(0, 0, 0, 0.2); */
   background-color: white;
-  width: 80%;
-  /* margin-left: 230px; */
+  width: 60%;
+  margin-left: 415px;
   position: fixed;
-  top: 10.2%;
+  top: 6%;
   padding: 1rem;
   border-radius: 16px;
   z-index: 1001;
   gap: 1rem;
-  border: 1px solid black;
 }
 
 .filterContainer {

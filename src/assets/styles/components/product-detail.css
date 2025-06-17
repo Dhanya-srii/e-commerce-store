@@ -1,4 +1,3 @@
-
 .product-container {
   max-width: 1300px;
   min-height: 85vh;
@@ -6,7 +5,7 @@
   justify-content: center;
   align-items: flex-start;
   margin: auto;
-  gap: 2rem;
+  gap: 1rem;
   padding: 2rem;
   margin-top: 5.7rem;
 }
@@ -19,9 +18,15 @@
 }
 
 .sub-img {
-  height: 100px;
+  height: 300px;
   width: 100%;
   background-color: #f0f0f0;
+}
+
+.sub-images {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
 }
 
 .main-image {

@@ -2,11 +2,13 @@
   <div class="product-container">
     <button @click="goBackRoute" class="goBackBtn">go back</button>
     <div class="sub-images">
-      <div class="sub-img" v-for="n in 6" :key="n"></div>
+      <div class="sub-img" v-for="n in productData.images" :key="n">
+        <img class="sub-images" :src="n" alt="image" />
+      </div>
     </div>
 
     <div class="main-image">
-      <img :src="productData.images" />
+      <img :src="productData.images[0]" />
     </div>
 
     <div class="details">
@@ -64,7 +66,7 @@ export default {
       favourites: (state) => state.products.favourites,
     }),
   },
-  async mounted() {
+  async created() {
     await this.displaySingleProduct();
   },
   methods: {
@@ -73,6 +75,7 @@ export default {
         this.productData = await products.fetchSingleProduct(
           this.$route.params.id
         );
+        console.log(this.productData.images[0]);
       } catch (error) {
         console.error('Failed to fetch product:', error);
       }

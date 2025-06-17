@@ -3,7 +3,6 @@ import VueRouter from 'vue-router';
 import ProductsListing from '@/components/ProductsListing.vue';
 import SingleProduct from '@/components/SingleProduct.vue';
 import FavouriteProducts from '@/components/FavouriteProducts.vue';
-import ProductHeader from '@/components/ProductHeader.vue';
 
 Vue.use(VueRouter);
 const routes = [
@@ -22,8 +21,9 @@ const routes = [
     name: 'FavouriteProducts',
   },
   {
-    path: '/search?q=:product',
-    component: ProductHeader,
+    path: '/products/search',
+    component: ProductsListing,
+    name: 'ProductListing',
   },
   {
     path: '/product/:id',

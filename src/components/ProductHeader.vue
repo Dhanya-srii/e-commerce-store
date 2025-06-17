@@ -35,8 +35,6 @@ export default {
   },
   async created() {
     this.data = await products.fetchAllProducts();
-
-    // console.log(this.data);
   },
 
   methods: {
@@ -51,16 +49,14 @@ export default {
         this.$router.push('/favourites');
       }
     },
-    // handleSearch(product) {
-    //   this.userSearch = product;
-    //   this.$router.push(`/product/search?q=${product}`);
-    //   console.log(this.userSearch);
-    // },
+
     async displaySearchedProduct(product) {
       try {
         this.searchedProduct = await products.searchProduct(product);
-        this.$router.push(`/search?q=${product}`);
-        console.log('searched', this.searchedProduct);
+        this.$router.replace(`/products/search?q=${product}`);
+        this.userSearch = '';
+        this.$store.commit('getSearchedProduct', this.searchedProduct);
+        console.log('after commit', this.searchedProduct);
       } catch (error) {
         console.error('Failed to fetch product:', error);
       }
