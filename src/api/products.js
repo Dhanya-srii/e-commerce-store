@@ -8,7 +8,7 @@ export const products = {
       const data = response.data.products;
       return data.map(parseDailyProducts);
     } catch (err) {
-      throw new Error(err.message);
+      throw new Error(err);
     }
   },
 
@@ -16,13 +16,12 @@ export const products = {
     try {
       const response = await axios.get(`https://dummyjson.com/products/${id}`);
       const data = response.data;
-
       return parseDailyProducts(data);
     } catch (err) {
       throw new Error(err.message);
     }
   },
-  async searchProduct(userSearch) {
+  async fetchSearchProduct(userSearch) {
     try {
       const response = await axios.get(
         `https://dummyjson.com/products/search?q=${userSearch}`

@@ -64,6 +64,7 @@
 import { mapMutations, mapState } from 'vuex';
 import { products } from '../api/products';
 export default {
+  name: 'ProductDetail',
   data() {
     return {
       value: 4.5,

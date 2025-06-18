@@ -3,7 +3,7 @@
     <div class="brand" @click="handleHomeRoute()">
       <h1 class="brandName">PLUGO</h1>
     </div>
-    <div class="searchProduct">
+    <div class="fetchSearchProduct">
       <input
         class="userSearch"
         type="text"
@@ -59,7 +59,7 @@ export default {
 
     async displaySearchedProduct(product) {
       try {
-        const result = await products.searchProduct(product);
+        const result = await products.fetchSearchProduct(product);
         this.setProductData(result);
       } catch (error) {
         console.error('Failed to fetch product:', error);

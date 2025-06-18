@@ -25,8 +25,8 @@ button {
   justify-content: center;
 }
 
-.favHeader:hover {
-  background-color: var(--fav-hover-color);
+.fav-header:hover {
+  background-color: var(--secondary-color);
 }
 
 .addCart {
@@ -38,7 +38,7 @@ button {
 
 }
 
-.fav {
+.fav-icon {
   position: absolute;
   right: 0;
   background-color: rgb(216, 213, 213);
@@ -50,8 +50,8 @@ button {
   border-radius: 50%;
 }
 
-.fav:hover {
-  background-color: var(--fav-hover-color);
+.fav-icon:hover {
+  background-color: var(--secondary-color);
 }
 
 .goBackBtn {
@@ -105,5 +105,5 @@ button {
 }
 
 .fav-detail:hover {
-  background-color: var(--fav-hover-color);
+  background-color: var(--secondary-color);
 }

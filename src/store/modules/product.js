@@ -29,11 +29,10 @@ export const storeProducts = {
   },
 
   actions: {
-    async fetchData({ commit }) {
+    async fetchProductdata({ commit }) {
       const data = await products.fetchAllProducts();
       commit('setProductData', data);
       return data;
     },
-
   },
 };

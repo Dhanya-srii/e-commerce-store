@@ -93,6 +93,7 @@ import { mapMutations, mapState, mapActions } from 'vuex';
 import ProductCards from './ProductCards.vue';
 import filterMixin from '@/mixins/filterMixin';
 export default {
+  name: 'ProductListing',
   components: {
     ProductCards,
   },
@@ -136,7 +137,7 @@ export default {
   async created() {
     try {
       this.loading = true;
-      this.productList = await this.fetchData();
+      this.productList = await this.fetchProductdata();
       const allCategories = this.productList.map((p) => p.category);
       this.uniqueCategories = [...new Set(allCategories)];
       const brandMap = {};
@@ -158,7 +159,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['fetchData']),
+    ...mapActions(['fetchProductdata']),
     ...mapMutations(['setProductData']),
     clearAll() {
       (this.selectedCategories = []), (this.selectedBrands = []);
