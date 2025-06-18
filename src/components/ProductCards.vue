@@ -11,7 +11,7 @@
         <img :src="data.images[0]" alt="product image" />
       </div>
       <div>
-        <h3>{{ data.title | uppercase }}</h3>
+        <h3>{{ data.title |firstLetterUpperCase }}</h3>
         <div class="flex">
           <p class="price">${{ data.price }}</p>
           <button @click.stop class="addCart">+ Add</button>
@@ -23,13 +23,11 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex';
+import filterMixin from '../mixins/filterMixin';
+
 export default {
   props: ['data'],
-  filters: {
-    uppercase(value) {
-      return value ? value.toUpperCase() : '';
-    },
-  },
+  mixins: [filterMixin],
   computed: {
     ...mapState({
       favourites: (state) => state.storeProducts.favourites,

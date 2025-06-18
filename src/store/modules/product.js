@@ -1,11 +1,13 @@
 import Vue from 'vue';
-
 import { products } from '/src/api/products.js';
+
 export const storeProducts = {
   state: {
     favourites: JSON.parse(localStorage.getItem('favourites')) || {},
-    productList: [],
+    productData: [],
+    searchProduct: [],
   },
+
   mutations: {
     setFavList(state, val) {
       if (state.favourites[val.id]) {
@@ -19,18 +21,25 @@ export const storeProducts = {
           ...favProduct,
         };
       }
-
       localStorage.setItem('favourites', JSON.stringify(state.favourites));
     },
 
-    setFetchData(state) {
+    setProductList(state, data) {
+      state.productData = data;
+    },
+    setSearchProduct(state, search) {
+      state.searchProduct = search;
     },
   },
+
   actions: {
-    async fetchData({ state }) {
+    async fetchData({ commit }) {
       const data = await products.fetchAllProducts();
-      state.productList = data;
-      return state.productList;
+      commit('setProductList', data);
+      return data;
+    },
+    getSearch(state) {
+      return state.searchProduct;
     },
   },
 };

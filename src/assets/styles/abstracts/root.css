@@ -1,4 +1,7 @@
 :root {
   --primary-color: #ec9854;
   --font-family: lato;
+  --fav-hover-color: rgba(255, 0, 0, 0.6);
+  --secondary-color: #ffffff;
+  --isFav:#ff0000;
 }

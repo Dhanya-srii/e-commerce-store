@@ -79,8 +79,8 @@
             :data="product"
           />
         </div>
-        <div v-else class="noProducts">
-          <p class="message">Product Not Listed!</p>
+        <div v-else>
+          <h2 class="message">Product Not Listed!</h2>
         </div>
       </div>
     </div>
@@ -88,17 +88,15 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import ProductCards from './ProductCards.vue';
+import filterMixin from '@/mixins/filterMixin';
 export default {
   components: {
     ProductCards,
   },
-  filters: {
-    firstLetterUpperCase(value) {
-      return value ? value.charAt(0).toUpperCase() + value.slice(1) : '';
-    },
-  },
+
+  mixins: [filterMixin],
   data() {
     return {
       productList: [],
@@ -110,7 +108,13 @@ export default {
   },
 
   computed: {
+    ...mapState({
+      searchProduct: (state) => state.storeProducts.searchProduct,
+    }),
     filteredProducts() {
+      if (this.searchProduct && this.searchProduct.length) {
+        return this.searchProduct;
+      }
       return this.productList.filter((p) => {
         const categoryMatch =
           !this.selectedCategories.length ||
@@ -132,8 +136,6 @@ export default {
 
   async created() {
     this.productList = await this.fetchData();
-    console.log(this.productList);
-
     const allCategories = this.productList.map((p) => p.category);
     this.uniqueCategories = [...new Set(allCategories)];
     const brandMap = {};
@@ -155,9 +157,9 @@ export default {
     clearAll() {
       (this.selectedCategories = []), (this.selectedBrands = []);
     },
-    removeCategory(cat) {
+    removeCategory(category) {
       this.selectedCategories = this.selectedCategories.filter(
-        (c) => c !== cat
+        (c) => c !== category
       );
     },
     removeBrand(brand) {

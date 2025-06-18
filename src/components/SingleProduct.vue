@@ -2,8 +2,8 @@
   <div class="product-container">
     <button @click="goBackRoute" class="goBackBtn">go back</button>
     <div class="sub-images">
-      <div class="sub-img" v-for="n in productData.images" :key="n">
-        <img class="sub-images" :src="n" alt="image" />
+      <div class="sub-img-div" v-for="image in productData.images" :key="image">
+        <img class="sub-images" :src="image" alt="image" />
       </div>
     </div>
 
@@ -11,7 +11,7 @@
       <img :src="productData.images[0]" />
     </div>
 
-    <div class="details">
+    <div class="product-details">
       <p class="heading">EVERYDAY HUMANS</p>
       <h1 class="title">{{ productData.title }}</h1>
       <el-rate
@@ -75,7 +75,6 @@ export default {
         this.productData = await products.fetchSingleProduct(
           this.$route.params.id
         );
-        console.log(this.productData.images[0]);
       } catch (error) {
         console.error('Failed to fetch product:', error);
       }

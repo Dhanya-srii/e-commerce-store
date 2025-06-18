@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
 }
 
 .container {
@@ -11,7 +10,6 @@
   display: flex;
   justify-content: center;
   position: relative;
-  /* border: 1px solid black; */
 }
 
 .categoryAndBrandContainer {
@@ -44,15 +42,14 @@
 }
 
 
-.noProducts {
+.message {
   font-size: 1.8rem;
   padding: 32px;
 }
 
 .filters {
   display: flex;
-  /* background-color: rgba(0, 0, 0, 0.2); */
-  background-color: white;
+  background-color: var(--secondary-color);
   width: 60%;
   margin-left: 415px;
   position: fixed;

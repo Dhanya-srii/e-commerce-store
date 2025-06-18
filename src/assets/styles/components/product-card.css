@@ -14,20 +14,20 @@
 }
 
 img {
-  padding: 1rem;
+  padding: 16px;
   width: 100%;
   height: 250px;
   object-fit: cover;
 }
 
 .product h3 {
-  font-size: 1.1rem;
-  margin: 1.3rem;
+  font-size: 1.3rem;
+  margin: 20.8px;
   height: 55px;
 }
 
 .product .price {
-  font-size: 1.3rem;
+  font-size: 20.8px;
   font-weight: 800;
 }
 
@@ -35,9 +35,9 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem;
+  margin: 16px;
 }
 
 .isFav {
-  color: red;
+  color: var(--isFav);
 }

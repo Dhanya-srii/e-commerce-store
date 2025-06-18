@@ -1,25 +1,25 @@
 <template>
   <div class="header">
-    <div class="brand" @click="handleHome()">
+    <div class="brand" @click="handleHomeRoute()">
       <h1 class="brandName">PLUGO</h1>
     </div>
     <div class="searchProduct">
       <input
         class="userSearch"
         type="text"
-        placeholder="Search..."
+        placeholder="Search Product..."
         v-model.trim="userSearch"
         @keyup.enter="displaySearchedProduct(userSearch)"
       />
-      <button @click="displaySearchedProduct(userSearch)" class="find">
+      <button @click="displaySearchedProduct(userSearch)" class="headerButton">
         Find
       </button>
     </div>
     <div class="userProducts">
-      <button class="favHeader" @click="listFavourites()">
+      <button class="favHeader" @click="listFavouritesRoute()">
         <i class="fa-solid fa-heart"></i>
       </button>
-      <button class="find">Cart</button>
+      <button class="headerButton">Cart</button>
     </div>
   </div>
 </template>
@@ -35,13 +35,12 @@ export default {
   },
 
   methods: {
-    handleHome() {
-      const targetRoute = '/products';
-      if (this.$route.path != targetRoute) {
+    handleHomeRoute() {
+      if (this.$route.path != '/products') {
         this.$router.push('/products');
       }
     },
-    listFavourites() {
+    listFavouritesRoute() {
       if (this.$route.path != '/favourites') {
         this.$router.push('/favourites');
       }
@@ -50,7 +49,7 @@ export default {
     async displaySearchedProduct(product) {
       try {
         this.searchedProduct = await products.searchProduct(product);
-        console.log(this.searchedProduct);
+        this.$store.commit('setSearchProduct', this.searchedProduct);
       } catch (error) {
         console.error('Failed to fetch product:', error);
       }

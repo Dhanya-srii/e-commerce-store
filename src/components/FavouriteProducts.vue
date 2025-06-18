@@ -1,8 +1,10 @@
 <template>
-  <div class="favourites">
+  <div class="productList">
     <div>
-      <h2 v-if="!Object.keys(favourites).length">NO FAVOURITES ADDED!!</h2>
-      <div class="products">
+      <h2 class="message" v-if="!Object.keys(favourites).length">
+        NO FAVOURITES ADDED!!
+      </h2>
+      <div v-else class="products">
         <ProductCards
           v-for="(product, key) in favourites"
           :key="key"
@@ -28,4 +30,5 @@ export default {
 };
 </script>
 
-<style src="@/assets/styles/layout/favourites.css"></style>
+<style src="@/assets/styles/layout/products.css"></style>
+<style src="@/assets/styles/abstracts/root.css"></style>
