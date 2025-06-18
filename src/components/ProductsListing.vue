@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapMutations, mapState, mapActions } from 'vuex';
 import ProductCards from './ProductCards.vue';
 import filterMixin from '@/mixins/filterMixin';
 export default {
@@ -113,20 +113,20 @@ export default {
 
   computed: {
     ...mapState({
-      searchProduct: (state) => state.storeProducts.searchProduct,
+      productData: (state) => state.storeProducts.productData,
     }),
     filteredProducts() {
-      if (this.searchProduct && this.searchProduct.length) {
-        return this.searchProduct;
+      if (this.productData && this.productData.length) {
+        return this.productData.filter((p) => {
+          const categoryMatch =
+            !this.selectedCategories.length ||
+            this.selectedCategories.includes(p.category);
+          const brandMatch =
+            !this.selectedBrands.length ||
+            this.selectedBrands.includes(p.brand);
+          return categoryMatch && brandMatch;
+        });
       }
-      return this.productList.filter((p) => {
-        const categoryMatch =
-          !this.selectedCategories.length ||
-          this.selectedCategories.includes(p.category);
-        const brandMatch =
-          !this.selectedBrands.length || this.selectedBrands.includes(p.brand);
-        return categoryMatch && brandMatch;
-      });
     },
 
     allBrandsForSelectedCategories() {
@@ -164,7 +164,7 @@ export default {
   },
   methods: {
     ...mapActions(['fetchData']),
-
+    ...mapMutations(['setProductData']),
     clearAll() {
       (this.selectedCategories = []), (this.selectedBrands = []);
     },

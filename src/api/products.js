@@ -28,7 +28,7 @@ export const products = {
         `https://dummyjson.com/products/search?q=${userSearch}`
       );
       const data = response.data.products;
-      return data;
+      return data.map(parseDailyProducts);
     } catch (err) {
       throw new Error(err.message);
     }

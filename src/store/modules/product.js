@@ -5,7 +5,6 @@ export const storeProducts = {
   state: {
     favourites: JSON.parse(localStorage.getItem('favourites')) || {},
     productData: [],
-    searchProduct: [],
   },
 
   mutations: {
@@ -24,22 +23,17 @@ export const storeProducts = {
       localStorage.setItem('favourites', JSON.stringify(state.favourites));
     },
 
-    setProductList(state, data) {
+    setProductData(state, data) {
       state.productData = data;
-    },
-    setSearchProduct(state, search) {
-      state.searchProduct = search;
     },
   },
 
   actions: {
     async fetchData({ commit }) {
       const data = await products.fetchAllProducts();
-      commit('setProductList', data);
+      commit('setProductData', data);
       return data;
     },
-    getSearch(state) {
-      return state.searchProduct;
-    },
+
   },
 };

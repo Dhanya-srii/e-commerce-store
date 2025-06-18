@@ -14,6 +14,7 @@
       <button @click="displaySearchedProduct(userSearch)" class="headerButton">
         Find
       </button>
+      <button @click="clearSearch" class="headerButton">Clear</button>
     </div>
     <div class="userProducts">
       <button class="favHeader" @click="listFavouritesRoute()">
@@ -24,13 +25,14 @@
   </div>
 </template>
 <script>
+import { mapMutations } from 'vuex';
 import { products } from '../api/products';
 
 export default {
   data() {
     return {
       userSearch: '',
-      searchedProduct: {},
+      searchedProduct: [],
     };
   },
 
@@ -45,11 +47,23 @@ export default {
         this.$router.push('/favourites');
       }
     },
-
+    ...mapMutations(['setProductData']),
+    async clearSearch(product) {
+      try {
+        this.searchedProduct = await products.fetchAllProducts(product);
+        console.log(this.searchedProduct);
+        
+        this.setProductData(this.searchedProduct);
+        this.userSearch = '';
+      } catch (error) {
+        console.error('Failed to fetch product:', error);
+      }
+    },
     async displaySearchedProduct(product) {
       try {
         this.searchedProduct = await products.searchProduct(product);
-        this.$store.commit('setSearchProduct', this.searchedProduct);
+        this.setProductData(this.searchedProduct);
+        console.log(this.searchedProduct);
       } catch (error) {
         console.error('Failed to fetch product:', error);
       }
