@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header-container">
     <div class="brand" @click="handleHomeRoute()">
       <h1 class="brandName">PLUGO</h1>
     </div>
@@ -14,7 +14,9 @@
       <button @click="displaySearchedProduct(userSearch)" class="headerButton">
         Find
       </button>
-      <button @click="clearSearch" class="headerButton">Clear</button>
+      <button v-if="isClear" @click="clearSearch" class="headerButton">
+        Clear
+      </button>
     </div>
     <div class="userActions">
       <button class="favHeader" @click="listFavouritesRoute()">
@@ -32,6 +34,7 @@ export default {
   data() {
     return {
       userSearch: '',
+      isClear: false,
     };
   },
   methods: {
@@ -52,6 +55,7 @@ export default {
         const allProducts = await products.fetchAllProducts();
         this.setProductData(allProducts);
         this.userSearch = '';
+        this.isClear = false;
       } catch (error) {
         console.error('Failed to fetch products:', error);
       }
@@ -61,6 +65,7 @@ export default {
       try {
         const result = await products.fetchSearchProduct(product);
         this.setProductData(result);
+        this.isClear = true;
       } catch (error) {
         console.error('Failed to fetch product:', error);
       }

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import ProductHeader from './components/ProductHeader.vue';
+import ProductHeader from './components/AppHeader.vue';
 export default {
   name: 'App',
   components: { ProductHeader },

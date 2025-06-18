@@ -3,7 +3,7 @@
     <div>
       <h2 class="message" v-if="!hasFavourites">NO FAVOURITES ADDED!!</h2>
       <div v-else class="products">
-        <ProductCards
+        <product-cards
           v-for="(product, index) in favourites"
           :key="product.id || index"
           :data="product"
@@ -33,5 +33,4 @@ export default {
 };
 </script>
 <style src="@/assets/styles/layout/products.css"></style>
-<style src="@/assets/styles/abstracts/root.css">
-</style>
+<style src="@/assets/styles/abstracts/root.css"></style>

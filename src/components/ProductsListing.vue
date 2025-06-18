@@ -74,7 +74,7 @@
 
       <div>
         <div v-if="filteredProducts.length" class="products">
-          <ProductCards
+          <product-cards
             v-for="(product, index) in filteredProducts"
             :key="index"
             :data="product"
