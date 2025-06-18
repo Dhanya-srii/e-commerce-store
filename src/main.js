@@ -6,9 +6,11 @@ import store from './store';
 import { Rate } from 'element-ui';
 import { Button } from 'element-ui';
 import { Checkbox } from 'element-ui';
+
 Vue.use(Rate);
 Vue.use(Button);
 Vue.use(Checkbox);
+
 Vue.config.productionTip = false;
 
 new Vue({
