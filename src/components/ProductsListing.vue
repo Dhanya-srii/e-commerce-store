@@ -10,7 +10,7 @@
           :key="'C' + Cindex"
           class="filter-pill"
         >
-          <span>{{ category | firstLetterUpperCase }}</span>
+          <span>{{ category | initalCaps }}</span>
           <button class="removeFilter" @click="removeCategory(category)">
             <i class="fa-solid fa-xmark"></i>
           </button>
@@ -21,7 +21,7 @@
           :key="'B' + Bindex"
           class="filter-pill"
         >
-          <span>{{ (brand || 'All Groceries') | firstLetterUpperCase }}</span>
+          <span>{{ (brand || 'All Groceries') | initalCaps }}</span>
           <button class="removeFilter" @click="removeBrand(brand)">
             <i class="fa-solid fa-xmark"></i>
           </button>
@@ -48,7 +48,7 @@
               v-model="selectedCategories"
               :label="category"
             >
-              {{ category | firstLetterUpperCase }}
+              {{ category | initalCaps }}
             </el-checkbox>
           </div>
         </div>
@@ -65,9 +65,7 @@
                 :id="'brand-' + index"
                 :label="brand"
                 v-model="selectedBrands"
-                >{{
-                  brand || 'All Groceries' | firstLetterUpperCase
-                }}</el-checkbox
+                >{{ brand || 'All Groceries' | initalCaps }}</el-checkbox
               >
             </div>
           </div>
@@ -116,17 +114,14 @@ export default {
       productData: (state) => state.storeProducts.productData,
     }),
     filteredProducts() {
-      if (this.productData && this.productData.length) {
-        return this.productData.filter((p) => {
-          const categoryMatch =
-            !this.selectedCategories.length ||
-            this.selectedCategories.includes(p.category);
-          const brandMatch =
-            !this.selectedBrands.length ||
-            this.selectedBrands.includes(p.brand);
-          return categoryMatch && brandMatch;
-        });
-      }
+      return this.productData.filter((p) => {
+        const categoryMatch =
+          !this.selectedCategories.length ||
+          this.selectedCategories.includes(p.category);
+        const brandMatch =
+          !this.selectedBrands.length || this.selectedBrands.includes(p.brand);
+        return categoryMatch && brandMatch;
+      });
     },
 
     allBrandsForSelectedCategories() {

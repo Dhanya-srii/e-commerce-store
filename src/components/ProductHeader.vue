@@ -16,7 +16,7 @@
       </button>
       <button @click="clearSearch" class="headerButton">Clear</button>
     </div>
-    <div class="userProducts">
+    <div class="userActions">
       <button class="favHeader" @click="listFavouritesRoute()">
         <i class="fa-solid fa-heart"></i>
       </button>
@@ -32,38 +32,35 @@ export default {
   data() {
     return {
       userSearch: '',
-      searchedProduct: [],
     };
   },
-
   methods: {
     handleHomeRoute() {
-      if (this.$route.path != '/products') {
+      if (this.$route.path !== '/products') {
         this.$router.push('/products');
       }
     },
     listFavouritesRoute() {
-      if (this.$route.path != '/favourites') {
+      if (this.$route.path !== '/favourites') {
         this.$router.push('/favourites');
       }
     },
     ...mapMutations(['setProductData']),
-    async clearSearch(product) {
+
+    async clearSearch() {
       try {
-        this.searchedProduct = await products.fetchAllProducts(product);
-        console.log(this.searchedProduct);
-        
-        this.setProductData(this.searchedProduct);
+        const allProducts = await products.fetchAllProducts();
+        this.setProductData(allProducts);
         this.userSearch = '';
       } catch (error) {
-        console.error('Failed to fetch product:', error);
+        console.error('Failed to fetch products:', error);
       }
     },
+
     async displaySearchedProduct(product) {
       try {
-        this.searchedProduct = await products.searchProduct(product);
-        this.setProductData(this.searchedProduct);
-        console.log(this.searchedProduct);
+        const result = await products.searchProduct(product);
+        this.setProductData(result);
       } catch (error) {
         console.error('Failed to fetch product:', error);
       }

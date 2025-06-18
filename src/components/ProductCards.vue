@@ -11,7 +11,7 @@
         <img :src="data.images[0]" alt="product image" />
       </div>
       <div>
-        <h3>{{ data.title |firstLetterUpperCase }}</h3>
+        <h3>{{ data.title | initalCaps }}</h3>
         <div class="flex">
           <p class="price">${{ data.price }}</p>
           <button @click.stop class="addCart">+ Add</button>

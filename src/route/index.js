@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import ProductsListing from '@/components/ProductsListing.vue';
-import SingleProduct from '@/components/SingleProduct.vue';
+import ProductDetail from '@/components/ProductDetail.vue';
 import FavouriteProducts from '@/components/FavouriteProducts.vue';
 
 Vue.use(VueRouter);
@@ -23,8 +23,8 @@ const routes = [
 
   {
     path: '/product/:id',
-    component: SingleProduct,
-    name: 'SingleProduct',
+    component: ProductDetail,
+    name: 'ProductDetail',
   },
 
   {
