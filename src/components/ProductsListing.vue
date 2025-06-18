@@ -30,8 +30,11 @@
 
       <div class="fixed-clear" @click="clearAll">Clear All</div>
     </div>
-
-    <div class="container">
+    <div v-if="loading" class="loading-container">
+      <div class="spinner"></div>
+      <p>Loading products...</p>
+    </div>
+    <div v-else class="container">
       <div class="categoryAndBrandContainer">
         <div class="categories">
           <h1>Category</h1>
@@ -104,6 +107,7 @@ export default {
       selectedCategories: [],
       selectedBrands: [],
       brandsByCategory: {},
+      loading: true,
     };
   },
 
@@ -135,21 +139,28 @@ export default {
   },
 
   async created() {
-    this.productList = await this.fetchData();
-    const allCategories = this.productList.map((p) => p.category);
-    this.uniqueCategories = [...new Set(allCategories)];
-    const brandMap = {};
-    this.productList.forEach(({ category, brand }) => {
-      if (!brandMap[category]) {
-        brandMap[category] = new Set();
-      }
-      brandMap[category].add(brand);
-    });
+    try {
+      this.loading = true;
+      this.productList = await this.fetchData();
+      const allCategories = this.productList.map((p) => p.category);
+      this.uniqueCategories = [...new Set(allCategories)];
+      const brandMap = {};
+      this.productList.forEach(({ category, brand }) => {
+        if (!brandMap[category]) {
+          brandMap[category] = new Set();
+        }
+        brandMap[category].add(brand);
+      });
 
-    for (const category in brandMap) {
-      brandMap[category] = [...brandMap[category]];
+      for (const category in brandMap) {
+        brandMap[category] = [...brandMap[category]];
+      }
+      this.brandsByCategory = brandMap;
+    } catch (e) {
+      console.error('Error loading products:', e);
+    } finally {
+      this.loading = false;
     }
-    this.brandsByCategory = brandMap;
   },
   methods: {
     ...mapActions(['fetchData']),
@@ -174,3 +185,4 @@ export default {
 <style src="@/assets/styles/layout/products.css"></style>
 <style src="@/assets/styles/components/filter.css"></style>
 <style src="@/assets/styles/components/selectable-item.css"></style>
+<style src="@/assets/styles/components/loading.css"></style>

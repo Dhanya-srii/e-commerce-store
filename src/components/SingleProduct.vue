@@ -1,6 +1,6 @@
 <template>
   <div class="product-container">
-    <button @click="goBackRoute" class="goBackBtn">go back</button>
+    <button @click="goBackRoute" class="goBackBtn">Go Back</button>
     <div class="sub-images">
       <div class="sub-img-div" v-for="image in productData.images" :key="image">
         <img class="sub-images" :src="image" alt="image" />
