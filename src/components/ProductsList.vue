@@ -162,7 +162,6 @@ export default {
         if (!brandMap[category]) {
           brandMap[category] = new Set();
         }
-
         brandMap[category].add(brand);
       });
 
