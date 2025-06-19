@@ -11,7 +11,7 @@
           :productData="product"
         />
       </div>
-    </div>
+    </div> 
   </div>
 </template>
 
