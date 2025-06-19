@@ -74,7 +74,7 @@
           <product-cards
             v-for="(product, index) in filteredProducts"
             :key="index"
-            :data="product"
+            :productData="product"
           />
         </div>
         <div v-else>

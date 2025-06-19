@@ -2,7 +2,7 @@
   <div class="product-list">
     <div>
       <h2 class="product-status-message" v-if="!hasFavourites">
-        NO FAVOURITES ADDED!!
+        No Favourites Added!!
       </h2>
       <div v-else class="products">
         <product-cards

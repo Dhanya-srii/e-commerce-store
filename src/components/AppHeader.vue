@@ -62,8 +62,7 @@ export default {
     },
 
     async searchProduct() {
-      if (!this.searchQuery) return this.resetSearch();
-
+      if (!this.searchQuery) return;
       try {
         const results = await products.fetchSearchProduct(this.searchQuery);
         this.setAllProducts(results);

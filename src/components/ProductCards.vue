@@ -34,15 +34,12 @@ import filterMixin from '../mixins/filterMixin';
 
 export default {
   name: 'ProductCard',
-  props: ['data'],
+  props: ['productData'],
   mixins: [filterMixin],
   computed: {
     ...mapState({
       favourites: (state) => state.storeProducts.favourites,
     }),
-    productData() {
-      return this.data;
-    },
     isFavourite() {
       return !!this.favourites[this.productData.id];
     },
