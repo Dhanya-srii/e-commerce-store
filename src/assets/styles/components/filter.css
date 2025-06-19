@@ -10,7 +10,7 @@
   white-space: nowrap;
 }
 
-.removeFilter,
+.remove-filter,
 i {
   background: none;
   border: none;
@@ -21,7 +21,7 @@ i {
   padding: 4px;
 }
 
-.fixed-clear {
+.clear-filters {
   flex-shrink: 0;
   background-color: rgba(236, 152, 84, 0.1);
   color: var(--primary-color);

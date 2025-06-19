@@ -1,19 +1,19 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import ProductsListing from '@/components/ProductsListing.vue';
-import ProductDetail from '@/components/ProductDetail.vue';
+import ProductsList from '@/components/ProductsList.vue';
+import ProductDetails from '@/components/ProductDetails.vue';
 import FavouriteProducts from '@/components/FavouriteProducts.vue';
 
 Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    redirect: { name: 'ProductsListing' },
+    redirect: { name: 'ProductsList' },
   },
   {
     path: '/products',
-    component: ProductsListing,
-    name: 'ProductsListing',
+    component: ProductsList,
+    name: 'ProductsList',
   },
   {
     path: '/favourites',
@@ -23,8 +23,8 @@ const routes = [
 
   {
     path: '/product/:id',
-    component: ProductDetail,
-    name: 'ProductDetail',
+    component: ProductDetails,
+    name: 'ProductDetails',
   },
 
   {

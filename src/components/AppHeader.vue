@@ -1,28 +1,26 @@
 <template>
   <div class="header-container">
-    <div class="brand" @click="handleHomeRoute()">
-      <h1 class="brandName">PLUGO</h1>
+    <div class="brand" @click="goToProductList()">
+      <h1 class="brand-name">PLUGO</h1>
     </div>
-    <div class="fetchSearchProduct">
+    <div class="search-container">
       <input
-        class="userSearch"
+        class="search-input"
         type="text"
         placeholder="Search Product..."
-        v-model.trim="userSearch"
-        @keyup.enter="displaySearchedProduct(userSearch)"
+        v-model.trim="searchQuery"
+        @keyup.enter="searchProduct"
       />
-      <button @click="displaySearchedProduct(userSearch)" class="headerButton">
-        Find
-      </button>
-      <button v-if="isClear" @click="clearSearch" class="headerButton">
+      <button @click="searchProduct" class="header-button">Find</button>
+      <button v-if="showClear" @click="resetSearch" class="header-button">
         Clear
       </button>
     </div>
-    <div class="userActions">
-      <button class="favHeader" @click="listFavouritesRoute()">
+    <div class="user-actions">
+      <button class="fav-header" @click="goToFavourites()">
         <i class="fa-solid fa-heart"></i>
       </button>
-      <button class="headerButton">Cart</button>
+      <button class="header-button">Cart</button>
     </div>
   </div>
 </template>
@@ -33,41 +31,45 @@ import { products } from '../api/products';
 export default {
   data() {
     return {
-      userSearch: '',
-      isClear: false,
+      searchQuery: '',
+      showClear: false,
     };
   },
   methods: {
-    handleHomeRoute() {
+    ...mapMutations(['setAllProducts']),
+
+    goToProductList() {
       if (this.$route.path !== '/products') {
         this.$router.push('/products');
       }
     },
-    listFavouritesRoute() {
+    goToFavourites() {
       if (this.$route.path !== '/favourites') {
         this.$router.push('/favourites');
       }
     },
-    ...mapMutations(['setProductData']),
 
-    async clearSearch() {
+    async resetSearch() {
       try {
         const allProducts = await products.fetchAllProducts();
-        this.setProductData(allProducts);
-        this.userSearch = '';
-        this.isClear = false;
+        this.setAllProducts(allProducts);
+        this.searchQuery = '';
+        this.showClear = false;
       } catch (error) {
-        console.error('Failed to fetch products:', error);
+        console.error('Error loading products:', error);
       }
     },
 
-    async displaySearchedProduct(product) {
+    async searchProduct() {
+      if (!this.searchQuery) {
+        return;
+      }
       try {
-        const result = await products.fetchSearchProduct(product);
-        this.setProductData(result);
-        this.isClear = true;
+        const results = await products.fetchSearchProduct(this.searchQuery);
+        this.setAllProducts(results);
+        this.showClear = true;
       } catch (error) {
-        console.error('Failed to fetch product:', error);
+        console.error('Error Searching Product', error);
       }
     },
   },

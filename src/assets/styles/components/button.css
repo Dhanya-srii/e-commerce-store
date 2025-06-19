@@ -3,7 +3,7 @@ button {
   cursor: pointer;
 }
 
-.headerButton {
+.header-button {
   background-color: var(--primary-color);
   color: var(--secondary-color);
   padding: 0.5rem;
@@ -13,7 +13,7 @@ button {
   margin-left: 1rem;
 }
 
-.favHeader {
+.fav-header {
   background-color: rgb(216, 213, 213);
   color: #636161;
   font-size: 1.5rem;
@@ -29,7 +29,7 @@ button {
   background-color: var(--secondary-color);
 }
 
-.addCart {
+.add-cart-button {
   background-color: var(--primary-color);
   color: var(--secondary-color);
   padding: 0.5em 1.2rem;
@@ -54,18 +54,18 @@ button {
   background-color: var(--secondary-color);
 }
 
-.goBackBtn {
+.back-button {
   width: 85px;
   padding: 0.5rem;
   font-size: 1.2rem;
   border-radius: 8px;
 }
 
-.goBackBtn:hover {
+.back-button:hover {
   border: 2px solid var(--primary-color);
 }
 
-.quantity {
+.size-option {
   flex: 1;
   padding: 0.5rem;
   border-radius: 12px;
@@ -74,12 +74,12 @@ button {
   border: 1px solid #ccc;
 }
 
-.quantity:hover {
+.size-option:hover {
   background-color: #f8f8f8;
   border-color: var(--primary-color);
 }
 
-.counter {
+.counter-button {
   background: none;
   font-size: 1.5rem;
 }

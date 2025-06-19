@@ -4,7 +4,7 @@ import { products } from '/src/api/products.js';
 export const storeProducts = {
   state: {
     favourites: JSON.parse(localStorage.getItem('favourites')) || {},
-    productData: [],
+    allProducts: [],
   },
 
   mutations: {
@@ -23,16 +23,16 @@ export const storeProducts = {
       localStorage.setItem('favourites', JSON.stringify(state.favourites));
     },
 
-    setProductData(state, data) {
-      state.productData = data;
+    setAllProducts(state, productList) {
+      state.allProducts = productList;
     },
   },
 
   actions: {
-    async fetchProductdata({ commit }) {
-      const data = await products.fetchAllProducts();
-      commit('setProductData', data);
-      return data;
+    async loadAllProducts({ commit }) {
+      const productList = await products.fetchAllProducts();
+      commit('setAllProducts', productList);
+      return productList;
     },
   },
 };

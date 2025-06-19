@@ -1,45 +1,42 @@
 <template>
-  <div class="ProductList">
-    <div
-      v-if="selectedCategories.length || selectedBrands.length"
-      class="filters"
-    >
-      <div class="filterContainer">
+  <div class="product-list">
+    <div v-if="hasActiveFilters" class="filters">
+      <div class="filter-container">
         <span
-          v-for="(category, Cindex) in selectedCategories"
-          :key="'C' + Cindex"
+          v-for="(category, index) in selectedCategories"
+          :key="'Cat-' + index"
           class="filter-pill"
         >
           <span>{{ category | initalCaps }}</span>
-          <button class="removeFilter" @click="removeCategory(category)">
+          <button class="remove-filter" @click="removeCategory(category)">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </span>
 
         <span
-          v-for="(brand, Bindex) in selectedBrands"
-          :key="'B' + Bindex"
+          v-for="(brand, index) in selectedBrands"
+          :key="'Brand-' + index"
           class="filter-pill"
         >
           <span>{{ (brand || 'All Groceries') | initalCaps }}</span>
-          <button class="removeFilter" @click="removeBrand(brand)">
+          <button class="remove-filter" @click="removeBrand(brand)">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </span>
       </div>
 
-      <div class="fixed-clear" @click="clearAll">Clear All</div>
+      <div class="clear-filters" @click="clearAllFilters">Clear All</div>
     </div>
-    <div v-if="loading" class="loading-container">
+    <div v-if="isLoading" class="loading-container">
       <div class="spinner"></div>
       <p>Loading products...</p>
     </div>
     <div v-else class="container">
-      <div class="categoryAndBrandContainer">
-        <div class="categories">
+      <div class="filters-panel">
+        <div class="category-section">
           <h1>Category</h1>
           <div
-            v-for="(category, index) in uniqueCategories"
+            v-for="(category, index) in availableCategories"
             :key="index"
             class="selectable-item"
           >
@@ -55,7 +52,7 @@
 
         <div class="brands">
           <h1>Brand</h1>
-          <div class="productBrand">
+          <div class="product-brand">
             <div
               v-for="(brand, index) in allBrandsForSelectedCategories"
               :key="index"
@@ -81,7 +78,7 @@
           />
         </div>
         <div v-else>
-          <h2 class="message">Product Not Listed!</h2>
+          <h2 class="product-status-message">Product Not Listed!</h2>
         </div>
       </div>
     </div>
@@ -102,67 +99,80 @@ export default {
   data() {
     return {
       productList: [],
-      uniqueCategories: [],
+      availableCategories: [],
       selectedCategories: [],
       selectedBrands: [],
       brandsByCategory: {},
-      loading: true,
+      isLoading: true,
     };
   },
 
   computed: {
     ...mapState({
-      productData: (state) => state.storeProducts.productData,
+      allProducts: (state) => state.storeProducts.allProducts,
     }),
+    hasActiveFilters() {
+      return this.selectedCategories.length || this.selectedBrands.length;
+    },
     filteredProducts() {
-      return this.productData.filter((p) => {
+      return this.allProducts.filter((product) => {
         const categoryMatch =
           !this.selectedCategories.length ||
-          this.selectedCategories.includes(p.category);
+          this.selectedCategories.includes(product.category);
         const brandMatch =
-          !this.selectedBrands.length || this.selectedBrands.includes(p.brand);
+          !this.selectedBrands.length ||
+          this.selectedBrands.includes(product.brand);
         return categoryMatch && brandMatch;
       });
     },
 
     allBrandsForSelectedCategories() {
-      const allBrands = new Set();
+      const brandSet = new Set();
       Object.values(this.brandsByCategory).forEach((brandList) => {
-        brandList.forEach((b) => allBrands.add(b));
+        brandList.forEach((brand) => brandSet.add(brand));
       });
-      return [...allBrands];
+      return [...brandSet];
     },
   },
-
   async created() {
     try {
-      this.loading = true;
-      this.productList = await this.fetchProductdata();
-      const allCategories = this.productList.map((p) => p.category);
-      this.uniqueCategories = [...new Set(allCategories)];
+      this.isLoading = true;
+      this.productList = await this.loadAllProducts();
+      this.allCategoryandBrand(this.productList);
+    } catch (error) {
+      console.error('Error loading products:', error);
+    } finally {
+      this.isLoading = false;
+    }
+  },
+  methods: {
+    ...mapActions(['loadAllProducts']),
+    ...mapMutations(['setAllProducts']),
+    clearAllFilters() {
+      this.selectedCategories = [];
+      this.selectedBrands = [];
+    },
+    allCategoryandBrand(products) {
+      const categories = new Set();
       const brandMap = {};
-      this.productList.forEach(({ category, brand }) => {
+
+      products.forEach(({ category, brand }) => {
+        categories.add(category);
+
         if (!brandMap[category]) {
           brandMap[category] = new Set();
         }
+
         brandMap[category].add(brand);
       });
+
+      this.availableCategories = [...categories];
 
       for (const category in brandMap) {
         brandMap[category] = [...brandMap[category]];
       }
+
       this.brandsByCategory = brandMap;
-    } catch (e) {
-      console.error('Error loading products:', e);
-    } finally {
-      this.loading = false;
-    }
-  },
-  methods: {
-    ...mapActions(['fetchProductdata']),
-    ...mapMutations(['setProductData']),
-    clearAll() {
-      (this.selectedCategories = []), (this.selectedBrands = []);
     },
     removeCategory(category) {
       this.selectedCategories = this.selectedCategories.filter(

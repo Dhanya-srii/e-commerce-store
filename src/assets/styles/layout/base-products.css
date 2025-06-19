@@ -1,5 +1,5 @@
 .products,
-.message {
+.product-status-message {
   display: grid;
   grid-template-columns: repeat(4, 250px);
   gap: 2.8rem;

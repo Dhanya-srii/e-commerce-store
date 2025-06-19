@@ -6,7 +6,7 @@
   cursor: pointer;
 }
 
-.imageContainer {
+.image-container {
   background-color: rgb(240, 240, 240);
   border-radius: 26px;
   overflow: hidden;

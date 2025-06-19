@@ -7,7 +7,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <ProductHeader />
+    <app-header />
 
     <router-link to="/products"></router-link>
     <router-link to="/favourites"></router-link>
@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import ProductHeader from './components/AppHeader.vue';
+import AppHeader from './components/AppHeader.vue';
 export default {
   name: 'App',
-  components: { ProductHeader },
+  components: { AppHeader },
 };
 </script>
 

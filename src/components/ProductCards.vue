@@ -1,25 +1,27 @@
 <template>
   <div>
-    <div class="product" @click="handleProductDetailRoute(data.id)">
-      <div class="imageContainer">
-        <button class="fav-icon" @click.stop="setFavList(data)">
+    <div class="product" @click="goToProductDetail(productData.id)">
+      <div class="image-container">
+        <button class="fav-icon" @click.stop="setFavList(productData)">
           <i
             class="fa-solid fa-heart"
-            :style="{ color: isFav ? 'red' : 'gray' }"
+            :style="{ color: isFavourite ? 'red' : 'gray' }"
           ></i>
         </button>
-        <img :src="data.images[0]" alt="Product image" />
+        <img :src="productData.images[0]" alt="Product image" />
       </div>
 
-      <div>
-        <h3 class="productTitle">
-          {{ data.title | initalCaps }}
+      <div class="product-info">
+        <h3 class="product-title">
+          {{ productData.title | initalCaps }}
         </h3>
 
         <div class="flex">
-          <p class="price">${{ data.price }}</p>
+          <p class="price">${{ productData.price }}</p>
 
-          <button @click.stop type="button" class="addCart">+ Add</button>
+          <button @click.stop type="button" class="add-cart-button">
+            + Add
+          </button>
         </div>
       </div>
     </div>
@@ -38,14 +40,16 @@ export default {
     ...mapState({
       favourites: (state) => state.storeProducts.favourites,
     }),
-
-    isFav() {
-      return !!this.favourites[this.data.id];
+    productData() {
+      return this.data;
+    },
+    isFavourite() {
+      return !!this.favourites[this.productData.id];
     },
   },
   methods: {
     ...mapMutations(['setFavList']),
-    handleProductDetailRoute(id) {
+    goToProductDetail(id) {
       this.$router.push(`/product/${id}`);
     },
   },

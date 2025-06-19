@@ -1,7 +1,9 @@
 <template>
-  <div class="productList">
+  <div class="product-list">
     <div>
-      <h2 class="message" v-if="!hasFavourites">NO FAVOURITES ADDED!!</h2>
+      <h2 class="product-status-message" v-if="!hasFavourites">
+        NO FAVOURITES ADDED!!
+      </h2>
       <div v-else class="products">
         <product-cards
           v-for="(product, index) in favourites"

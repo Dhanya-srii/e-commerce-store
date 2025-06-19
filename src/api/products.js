@@ -21,10 +21,10 @@ export const products = {
       throw new Error(err.message);
     }
   },
-  async fetchSearchProduct(userSearch) {
+  async fetchSearchProduct(query) {
     try {
       const response = await axios.get(
-        `https://dummyjson.com/products/search?q=${userSearch}`
+        `https://dummyjson.com/products/search?q=${query}`
       );
       const data = response.data.products;
       return data.map(parseDailyProducts);
