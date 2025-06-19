@@ -8,7 +8,7 @@
         <product-cards
           v-for="(product, index) in favourites"
           :key="product.id || index"
-          :data="product"
+          :productData="product"
         />
       </div>
     </div>

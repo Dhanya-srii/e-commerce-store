@@ -40,6 +40,7 @@ export default {
     ...mapState({
       favourites: (state) => state.storeProducts.favourites,
     }),
+
     isFavourite() {
       return !!this.favourites[this.productData.id];
     },
