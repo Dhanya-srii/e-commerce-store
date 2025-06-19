@@ -1,4 +1,4 @@
-export function parseDailyProducts(product) {
+export function parseProducts(product) {
   return {
     id: product.id,
     title: product.title,

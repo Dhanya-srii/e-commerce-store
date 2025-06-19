@@ -35,6 +35,7 @@ export default {
       showClear: false,
     };
   },
+
   methods: {
     ...mapMutations(['setAllProducts']),
 
@@ -61,9 +62,8 @@ export default {
     },
 
     async searchProduct() {
-      if (!this.searchQuery) {
-        return;
-      }
+      if (!this.searchQuery) return this.resetSearch();
+
       try {
         const results = await products.fetchSearchProduct(this.searchQuery);
         this.setAllProducts(results);
