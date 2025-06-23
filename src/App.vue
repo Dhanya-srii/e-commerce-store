@@ -14,7 +14,8 @@ export default {
   components: { AppHeader },
 };
 </script>
-
+<style src="@/assets/styles/abstracts/root.css"></style>
+<style src="@/assets/styles/base/scrollbar.css"></style>
 <style src="@/assets/styles/base/reset.css"></style>
 <style>
 * {

@@ -12,7 +12,12 @@ export const products = {
     }
   },
 
-  async fetchSingleProduct(productId) {
+  /**
+   * retrieves the product data of given product id
+   * @param {string} productId
+   * @returns returns the product data of the given product id.
+   */
+  async fetchProductData(productId) {
     try {
       const response = await axios.get(
         `https://dummyjson.com/products/${productId}`

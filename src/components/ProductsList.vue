@@ -1,37 +1,16 @@
 <template>
   <div class="product-list">
-    <div v-if="hasActiveFilters" class="filters">
-      <div class="filter-container">
-        <span
-          v-for="(category, index) in selectedCategories"
-          :key="'Cat-' + index"
-          class="filter-pill"
-        >
-          <span>{{ category | initalCaps }}</span>
-          <button class="remove-filter" @click="removeCategory(category)">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </span>
-
-        <span
-          v-for="(brand, index) in selectedBrands"
-          :key="'Brand-' + index"
-          class="filter-pill"
-        >
-          <span>{{ (brand || 'All Groceries') | initalCaps }}</span>
-          <button class="remove-filter" @click="removeBrand(brand)">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </span>
-      </div>
-
-      <div class="clear-filters" @click="clearAllFilters">Clear All</div>
-    </div>
-    <div v-if="isLoading" class="loading-container">
+    <div
+      v-if="isLoading"
+      class="loading-container"
+    >
       <div class="spinner"></div>
       <p>Loading products...</p>
     </div>
-    <div v-else class="container">
+    <div
+      v-else
+      class="container"
+    >
       <div class="filters-panel">
         <div class="category-section">
           <h1>Category</h1>
@@ -70,7 +49,51 @@
       </div>
 
       <div>
-        <div v-if="filteredProducts.length" class="products">
+        <div
+          v-if="hasActiveFilters"
+          class="filters"
+        >
+          <div class="filter-container">
+            <span
+              v-for="(category, index) in selectedCategories"
+              :key="'Cat-' + index"
+              class="filter-pill"
+            >
+              <span>{{ category | initalCaps }}</span>
+              <button
+                class="remove-filter"
+                @click="removeCategory(category)"
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </span>
+
+            <span
+              v-for="(brand, index) in selectedBrands"
+              :key="'Brand-' + index"
+              class="filter-pill"
+            >
+              <span>{{ (brand || 'All Groceries') | initalCaps }}</span>
+              <button
+                class="remove-filter"
+                @click="removeBrand(brand)"
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </span>
+          </div>
+
+          <div
+            class="clear-filters"
+            @click="clearAllFilters"
+          >
+            Clear All
+          </div>
+        </div>
+        <div
+          v-if="filteredProducts.length > 0"
+          class="products"
+        >
           <product-cards
             v-for="(product, index) in filteredProducts"
             :key="index"
@@ -87,8 +110,11 @@
 
 <script>
 import { mapMutations, mapState, mapActions } from 'vuex';
+// Component
 import ProductCards from './ProductCards.vue';
+// Mixins
 import filterMixin from '@/mixins/filterMixin';
+
 export default {
   name: 'ProductListing',
   components: {
@@ -98,7 +124,6 @@ export default {
   mixins: [filterMixin],
   data() {
     return {
-      productList: [],
       availableCategories: [],
       selectedCategories: [],
       selectedBrands: [],
@@ -109,18 +134,20 @@ export default {
 
   computed: {
     ...mapState({
-      allProducts: (state) => state.storeProducts.allProducts,
+      productData: (state) => state.storeProducts.productData,
     }),
     hasActiveFilters() {
-      return this.selectedCategories.length || this.selectedBrands.length;
+      return (
+        this.selectedCategories.length > 0 || this.selectedBrands.length > 0
+      );
     },
     filteredProducts() {
-      return this.allProducts.filter((product) => {
+      return this.productData.filter((product) => {
         const categoryMatch =
-          !this.selectedCategories.length ||
+          !this.selectedCategories.length > 0 ||
           this.selectedCategories.includes(product.category);
         const brandMatch =
-          !this.selectedBrands.length ||
+          !this.selectedBrands.length > 0 ||
           this.selectedBrands.includes(product.brand);
         return categoryMatch && brandMatch;
       });
@@ -137,8 +164,8 @@ export default {
   async created() {
     try {
       this.isLoading = true;
-      this.productList = await this.loadAllProducts();
-      this.allCategoryandBrand(this.productList);
+      const data = await this.getAllProducts();
+      this.allCategoryandBrand(data);
     } catch (error) {
       console.error('Error loading products:', error);
     } finally {
@@ -146,8 +173,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['loadAllProducts']),
-    ...mapMutations(['setAllProducts']),
+    ...mapActions(['getAllProducts']),
+    ...mapMutations(['setproductData']),
     clearAllFilters() {
       this.selectedCategories = [];
       this.selectedBrands = [];
@@ -184,10 +211,10 @@ export default {
   },
 };
 </script>
-<style src="@/assets/styles/vendors/ratings.css"></style>
-<style src="@/assets/styles/base/scrollbar.css"></style>
-<style src="@/assets/styles/layout/base-products.css"></style>
-<style src="@/assets/styles/layout/products.css"></style>
-<style src="@/assets/styles/components/filter.css"></style>
-<style src="@/assets/styles/components/selectable-item.css"></style>
-<style src="@/assets/styles/components/loading.css"></style>
+<style scoped src="@/assets/styles/vendors/ratings.css"></style>
+<style scoped src="@/assets/styles/base/scrollbar.css"></style>
+<style scoped src="@/assets/styles/layout/base-products.css"></style>
+<style scoped src="@/assets/styles/layout/products.css"></style>
+<style scoped src="@/assets/styles/components/filter.css"></style>
+<style scoped src="@/assets/styles/components/selectable-item.css"></style>
+<style scoped src="@/assets/styles/components/loading.css"></style>

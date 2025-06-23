@@ -1,6 +1,9 @@
 <template>
   <div class="header-container">
-    <div class="brand" @click="goToProductList()">
+    <div
+      class="brand"
+      @click="goToProductList()"
+    >
       <h1 class="brand-name">PLUGO</h1>
     </div>
     <div class="search-container">
@@ -11,13 +14,25 @@
         v-model.trim="searchQuery"
         @keyup.enter="searchProduct"
       />
-      <button @click="searchProduct" class="header-button">Find</button>
-      <button v-if="showClear" @click="resetSearch" class="header-button">
+      <button
+        @click="searchProduct"
+        class="header-button"
+      >
+        Find
+      </button>
+      <button
+        v-if="showClear"
+        @click="resetSearch"
+        class="header-button"
+      >
         Clear
       </button>
     </div>
     <div class="user-actions">
-      <button class="fav-header" @click="goToFavourites()">
+      <button
+        class="fav-header"
+        @click="goToFavourites()"
+      >
         <i class="fa-solid fa-heart"></i>
       </button>
       <button class="header-button">Cart</button>
@@ -25,9 +40,12 @@
   </div>
 </template>
 <script>
+// Dependency
 import { mapMutations } from 'vuex';
+// API
 import { products } from '../api/products';
 
+import { ROUTE_NAMES } from '../constants/Routes';
 export default {
   data() {
     return {
@@ -37,23 +55,27 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['setAllProducts']),
+    ...mapMutations(['setproductData']),
 
     goToProductList() {
-      if (this.$route.path !== '/products') {
-        this.$router.push('/products');
+      if (this.$route.path !== ROUTE_NAMES.PRODUCTS) {
+        this.$router.push({
+          name: ROUTE_NAMES.PRODUCTS,
+        });
       }
     },
     goToFavourites() {
-      if (this.$route.path !== '/favourites') {
-        this.$router.push('/favourites');
+      if (this.$route.path !== ROUTE_NAMES.FAVOURITE_PRODUCTS) {
+        this.$router.push({
+          name: ROUTE_NAMES.FAVOURITE_PRODUCTS,
+        });
       }
     },
 
     async resetSearch() {
       try {
-        const allProducts = await products.fetchAllProducts();
-        this.setAllProducts(allProducts);
+        const productData = await products.fetchAllProducts();
+        this.setproductData(productData);
         this.searchQuery = '';
         this.showClear = false;
       } catch (error) {
@@ -65,7 +87,7 @@ export default {
       if (!this.searchQuery) return;
       try {
         const results = await products.fetchSearchProduct(this.searchQuery);
-        this.setAllProducts(results);
+        this.setproductData(results);
         this.showClear = true;
       } catch (error) {
         console.error('Error Searching Product', error);
@@ -74,6 +96,6 @@ export default {
   },
 };
 </script>
-<style src="@/assets/styles/layout/header.css"></style>
-<style src="@/assets/styles/components/button.css"></style>
-<style src="@/assets/styles/components/input.css"></style>
+<style scoped src="@/assets/styles/layout/header.css"></style>
+<style scoped src="@/assets/styles/components/button.css"></style>
+<style scoped src="@/assets/styles/components/input.css"></style>

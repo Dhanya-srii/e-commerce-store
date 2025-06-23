@@ -3,35 +3,38 @@ import { products } from '/src/api/products.js';
 
 export const storeProducts = {
   state: {
-    favourites: JSON.parse(localStorage.getItem('favourites')) || {},
-    allProducts: [],
+    favouritesList: JSON.parse(localStorage.getItem('favouritesList')) || {},
+    productData: [],
   },
 
   mutations: {
-    setFavList(state, val) {
-      if (state.favourites[val.id]) {
-        Vue.delete(state.favourites, val.id);
+    updateFavList(state, val) {
+      if (state.favouritesList[val.id]) {
+        Vue.delete(state.favouritesList, val.id);
       } else {
         const favProduct = {
           [val.id]: val,
         };
-        state.favourites = {
-          ...state.favourites,
+        state.favouritesList = {
+          ...state.favouritesList,
           ...favProduct,
         };
       }
-      localStorage.setItem('favourites', JSON.stringify(state.favourites));
+      localStorage.setItem(
+        'favouritesList',
+        JSON.stringify(state.favouritesList)
+      );
     },
 
-    setAllProducts(state, productList) {
-      state.allProducts = productList;
+    setproductData(state, productList) {
+      state.productData = productList;
     },
   },
 
   actions: {
-    async loadAllProducts({ commit }) {
+    async getAllProducts({ commit }) {
       const productList = await products.fetchAllProducts();
-      commit('setAllProducts', productList);
+      commit('setproductData', productList);
       return productList;
     },
   },

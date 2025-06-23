@@ -1,17 +1,23 @@
 <template>
   <div class="product-list">
     <div>
-      <h2 class="product-status-message" v-if="!hasFavourites">
+      <h2
+        class="product-status-message"
+        v-if="!hasFavourites"
+      >
         No Favourites Added!!
       </h2>
-      <div v-else class="products">
+      <div
+        v-else
+        class="products"
+      >
         <product-cards
-          v-for="(product, index) in favourites"
+          v-for="(product, index) in favouritesList"
           :key="product.id || index"
           :productData="product"
         />
       </div>
-    </div> 
+    </div>
   </div>
 </template>
 
@@ -26,13 +32,13 @@ export default {
   },
   computed: {
     ...mapState({
-      favourites: (state) => state.storeProducts.favourites,
+      favouritesList: (state) => state.storeProducts.favouritesList,
     }),
     hasFavourites() {
-      return Object.keys(this.favourites).length > 0;
+      return Object.keys(this.favouritesList).length > 0;
     },
   },
 };
 </script>
-<style src="@/assets/styles/layout/products.css"></style>
-<style src="@/assets/styles/abstracts/root.css"></style>
+<style scoped src="@/assets/styles/layout/products.css"></style>
+<style scoped src="@/assets/styles/abstracts/root.css"></style>

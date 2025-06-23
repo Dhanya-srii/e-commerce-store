@@ -5,10 +5,9 @@
 }
 
 .container {
-  max-width: 1800px;
-  margin: 5rem 0rem 0rem 5rem;
+  max-width: 1200px;
+  margin: 5rem 0rem 0rem 0rem;
   display: flex;
-  justify-content: center;
   position: relative;
 }
 
