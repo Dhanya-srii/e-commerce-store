@@ -6,36 +6,46 @@
     >
       <h1 class="brand-name">PLUGO</h1>
     </div>
-    <div class="search-container">
-      <input
-        class="search-input"
-        type="text"
-        placeholder="Search Product..."
-        v-model.trim="searchQuery"
-        @keyup.enter="searchProduct"
-      />
-      <button
-        @click="searchProduct"
-        class="header-button"
-      >
-        Find
-      </button>
-      <button
-        v-if="showClear"
-        @click="resetSearch"
-        class="header-button"
-      >
-        Clear
-      </button>
-    </div>
-    <div class="user-actions">
-      <button
-        class="fav-header"
-        @click="goToFavourites()"
-      >
-        <i class="fa-solid fa-heart"></i>
-      </button>
-      <button class="header-button">Cart</button>
+    <div class="user-controls">
+      <div class="search-container">
+        <input
+          class="search-input"
+          type="text"
+          placeholder="Search Product..."
+          v-model.trim="searchQuery"
+          @keyup.enter="searchProduct"
+        />
+        <button
+          @click="searchProduct"
+          class="header-button"
+        >
+          <i
+            class="fa-brands fa-searchengin"
+            style="color: #f2f2f2"
+          ></i>
+        </button>
+        <button
+          v-if="showClear"
+          @click="resetSearch"
+          class="header-button"
+        >
+          Clear
+        </button>
+      </div>
+      <div class="user-actions">
+        <button
+          class="fav-header"
+          @click="goToFavourites()"
+        >
+          <i class="fa-solid fa-heart"></i>
+        </button>
+        <button class="header-button">
+          <i
+            class="fa-solid fa-cart-shopping"
+            style="color: #f2f2f2"
+          ></i>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -58,14 +68,14 @@ export default {
     ...mapMutations(['setproductData']),
 
     goToProductList() {
-      if (this.$route.path !== ROUTE_NAMES.PRODUCTS) {
+      if (this.$route.name !== ROUTE_NAMES.PRODUCTS) {
         this.$router.push({
           name: ROUTE_NAMES.PRODUCTS,
         });
       }
     },
     goToFavourites() {
-      if (this.$route.path !== ROUTE_NAMES.FAVOURITE_PRODUCTS) {
+      if (this.$route.name !== ROUTE_NAMES.FAVOURITE_PRODUCTS) {
         this.$router.push({
           name: ROUTE_NAMES.FAVOURITE_PRODUCTS,
         });

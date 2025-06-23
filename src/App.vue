@@ -19,6 +19,8 @@ export default {
 <style src="@/assets/styles/base/reset.css"></style>
 <style>
 * {
-  font-family: var(--font-family);
+  font-family: 'Lilita One', sans-serif;
+  font-weight: 600;
+  font-style: normal;
 }
 </style>

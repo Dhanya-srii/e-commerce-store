@@ -6,10 +6,10 @@ button {
 .header-button {
   background-color: var(--primary-color);
   color: var(--secondary-color);
-  padding: 0.5rem;
-  width: 100px;
+  padding: 0.5rem 0rem 0.5rem 0rem;
+  width: 50px;
   font-size: 1.2rem;
-  border-radius: 18px;
+  /* border-radius: 18px; */
   margin-left: 1rem;
 }
 
@@ -17,7 +17,7 @@ button {
   background-color: rgb(216, 213, 213);
   color: #636161;
   font-size: 1.5rem;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   width: 44px;
   height: 44px;
   display: flex;
@@ -106,4 +106,31 @@ button {
 
 .fav-detail:hover {
   background-color: var(--secondary-color);
+}
+
+.user-control-button {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  /* border: 1px solid black; */
+}
+
+.user-control-button button {
+  /* padding: 16px; */
+  width: 135px;
+  height: 40px;
+  font-size: 1rem;
+  font-weight: 800;
+  background-color: var(--secondary-color);
+  border: 1px solid rgb(168, 164, 164);
+}
+
+.close-filter {
+  height: 50px;
+  width: 50px;
+  font-size: 1.5rem;
+  /* padding:16px; */
+  text-align: center;
+  border: 1px solid black;
+  background-color: #fffcfc;
 }

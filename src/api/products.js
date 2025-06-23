@@ -39,4 +39,26 @@ export const products = {
       throw new Error(err.message);
     }
   },
+  async fetchProductCategoriesList() {
+    try {
+      const response = await axios.get(
+        'https://dummyjson.com/products/category-list'
+      );
+      const data = response.data;
+      return data;
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  },
+  async fetchProductCategories(category) {
+    try {
+      const response = await axios.get(
+        `https://dummyjson.com/products/category/${category}`
+      );
+      const data = response.data;
+      return data;
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  },
 };

@@ -12,6 +12,11 @@
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
+.user-controls {
+  display: flex;
+  gap: 16px;
+}
+
 .user-actions {
   display: flex;
   justify-content: space-between;
