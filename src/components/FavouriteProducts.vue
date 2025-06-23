@@ -1,22 +1,18 @@
 <template>
   <div class="product-list">
-    <div>
-      <h2
-        class="product-status-message"
-        v-if="!hasFavourites"
-      >
-        No Favourites Added!!
-      </h2>
-      <div
-        v-else
-        class="products"
-      >
-        <product-cards
-          v-for="(product, index) in favouritesList"
-          :key="product.id || index"
-          :productData="product"
-        />
-      </div>
+    <div v-if="!hasFavourites">
+      <h2 class="product-status-message">No Favourites Added!!</h2>
+    </div>
+
+    <div
+      v-else
+      class="products"
+    >
+      <product-cards
+        v-for="(product, index) in favouritesList"
+        :key="product.id || index"
+        :productData="product"
+      />
     </div>
   </div>
 </template>
@@ -42,3 +38,4 @@ export default {
 </script>
 <style scoped src="@/assets/styles/layout/products.css"></style>
 <style scoped src="@/assets/styles/abstracts/root.css"></style>
+<style scoped src="@/assets/styles/layout/base-products.css"></style>

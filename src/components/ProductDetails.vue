@@ -116,7 +116,7 @@ export default {
     async loadProductData() {
       try {
         this.isLoading = true;
-        const productId = this.$route.query.params;
+        const productId = this.$route.query.id;
         this.selectedProduct = await products.fetchProductData(productId);
       } catch (error) {
         console.error('Error loading Product:', error);

@@ -49,9 +49,9 @@
 .filters {
   display: flex;
   background-color: var(--secondary-color);
-  width: 60%;
-  position: fixed;
-  top: 6%;
+  max-width: 1140px;
+  /* position: fixed;
+  top: 6%; */
   padding: 1rem;
   border-radius: 16px;
   z-index: 1001;

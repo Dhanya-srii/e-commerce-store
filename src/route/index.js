@@ -11,7 +11,7 @@ Vue.use(VueRouter);
 const routes = [
   // {
   //   path: '/',
-  //   // redirect: { component: ProductsList },
+  //   redirect: { name: 'ProductsList' },
   // },
   {
     path: '/products',
@@ -25,11 +25,10 @@ const routes = [
   },
 
   {
-    path: 'product/:id',
+    path: '/product',
     component: ProductDetails,
     name: ROUTE_NAMES.PRODUCT_DETAIL,
   },
-
   {
     path: '*',
     redirect: '/products',

@@ -42,6 +42,7 @@
 <script>
 import { mapMutations, mapState } from 'vuex';
 import filterMixin from '../mixins/filterMixin';
+import { ROUTE_NAMES } from '../constants/Routes';
 
 export default {
   name: 'ProductCard',
@@ -61,9 +62,9 @@ export default {
     ...mapMutations(['updateFavList']),
     goToProductDetail(id) {
       this.$router.push({
-        name: 'ProductDetails',
+        name: ROUTE_NAMES.PRODUCT_DETAIL,
         query: {
-          params: id,
+          id,
         },
       });
     },
