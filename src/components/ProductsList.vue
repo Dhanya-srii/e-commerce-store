@@ -142,12 +142,6 @@ export default {
     }),
 
     listProducts() {
-      // if (this.selectedCategories.length === 0) {
-      //   return this.productData;
-      // }
-      // return this.productData.filter((product) =>
-      //   this.selectedCategories.includes(product.category)
-      // );
       return this.productData;
     },
     hasActiveFilters() {
