@@ -37,12 +37,25 @@
                 v-model="selectedCategories"
                 :label="category"
                 :id="'category-' + index"
+                class="custom"
               >
                 {{ category | initalCaps }}
               </el-checkbox>
             </div>
-            <button @click="clearAllFilters">Clear All ×</button>
-            <button>Apply</button>
+          </div>
+          <div class="filter-fixed-button-container">
+            <button
+              v-if="hasActiveFilters"
+              @click="clearAllFilters"
+            >
+              Clear All ×
+            </button>
+            <button
+              @click="filteredProducts()"
+              class="apply-filter"
+            >
+              Apply
+            </button>
           </div>
         </div>
       </div>
@@ -115,6 +128,7 @@ export default {
   data() {
     return {
       selectedCategories: [],
+      getData: [],
       isLoading: true,
       showFilters: false,
       showModal: false,
@@ -128,12 +142,13 @@ export default {
     }),
 
     listProducts() {
-      if (this.selectedCategories.length === 0) {
-        return this.productData;
-      }
-      return this.productData.filter((product) =>
-        this.selectedCategories.includes(product.category)
-      );
+      // if (this.selectedCategories.length === 0) {
+      //   return this.productData;
+      // }
+      // return this.productData.filter((product) =>
+      //   this.selectedCategories.includes(product.category)
+      // );
+      return this.productData;
     },
     hasActiveFilters() {
       return this.selectedCategories.length > 0;
@@ -146,7 +161,7 @@ export default {
       const categoryData = await products.fetchProductCategoriesList();
       this.categoryList = categoryData;
     } catch (error) {
-      console.error('Error loading products:', error);
+      alert('Error loading products:', error);
     } finally {
       this.isLoading = false;
     }
@@ -154,13 +169,17 @@ export default {
   methods: {
     ...mapActions(['getAllProducts']),
 
-    // async filteredProducts() {
-    //   try {
-    //     await products.fetchProductCategories(this.selectedCategories);
-    //   } catch (err) {
-    //     alert('err');
-    //   }
-    // },
+    async filteredProducts() {
+      try {
+        const data = await products.fetchProductCategories(
+          this.selectedCategories
+        );
+        this.getData = data;
+        console.log(this.getData);
+      } catch (err) {
+        alert('err');
+      }
+    },
 
     clearAllFilters() {
       this.selectedCategories = [];
@@ -183,3 +202,4 @@ export default {
 <style scoped src="@/assets/styles/components/selectable-item.css"></style>
 <style scoped src="@/assets/styles/components/loading.css"></style>
 <style scoped src="@/assets/styles/components/button.css"></style>
+<style src="@/assets/styles/components/elementsVariable.css"></style>

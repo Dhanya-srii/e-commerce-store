@@ -119,7 +119,7 @@ export default {
         const productId = this.$route.query.id;
         this.selectedProduct = await products.fetchProductData(productId);
       } catch (error) {
-        console.error('Error loading Product:', error);
+        alert('Error loading Product:', error);
       } finally {
         this.isLoading = false;
       }

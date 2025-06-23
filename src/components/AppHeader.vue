@@ -29,7 +29,10 @@
           @click="resetSearch"
           class="header-button"
         >
-          Clear
+          <i
+            class="fa-solid fa-eraser"
+            style="color: #f5f5f5"
+          ></i>
         </button>
       </div>
       <div class="user-actions">
@@ -89,7 +92,7 @@ export default {
         this.searchQuery = '';
         this.showClear = false;
       } catch (error) {
-        console.error('Error loading products:', error);
+        alert('Error loading products:', error);
       }
     },
 
@@ -100,7 +103,7 @@ export default {
         this.setproductData(results);
         this.showClear = true;
       } catch (error) {
-        console.error('Error Searching Product', error);
+        alert('Error Searching Product', error);
       }
     },
   },

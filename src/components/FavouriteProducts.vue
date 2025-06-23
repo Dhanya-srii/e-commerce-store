@@ -1,5 +1,5 @@
 <template>
-  <div class="product-list">
+  <div class="fav-products">
     <div v-if="!hasFavourites">
       <h2 class="product-status-message">No Favourites Added!!</h2>
     </div>

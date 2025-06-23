@@ -14,45 +14,36 @@
 .filters-panel {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
   top: 0%;
   background-color: rgb(254, 254, 254);
   position: fixed;
   left: 0%;
-  /* margin: 16px 0px 0px 16px; */
   padding: 16px 16px 0px 16px;
   z-index: 1000;
-  width: 350px;
+  width: 400px;
   height: 100vh;
-  border: 1px solid black;
 }
 
 .filters-panel-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 0px 8px 0px;
-  /* align-items: center; */
+  padding: 8px 0px;
 }
 
-.filter-title {
-  margin: 24px;
-}
-
-.category-section,
-.brands {
-  margin-bottom: 2rem;
+.category-section {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  flex-wrap: wrap;
+  height: calc(100vh - 25vh);
+  position: relative;
 }
 
 .categories {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  height: 800px;
   overflow-y: scroll;
 }
 
@@ -73,8 +64,6 @@
   display: flex;
   background-color: var(--secondary-color);
   max-width: 1140px;
-  /* position: fixed;
-  top: 6%; */
   padding: 1rem;
   border-radius: 16px;
   z-index: 1001;
@@ -89,8 +78,3 @@
   gap: 8px;
   padding-bottom: 4px;
 }
-
-.selectable-item .el-checkbox .el-checkbox__label {
-  font-size: 18px;
-}
-
