@@ -108,12 +108,12 @@ export default {
     }),
   },
   async created() {
-    await this.loadProductData();
+    await this.getProductdata();
   },
   methods: {
     ...mapMutations(['updateFavList']),
 
-    async loadProductData() {
+    async getProductdata() {
       try {
         this.isLoading = true;
         const productId = this.$route.query.id;

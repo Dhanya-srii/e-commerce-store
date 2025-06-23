@@ -1,5 +1,5 @@
 export const ROUTE_NAMES = {
-  PRODUCTS: '/products',
-  FAVOURITE_PRODUCTS: '/favourites',
-  PRODUCT_DETAIL: '/product',
+  PRODUCTS: 'ProductList',
+  FAVOURITE_PRODUCTS: 'FavouriteProducts',
+  PRODUCT_DETAIL: 'ProductDetails',
 };

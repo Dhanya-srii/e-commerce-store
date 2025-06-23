@@ -9,10 +9,10 @@ import FavouriteProducts from '@/components/FavouriteProducts.vue';
 
 Vue.use(VueRouter);
 const routes = [
-  // {
-  //   path: '/',
-  //   redirect: { name: 'ProductsList' },
-  // },
+  {
+    path: '/',
+    redirect: { name: ROUTE_NAMES.PRODUCTS },
+  },
   {
     path: '/products',
     component: ProductsList,
