@@ -94,6 +94,7 @@ stack) and couldnt mutate to hide filters
 <style scoped src="@/assets/styles/components/button.css"></style>
 <style scoped src="@/assets/styles/components/elementsVariable.css"></style>
 <style scoped>
-.filter-container {
-}
+/* .filter-container {
+position: ;
+} */
 </style>
