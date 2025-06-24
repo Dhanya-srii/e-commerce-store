@@ -36,7 +36,7 @@
           class="clear-all"
           @click="clearFilters"
         >
-          Clear All ×
+          Clear All x
         </button>
         <button
           class="apply-filter"
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions} from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
 import filterMixin from '../mixins/filterMixin';
 
 export default {
