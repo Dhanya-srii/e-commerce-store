@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <app-header />
-    <router-link to="/products"></router-link>
-    <router-link to="/favourites"></router-link>
+  
     <router-view></router-view>
   </div>
 </template>

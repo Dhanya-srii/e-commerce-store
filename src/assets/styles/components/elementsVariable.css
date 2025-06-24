@@ -1,4 +1,13 @@
+.custom.el-checkbox>.el-checkbox__label,
+.custom {
+  font-size: 18px;
+  font-weight: 300;
+  /* padding-bottom:2px; */
+  /* margin:4px */
+}
 
-.custom.el-checkbox > .el-checkbox__label {
+.custom.el-checkbox>.el-checkbox__input>.el-checkbox__inner {
+  width: 18px;
+  height: 18px;
   font-size: 18px;
 }

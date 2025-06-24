@@ -6,6 +6,7 @@ import { ROUTE_NAMES } from '@/constants/Routes';
 import ProductsList from '@/components/ProductsList.vue';
 import ProductDetails from '@/components/ProductDetails.vue';
 import FavouriteProducts from '@/components/FavouriteProducts.vue';
+import PageNotFound from '@/components/PageNotFound.vue';
 
 Vue.use(VueRouter);
 const routes = [
@@ -31,7 +32,8 @@ const routes = [
   },
   {
     path: '*',
-    redirect: '/products',
+    component: PageNotFound,
+    name: ROUTE_NAMES.PAGE_NOT_FOUND,
   },
 ];
 const router = new VueRouter({

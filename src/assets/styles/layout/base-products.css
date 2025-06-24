@@ -1,10 +1,11 @@
 .products,
 .product-status-message {
   display: grid;
-  grid-template-columns: repeat(4, 250px);
+  grid-template-columns: repeat(4, 350px);
   gap: 2.8rem;
   margin-top: 2rem;
   flex: 2;
+  align-items: center;
   justify-content: center;
 }
 

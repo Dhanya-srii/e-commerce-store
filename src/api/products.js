@@ -50,13 +50,22 @@ export const products = {
       throw new Error(err.message);
     }
   },
-  async fetchProductCategories(category) {
+  async fetchProductCategories(categoryList) {
     try {
-      const response = await axios.get(
-        `https://dummyjson.com/products/category/${category}`
+      const responses = await Promise.all(
+        categoryList.map((category) =>
+          axios.get(`https://dummyjson.com/products/category/${category}`)
+        )
       );
-      const data = response.data;
-      return data;
+
+      let allProducts = [];
+
+      for (let res of responses) {
+        const data = res.data.products.map(parseProducts);
+        allProducts = allProducts.concat(data);
+      }
+
+      return allProducts;
     } catch (err) {
       throw new Error(err.message);
     }

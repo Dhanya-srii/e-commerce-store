@@ -20,9 +20,9 @@
     </div>
 
     <div class="product-info">
-      <h3 class="product-title">
+      <h4 class="product-title">
         {{ productData.title | initalCaps }}
-      </h3>
+      </h4>
 
       <div class="flex">
         <p class="price">${{ productData.price }}</p>
@@ -73,4 +73,6 @@ export default {
 </script>
 <style scoped src="@/assets/styles/components/product-card.css"></style>
 <style scoped src="@/assets/styles/components/button.css"></style>
-<style scoped src="@/assets/styles/abstracts/root.css"></style>
+<style scoped src="@/assets/styles/abstracts/root.css">
+
+</style>

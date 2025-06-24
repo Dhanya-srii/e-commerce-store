@@ -17,7 +17,7 @@ button {
   background-color: rgb(216, 213, 213);
   color: #636161;
   font-size: 1.5rem;
-  /* border-radius: 50%; */
+  border-radius: 50%;
   width: 44px;
   height: 44px;
   display: flex;
@@ -34,17 +34,16 @@ button {
   color: var(--secondary-color);
   padding: 0.5em 1.2rem;
   font-size: 1.2rem;
-  border-radius: 32px;
 
 }
 
 .fav-icon {
   position: absolute;
   right: 0;
-  background-color: rgb(216, 213, 213);
+  /* background-color: rgb(216, 213, 213); */
   font-size: 1.4rem;
   padding: 0.5rem;
-  color: rgb(99, 97, 97);
+  color: var(--secondary-color);
   margin: 1rem;
   font-weight: 300;
   border-radius: 50%;
@@ -112,11 +111,9 @@ button {
   display: flex;
   justify-content: space-between;
   padding: 16px;
-  /* border: 1px solid black; */
 }
 
 .user-control-button button {
-  /* padding: 16px; */
   width: 135px;
   height: 40px;
   font-size: 1rem;
@@ -126,23 +123,30 @@ button {
 }
 
 .close-filter {
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   font-size: 1.5rem;
   text-align: center;
+  margin: 16px;
+
   border: 1px solid black;
   background-color: #fffcfc;
 }
 
 .apply-filter {
   height: 60px;
-  width: 350px;
+  width: 340px;
   padding: 16px;
   font-size: 22px;
   margin: 24px 0px 24px 0px;
   text-align: center;
-  background-color:var(--primary-color);
-  color:var(--secondary-color);
-  position: fixed;
-  bottom:0%;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.clear-all {
+  height: 30px;
+  width: 300px;
+  text-align: center;
+  background-color: var(--secondary-color);
 }

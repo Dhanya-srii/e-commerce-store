@@ -12,52 +12,10 @@
       class="container"
     >
       <div
-        v-if="showFilters || hasActiveFilters"
-        class="filters-panel modal"
+        v-if="showFilters"
+        class="category-section"
       >
-        <div class="filters-panel-header">
-          <h2>PRODUCT FILTERS</h2>
-          <button
-            @click="showFilters = !showFilters"
-            class="close-filter"
-          >
-            x
-          </button>
-        </div>
-        <hr />
-        <div class="category-section">
-          <div><h3>CATEGORY</h3></div>
-          <div class="categories">
-            <div
-              v-for="(category, index) in categoryList"
-              :key="index"
-              class="selectable-item"
-            >
-              <el-checkbox
-                v-model="selectedCategories"
-                :label="category"
-                :id="'category-' + index"
-                class="custom"
-              >
-                {{ category | initalCaps }}
-              </el-checkbox>
-            </div>
-          </div>
-          <div class="filter-fixed-button-container">
-            <button
-              v-if="hasActiveFilters"
-              @click="clearAllFilters"
-            >
-              Clear All ×
-            </button>
-            <button
-              @click="filteredProducts()"
-              class="apply-filter"
-            >
-              Apply
-            </button>
-          </div>
-        </div>
+        <category-filter :categoryList="categoryList" />
       </div>
 
       <div>
@@ -83,7 +41,7 @@
           </div>
 
           <div
-            v-if="hasActiveFilters"
+            v-if="check"
             class="clear-filters"
             @click="clearAllFilters()"
           >
@@ -110,9 +68,10 @@
 
 <script>
 //store
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 // Component
 import ProductCards from './ProductCards.vue';
+import CategoryFilter from './CategoryFilter.vue';
 // Mixins
 import filterMixin from '@/mixins/filterMixin';
 //api
@@ -122,13 +81,12 @@ export default {
   name: 'ProductListing',
   components: {
     ProductCards,
+    CategoryFilter,
   },
 
   mixins: [filterMixin],
   data() {
     return {
-      selectedCategories: [],
-      getData: [],
       isLoading: true,
       showFilters: false,
       showModal: false,
@@ -139,15 +97,17 @@ export default {
   computed: {
     ...mapState({
       productData: (state) => state.storeProducts.productData,
+      selectedCategories: (state) => state.storeProducts.selectedCategories,
     }),
 
     listProducts() {
       return this.productData;
     },
-    hasActiveFilters() {
-      return this.selectedCategories.length > 0;
+    check() {
+      return this.hasActiveFilters;
     },
   },
+
   async created() {
     try {
       this.isLoading = true;
@@ -161,28 +121,24 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getAllProducts']),
-
-    async filteredProducts() {
-      try {
-        const data = await products.fetchProductCategories(
-          this.selectedCategories
-        );
-        this.getData = data;
-        console.log(this.getData);
-      } catch (err) {
-        alert('err');
-      }
-    },
+    ...mapActions(['getAllProducts', 'getAllProductsByCategories',]),
+    ...mapMutations([
+      'clearSelectedCategories',
+      'setSelectedCategories',
+      'removeOneSelectedCategory',
+      'hasActiveFilters',
+    ]),
 
     clearAllFilters() {
-      this.selectedCategories = [];
+      this.clearSelectedCategories();
+      this.getAllProductsByCategories();
     },
 
     removeCategory(category) {
-      this.selectedCategories = this.selectedCategories.filter(
-        (c) => c !== category
-      );
+      console.log(this.hasActiveFilters());
+
+      this.removeOneSelectedCategory(category);
+      this.getAllProductsByCategories();
     },
   },
 };

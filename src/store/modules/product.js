@@ -5,6 +5,7 @@ export const storeProducts = {
   state: {
     favouritesList: JSON.parse(localStorage.getItem('favouritesList')) || {},
     productData: [],
+    selectedCategories: [],
   },
 
   mutations: {
@@ -29,6 +30,18 @@ export const storeProducts = {
     setproductData(state, productList) {
       state.productData = productList;
     },
+    setSelectedCategories(state, categoryList) {
+      state.selectedCategories = categoryList;
+    },
+    clearSelectedCategories(state) {
+      state.selectedCategories = [];
+    },
+
+    removeOneSelectedCategory(state, categoryToRemove) {
+      state.selectedCategories = state.selectedCategories.filter(
+        (category) => category !== categoryToRemove
+      );
+    },
   },
 
   actions: {
@@ -36,6 +49,16 @@ export const storeProducts = {
       const productList = await products.fetchAllProducts();
       commit('setproductData', productList);
       return productList;
+    },
+
+    async getAllProductsByCategories({ state, dispatch, commit }) {
+      const categoryList = state.selectedCategories;
+      if (categoryList.length === 0) {
+        return dispatch('getAllProducts');
+      } else {
+        const filtered = await products.fetchProductCategories(categoryList);
+        commit('setproductData', filtered);
+      }
     },
   },
 };
