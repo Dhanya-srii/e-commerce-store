@@ -11,17 +11,18 @@
       v-else
       class="container"
     >
-      <div
-        v-if="showFilters"
-        class="category-section"
-      >
-        <category-filter :categoryList="categoryList" />
-      </div>
-
       <div>
         <div class="user-control-button">
-          <button @click="showFilters = !showFilters">FILTERS</button
-          ><button>SORT BY</button>
+          <button @click="toggleFilter">FILTERS</button><button>SORT BY</button>
+        </div>
+        <div class="visual-size">
+          <div class="product-length">
+            <h4>{{ listProducts.length }} PRODUCTS</h4>
+          </div>
+          <div>
+            <button>2</button>
+            <button>4</button>
+          </div>
         </div>
         <div class="filters">
           <div class="filter-container">
@@ -41,8 +42,8 @@
           </div>
 
           <div
-            v-if="check"
             class="clear-filters"
+            v-if="selectedCategories.length > 0"
             @click="clearAllFilters()"
           >
             Clear All
@@ -71,25 +72,20 @@
 import { mapState, mapMutations, mapActions } from 'vuex';
 // Component
 import ProductCards from './ProductCards.vue';
-import CategoryFilter from './CategoryFilter.vue';
+
 // Mixins
 import filterMixin from '@/mixins/filterMixin';
-//api
-import { products } from '../api/products';
 
 export default {
   name: 'ProductListing',
   components: {
     ProductCards,
-    CategoryFilter,
   },
 
   mixins: [filterMixin],
   data() {
     return {
       isLoading: true,
-      showFilters: false,
-      showModal: false,
       categoryList: [],
     };
   },
@@ -98,13 +94,11 @@ export default {
     ...mapState({
       productData: (state) => state.storeProducts.productData,
       selectedCategories: (state) => state.storeProducts.selectedCategories,
+      showFilter: (state) => state.storeProducts.showFilter,
     }),
 
     listProducts() {
       return this.productData;
-    },
-    check() {
-      return this.hasActiveFilters;
     },
   },
 
@@ -112,8 +106,6 @@ export default {
     try {
       this.isLoading = true;
       await this.getAllProducts();
-      const categoryData = await products.fetchProductCategoriesList();
-      this.categoryList = categoryData;
     } catch (error) {
       alert('Error loading products:', error);
     } finally {
@@ -121,12 +113,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getAllProducts', 'getAllProductsByCategories',]),
+    ...mapActions(['getAllProducts', 'getAllProductsByCategories']),
     ...mapMutations([
       'clearSelectedCategories',
       'setSelectedCategories',
       'removeOneSelectedCategory',
-      'hasActiveFilters',
+      'toggleFilter',
     ]),
 
     clearAllFilters() {
@@ -135,8 +127,6 @@ export default {
     },
 
     removeCategory(category) {
-      console.log(this.hasActiveFilters());
-
       this.removeOneSelectedCategory(category);
       this.getAllProductsByCategories();
     },

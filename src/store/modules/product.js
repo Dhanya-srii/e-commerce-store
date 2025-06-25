@@ -6,6 +6,7 @@ export const storeProducts = {
     favouritesList: JSON.parse(localStorage.getItem('favouritesList')) || {},
     productData: [],
     selectedCategories: [],
+    showFilter: false,
   },
 
   mutations: {
@@ -41,6 +42,9 @@ export const storeProducts = {
       state.selectedCategories = state.selectedCategories.filter(
         (category) => category !== categoryToRemove
       );
+    },
+    toggleFilter(state) {
+      state.showFilter = !state.showFilter;
     },
   },
 
