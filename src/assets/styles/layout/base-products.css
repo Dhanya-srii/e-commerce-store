@@ -4,7 +4,7 @@
   gap: 1.5rem;
   margin-top: 2rem;
   justify-content: center;
-  /* align-items: flex-start; */
+  /* align-content: flex-start; */
 }
 
 .product-status-message {
