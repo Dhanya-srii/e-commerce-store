@@ -8,31 +8,29 @@
         class="fav-icon"
         @click.stop="updateFavList(productData)"
       >
-        <i
-          class="fa-solid fa-heart"
-          :style="{ color: isFavourite ? 'red' : 'gray' }"
-        ></i>
+        <i :class="[isFavourite ? 'ri-heart-fill' : 'ri-heart-line']"></i>
       </button>
       <img
+        class="product-image"
         :src="productData.images[0]"
         alt="Product image"
       />
     </div>
 
     <div class="product-info">
-      <h4 class="product-title">
-        {{ productData.title | initalCaps }}
-      </h4>
-
-      <div class="flex">
+      <div class="sub-product-info">
+        <h4 class="product-title">
+          {{ productData.title | initalCaps }}
+        </h4>
         <p class="price">${{ productData.price }}</p>
-
+      </div>
+      <div>
         <button
           @click.stop
           type="button"
           class="add-cart-button"
         >
-          + Add
+          Add Cart
         </button>
       </div>
     </div>
@@ -73,6 +71,4 @@ export default {
 </script>
 <style scoped src="@/assets/styles/components/product-card.css"></style>
 <style scoped src="@/assets/styles/components/button.css"></style>
-<style scoped src="@/assets/styles/abstracts/root.css">
-
-</style>
+<style scoped src="@/assets/styles/abstracts/root.css"></style>

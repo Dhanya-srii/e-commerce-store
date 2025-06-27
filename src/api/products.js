@@ -70,4 +70,16 @@ export const products = {
       throw new Error(err.message);
     }
   },
+  async fetchProductsByPrice(sort) {
+    try {
+      const response = await axios.get(
+        `https://dummyjson.com/products?sortBy=title&order=${sort}`
+      );
+      const data = response.data.products;
+      return data.map(parseProducts);
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  },
 };
+products.fetchProductsByPrice('desc');

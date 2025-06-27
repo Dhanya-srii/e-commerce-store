@@ -1,28 +1,29 @@
 <template>
   <div id="app">
     <app-header v-if="!isNotFound" />
-    <div
-      v-if="!isNotFound"
-      class="category-section"
-    >
-      <category-filter />
-    </div>
+    <category-filter v-if="showFilter" />
+
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex';
 import AppHeader from './components/AppHeader.vue';
 import CategoryFilter from './components/CategoryFilter.vue';
 export default {
   name: 'App',
   components: { AppHeader, CategoryFilter },
   computed: {
+    ...mapState({
+      showFilter: (state) => state.storeProducts.showFilter,
+    }),
     isNotFound() {
-      console.log(this.$route.name);
-
       return this.$route.name === 'PageNotFound';
     },
+  },
+  methods: {
+    ...mapMutations(['toggleFilter']),
   },
   data() {
     return {};

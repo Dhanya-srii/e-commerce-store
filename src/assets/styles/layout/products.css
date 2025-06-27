@@ -5,11 +5,13 @@
 }
 
 .container {
-  max-width: 1200px;
-  margin: 5rem 0rem 0rem 0rem;
+  max-width: 1600px;
+  margin: 5rem 0rem 1rem 0rem;
   display: flex;
   justify-content: center;
   position: relative;
+  flex-direction: column;
+  align-items: center;
 }
 
 .filters-panel {
@@ -20,14 +22,21 @@
   background-color: rgb(254, 254, 254);
   position: fixed;
   left: 0%;
-  padding: 16px 16px 0px 16px;
   z-index: 1000;
-  width: 400px;
+  width: 450px;
   height: 100vh;
+}
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  position: relative;
 }
 
 .filters-panel-header {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgb(236, 233, 233);
@@ -35,13 +44,14 @@
 
 .filters-panel-header h3 {
   font-weight: 600;
+  padding: 16px;
 }
 
-.categories {
+.filters-panel-body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  overflow-y: scroll;
+  padding: 16px;
 }
 
 .product-brand {
@@ -60,12 +70,16 @@
 .filters {
   display: flex;
   background-color: var(--secondary-color);
-  max-width: 1500px;
-  justify-content: space-between;
+  width: 100vw;
   padding: 1rem;
-  border-radius: 16px;
   z-index: 1001;
-  gap: 1rem;
+  justify-content: center;
+}
+
+.sub-filters {
+  min-width: 1600px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .filter-container {
@@ -77,34 +91,36 @@
   padding-bottom: 4px;
 }
 
-.filter-fixed-button-container {
+.filter-panel-footer {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-
-.visual-size {
-  display: flex;
-  justify-content: space-around;
-  /* border: 1px solid black; */
-  margin-top: 16px;
-  padding: 16px;
-  align-items: center;
-}
-
-
-.product-length {
-  font-size: 20px;
-  letter-spacing: 3px;
+  gap: 16px;
+  min-width: 420px;
+  min-height: 130px;
+  position: sticky;
+  bottom: 0;
+  z-index: 1000;
+  background-color: var(--secondary-color);
 }
 
 .user-control-button {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  padding: 0.5rem 2rem;
+  padding: 1rem 2rem;
   width: 100vw;
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid rgb(194, 192, 192);
+}
+
+.sub-user-control-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 1600px;
+}
+
+.user-control-button option {
+  font-size: 14px;
 }

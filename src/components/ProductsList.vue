@@ -12,46 +12,67 @@
       class="container"
     >
       <div>
-        <div class="user-control-button">
-          <button @click="toggleFilter">FILTERS</button><button>SORT BY</button>
-        </div>
-        <div class="visual-size">
-          <div class="product-length">
-            <h4>{{ listProducts.length }} PRODUCTS</h4>
-          </div>
-          <div>
-            <button>2</button>
-            <button>4</button>
-          </div>
-        </div>
-        <div class="filters">
-          <div class="filter-container">
-            <span
-              v-for="(category, index) in selectedCategories"
-              :key="'Cat-' + index"
-              class="filter-pill"
+        <div
+          v-if="listProducts.length"
+          class="user-control-button"
+        >
+          <div class="sub-user-control-button">
+            <button @click="toggleFilter">
+              <span>FILTERS</span><i class="ri-equalizer-3-line"></i></button
+            ><select
+              v-model="selectedOption"
+              @change="handleOptionChange"
             >
-              <span>{{ category | initalCaps }}</span>
-              <button
-                class="remove-filter"
-                @click="removeCategory(category)"
+              <option
+                value=""
+                disabled
               >
-                <i class="fa-solid fa-xmark"></i>
-              </button>
-            </span>
+                SORT BY
+              </option>
+              <option value="asc">Price Low To High</option>
+              <option value="desc">Price High To Low</option>
+              <option value="latest">Latest</option>
+            </select>
           </div>
+        </div>
+        <visual-size
+          v-if="listProducts.length"
+          :totalProducts="listProducts.length"
+        />
 
-          <div
-            class="clear-filters"
-            v-if="selectedCategories.length > 0"
-            @click="clearAllFilters()"
-          >
-            Clear All
+        <div
+          v-if="listProducts.length"
+          class="filters"
+        >
+          <div class="sub-filters">
+            <div class="filter-container">
+              <button
+                v-for="(category, index) in selectedCategories"
+                :key="'Cat-' + index"
+                class="filter-pill"
+              >
+                <span>{{ category | initalCaps }}</span>
+                <button
+                  class="remove-filter"
+                  @click="removeCategory(category)"
+                >
+                  <i class="ri-close-line"></i>
+                </button>
+              </button>
+            </div>
+
+            <button
+              class="clear-filters"
+              v-if="selectedCategories.length > 0"
+              @click="clearAllFilters()"
+            >
+              <span>Clear All</span> <i class="ri-close-circle-line"></i>
+            </button>
           </div>
         </div>
         <div
           v-if="listProducts.length > 0"
-          class="products"
+          :class="['products', `grid-${gridColumns}`]"
         >
           <product-cards
             v-for="(product, index) in listProducts"
@@ -75,11 +96,14 @@ import ProductCards from './ProductCards.vue';
 
 // Mixins
 import filterMixin from '@/mixins/filterMixin';
-
+import VisualSize from './VisualSize.vue';
+// api
+import { products } from '/src/api/products.js';
 export default {
   name: 'ProductListing',
   components: {
     ProductCards,
+    VisualSize,
   },
 
   mixins: [filterMixin],
@@ -87,6 +111,7 @@ export default {
     return {
       isLoading: true,
       categoryList: [],
+      selectedOption: '',
     };
   },
 
@@ -95,6 +120,7 @@ export default {
       productData: (state) => state.storeProducts.productData,
       selectedCategories: (state) => state.storeProducts.selectedCategories,
       showFilter: (state) => state.storeProducts.showFilter,
+      gridColumns: (state) => state.storeProducts.gridColumns,
     }),
 
     listProducts() {
@@ -115,6 +141,7 @@ export default {
   methods: {
     ...mapActions(['getAllProducts', 'getAllProductsByCategories']),
     ...mapMutations([
+      'setproductData',
       'clearSelectedCategories',
       'setSelectedCategories',
       'removeOneSelectedCategory',
@@ -129,6 +156,20 @@ export default {
     removeCategory(category) {
       this.removeOneSelectedCategory(category);
       this.getAllProductsByCategories();
+    },
+    async handleOptionChange() {
+      try {
+        if (!this.selectedOption) return;
+        if (this.selectedOption === 'latest') {
+          return this.clearAllFilters();
+        }
+        const sortedProducts = await products.fetchProductsByPrice(
+          this.selectedOption
+        );
+        this.setproductData(sortedProducts);
+      } catch (err) {
+        alert('Error fetching sorted products:', err.message);
+      }
     },
   },
 };

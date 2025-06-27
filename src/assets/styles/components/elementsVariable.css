@@ -2,12 +2,27 @@
 .custom {
   font-size: 18px;
   font-weight: 300;
-  /* padding-bottom:2px; */
-  /* margin:4px */
+  color: #464545;
+
 }
+
+
 
 .custom.el-checkbox>.el-checkbox__input>.el-checkbox__inner {
   width: 18px;
   height: 18px;
-  font-size: 18px;
+  font-size: 23px;
+}
+
+.custom.el-checkbox>.el-checkbox__input>.el-checkbox__inner {
+  border-color: var(--primary-color);
+
+}
+
+.custom.el-checkbox>.el-checkbox__input.is-checked+.el-checkbox__label {
+  color: #464545;
+}
+
+.custom.el-checkbox>.el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: var(--primary-color);
 }

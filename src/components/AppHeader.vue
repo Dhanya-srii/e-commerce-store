@@ -1,17 +1,17 @@
 <template>
   <div class="header-container">
-    <div
-      class="brand"
-      @click="goToProductList()"
-    >
-      <h1 class="brand-name">PLUGO</h1>
-    </div>
-    <div class="user-controls">
-      <div class="search-container">
+    <div class="sub-header-container">
+      <div
+        class="brand"
+        @click="goToProductList()"
+      >
+        <h1 class="brand-name">PLUGO</h1>
+      </div>
+      <div class="user-controls">
         <input
           class="search-input"
           type="text"
-          placeholder="Search Product..."
+          placeholder="SEARCH"
           v-model.trim="searchQuery"
           @keyup.enter="searchProduct"
         />
@@ -19,10 +19,7 @@
           @click="searchProduct"
           class="header-button"
         >
-          <i
-            class="fa-brands fa-searchengin"
-            style="color: #f2f2f2"
-          ></i>
+          <i class="ri-search-line"></i>
         </button>
         <button
           v-if="showClear"
@@ -30,22 +27,25 @@
           class="header-button"
         >
           <i
-            class="fa-solid fa-eraser"
+            class="ri-eraser-line"
             style="color: #f5f5f5"
           ></i>
         </button>
-      </div>
-      <div class="user-actions">
+
         <button
-          class="fav-header"
+          class="header-button"
           @click="goToFavourites()"
         >
-          <i class="fa-solid fa-heart"></i>
+          <i
+            class="ri-heart-line"
+            style="color: #f5f5f5"
+          ></i>
+          <p class="favourite-list-count">{{ hasFavourites }}</p>
         </button>
         <button class="header-button">
           <i
-            class="fa-solid fa-cart-shopping"
-            style="color: #f2f2f2"
+            class="ri-shopping-cart-line"
+            style="color: #f5f5f5"
           ></i>
         </button>
       </div>
@@ -54,7 +54,7 @@
 </template>
 <script>
 // Dependency
-import { mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 // API
 import { products } from '../api/products';
 
@@ -66,7 +66,9 @@ export default {
       showClear: false,
     };
   },
-
+  computed: {
+    ...mapGetters(['hasFavourites']),
+  },
   methods: {
     ...mapMutations(['setproductData']),
 

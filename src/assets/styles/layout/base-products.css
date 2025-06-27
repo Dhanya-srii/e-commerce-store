@@ -1,17 +1,20 @@
-.products,
-.product-status-message {
-  display: grid;
-  grid-template-columns: repeat(4, 350px);
+.products {
   gap: 2.8rem;
   margin-top: 2rem;
-  flex: 2;
-  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
-.fav-products {
-  display: grid;
-  gap: 2.8rem;
-  margin-top: 5.3rem;
+.product-status-message {
+  width: 100vw;
+  height: 100vh;
+  border: 1px solid black;
+  display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.fav-products {
+  margin-top: 5.3rem;
 }

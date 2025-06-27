@@ -1,34 +1,37 @@
 <template>
-  <div class="filter-container">
+  <div
+    class="filter-container"
+    @click="toggleFilter"
+  >
     <div
-      v-if="isLoading"
-      class="loading-container"
+      class="filters-panel"
+      @click.stop
     >
-      <div class="spinner"></div>
-      <p>Loading products...</p>
-    </div>
-    <div v-else>
       <div
-        v-if="showFilter"
-        class="filters-panel"
+        v-if="isLoading"
+        class="loading-container"
       >
-        <div class="categories">
-          <div class="filters-panel-header">
-            <h3>Product Filters</h3>
-            <button
-              @click="toggleFilter"
-              class="close-filter"
-            >
-              <i
-                class="fa-solid fa-xmark fa-lg"
-                style="color: #080808"
-              ></i>
-            </button>
-          </div>
-
+        <div class="spinner"></div>
+        <p>Loading products...</p>
+      </div>
+      <div
+        v-else
+        class="categories"
+      >
+        <div class="filters-panel-header">
+          <h3>Product Filters</h3>
+          <button
+            @click="toggleFilter"
+            class="close-filter"
+          >
+            <i class="ri-close-large-line"></i>
+          </button>
+        </div>
+        <div class="filters-panel-body">
           <div>
             <h3 class="custom">Category</h3>
           </div>
+
           <div
             v-for="(category, index) in categoryList"
             :key="index"
@@ -41,16 +44,15 @@
             >
               {{ category | initalCaps }}
             </el-checkbox>
-            <!-- <hr> -->
           </div>
         </div>
-        <div class="filter-fixed-button-container">
+        <div class="filter-panel-footer">
           <button
             class="clear-all"
             v-if="originalCategories.length > 0"
             @click="clearFilters"
           >
-            Clear All x
+            <span>Clear All</span> <i class="ri-close-circle-line"></i>
           </button>
           <button
             class="apply-filter"
@@ -83,15 +85,6 @@ export default {
       showFilter: (state) => state.storeProducts.showFilter,
       originalCategories: (state) => state.storeProducts.selectedCategories,
     }),
-
-    // originalCategories: {
-    //   get() {
-    //     return this.$store.state.storeProducts.selectedCategories;
-    //   },
-    //   set(value) {
-    //     this.setSelectedCategories(value);
-    //   },
-    // },
   },
 
   async created() {
@@ -124,7 +117,7 @@ export default {
 
     applyFilters() {
       this.setSelectedCategories(this.originalCategoriesLocal);
-
+      this.toggleFilter();
       this.getAllProductsByCategories();
     },
   },
@@ -133,9 +126,16 @@ export default {
 
 <style scoped src="@/assets/styles/layout/products.css"></style>
 <style scoped src="@/assets/styles/components/button.css"></style>
+<style scoped src="@/assets/styles/components/loading.css"></style>
 <style scoped src="@/assets/styles/components/elementsVariable.css"></style>
 <style scoped>
-/* .filter-container {
-position: ;
-} */
+.filter-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 10, 10, 0.4);
+  z-index: 999;
+}
 </style>

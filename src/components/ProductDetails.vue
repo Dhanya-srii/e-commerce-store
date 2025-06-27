@@ -78,10 +78,7 @@
             class="fav-detail"
             @click="toggleFavourite(selectedProduct)"
           >
-            <i
-              class="fa-solid fa-heart"
-              :style="{ color: isFav() ? 'red' : 'gray' }"
-            ></i>
+            <i :class="[isFav ? 'ri-heart-fill' : 'ri-heart-line']"></i>
           </button>
         </div>
       </div>
@@ -106,6 +103,9 @@ export default {
     ...mapState({
       favouritesList: (state) => state.storeProducts.favouritesList,
     }),
+    isFav() {
+      return this.favouritesList[this.selectedProduct.id] != undefined;
+    },
   },
   async created() {
     await this.getProductdata();
@@ -135,9 +135,6 @@ export default {
     },
     toggleFavourite(product) {
       this.updateFavList(product);
-    },
-    isFav() {
-      return this.favouritesList[this.selectedProduct.id] != undefined;
     },
   },
 };

@@ -1,11 +1,22 @@
+/* .categories > .selectable-item-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 23px;
+  border: 1px solid black;
+} */
+
+
+
 .selectable-item {
   display: flex;
   gap: 1.5rem;
   cursor: pointer;
-  padding:32px 0px auto;
-  margin:8px 0px auto;
-
-  /* border: 1px solid rgb(219, 215, 215); */
+  /* padding: 32px 0px auto; */
+  margin: 8px 0px auto;
+  padding: 32px;
+  /* margin:16px; */
 }
 
 .checkbox {

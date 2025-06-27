@@ -1,13 +1,14 @@
 <template>
-  <div class="fav-products">
-    <div v-if="!hasFavourites">
-      <h2 class="product-status-message">No Favourites Added!!</h2>
-    </div>
+  <div v-if="!hasFavourites">
+    <h2 class="product-status-message">No Favourites Added!!</h2>
+  </div>
 
-    <div
-      v-else
-      class="products"
-    >
+  <div
+    v-else
+    class="fav-products"
+  >
+    <visual-size :totalProducts="Object.keys(favouritesList).length" />
+    <div :class="['products', `grid-${gridColumns}`]">
       <product-cards
         v-for="(product, index) in favouritesList"
         :key="product.id || index"
@@ -19,23 +20,27 @@
 
 <script>
 import ProductCards from './ProductCards.vue';
-import { mapState } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
+import VisualSize from './VisualSize.vue';
 
 export default {
   name: 'FavouriteProducts',
   components: {
     ProductCards,
+    VisualSize,
   },
   computed: {
     ...mapState({
+      gridColumns: (state) => state.storeProducts.gridColumns,
       favouritesList: (state) => state.storeProducts.favouritesList,
     }),
-    hasFavourites() {
-      return Object.keys(this.favouritesList).length > 0;
-    },
+
+    ...mapGetters(['hasFavourites']),
   },
 };
 </script>
 <style scoped src="@/assets/styles/layout/products.css"></style>
 <style scoped src="@/assets/styles/abstracts/root.css"></style>
 <style scoped src="@/assets/styles/layout/base-products.css"></style>
+<style scoped src="@/assets/styles/components/button.css"></style>
+<style scoped src="@/assets/styles/components/visualSize.css"></style>
