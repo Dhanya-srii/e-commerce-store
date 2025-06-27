@@ -76,7 +76,7 @@
 }
 
 .sub-filters {
-  min-width: 1600px;
+  max-width: 1600px;
   display: flex;
   justify-content: space-between;
 }

@@ -20,10 +20,11 @@ i {
   text-align: left;
 }
 
-.clear-filters {
+
+.clear-filters[data-v-4375515c] {
   flex-shrink: 0;
   font-weight: 800;
   background-color: var(--secondary-color);
   cursor: pointer;
-
+  margin: 8px;
 }

@@ -29,7 +29,7 @@
 .sub-product-info {
   display: flex;
   min-width: 350px;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
   margin-bottom: 8px;
   padding-top: 8px;
