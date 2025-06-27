@@ -1,0 +1,185 @@
+Below is a **plain‑English walkthrough** of every part of the file, why it exists, and the main Vue / JavaScript ideas it touches. I keep the wording beginner‑friendly and add tiny code snippets only where they clarify the point.
+
+---
+
+## 1. What the file is
+
+`storeProducts` is a **Vuex store module**.
+
+* **Vuex** (Vue 2’s official state‑management library) keeps all app‑wide data in one central place (“the store”) so that any component can read or change it in a predictable way.
+* A “module” is just a slice of that store dedicated to a specific feature—in this case *products & favourites*.
+
+---
+
+## 2. Imports
+
+```js
+import Vue from 'vue';
+import { products } from '/src/api/products.js';
+```
+
+| Import     | Why it’s needed                                                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `Vue`      | Vue 2’s reactivity helpers (`Vue.delete` below) only work if you import the core library.                                            |
+| `products` | A small API wrapper that exposes `fetchAllProducts` and `fetchProductCategories`. The store’s **actions** use it to hit the network. |
+
+---
+
+## 3. The `state` object – “single source of truth”
+
+```js
+state: {
+  favouritesList: JSON.parse(localStorage.getItem('favouritesList')) || {},
+  productData: [],
+  selectedCategories: [],
+  showFilter: false,
+  favouritesListCount: 0,   // declared but not yet used
+  gridColumns: 4,
+},
+```
+
+| Property             | What it holds / why                                                                                                                                          |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `favouritesList`     | An **object** whose keys are product‑ids and whose values are the product objects. It is initialised from `localStorage` so favourites survive page reloads. |
+| `productData`        | The array that the product‑listing components render.                                                                                                        |
+| `selectedCategories` | All categories the user ticked in the filter panel.                                                                                                          |
+| `showFilter`         | `true`/`false` – toggles filter‑panel visibility.                                                                                                            |
+| `gridColumns`        | Number of columns for the product grid (2 or 4).                                                                                                             |
+
+---
+
+## 4. `mutations` – the **only** place the state is changed
+
+Vuex requires changes to be synchronous and centralized so that every mutation can be time‑travel‑debugged.
+
+### 4.1 `updateFavList`
+
+```js
+updateFavList(state, val) {
+  if (state.favouritesList[val.id]) {
+    Vue.delete(state.favouritesList, val.id);        // remove (reactively)
+  } else {
+    state.favouritesList = {
+      ...state.favouritesList,
+      [val.id]: val,                                 // add
+    };
+  }
+  localStorage.setItem('favouritesList', JSON.stringify(state.favouritesList));
+}
+```
+
+*Concepts involved*
+
+| Concept                                   | Why it’s used                                                                                                                   |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Reactive delete** (`Vue.delete`)        | In Vue 2, removing a property from an object normally breaks reactivity. `Vue.delete` keeps watchers/computed properties alive. |
+| **Spread syntax** (`{ ...obj, newProp }`) | Builds a *new* favourites object (easier for Vue change‑detection).                                                             |
+| **localStorage**                          | Saves the list to the browser so favourites re‑appear after refresh.                                                            |
+
+### 4.2 Simple setters
+
+`setGridColumns`, `setproductData`, `setSelectedCategories`, `clearSelectedCategories`, `removeOneSelectedCategory`, `toggleFilter` – each of these just flips a single piece of state.
+
+---
+
+## 5. `getters` – derived/computed values
+
+```js
+hasFavourites: (state) => Object.keys(state.favouritesList).length,
+```
+
+Returns the **count** of favourite items (truthy `> 0` means “there are favourites”).
+*Concept:* Getters act like Vue computed properties but live in the store.
+
+---
+
+## 6. `actions` – asynchronous or complex operations
+
+Actions may contain `await`, timers, conditionals, etc. They **commit** mutations once the async work is done.
+
+### 6.1 `getAllProducts`
+
+```js
+async getAllProducts({ commit }) {
+  const productList = await products.fetchAllProducts();
+  commit('setproductData', productList);
+  return productList;
+}
+```
+
+1. **Calls the REST API** (`fetchAllProducts`).
+2. **Commits** the `setproductData` mutation so every component instantly sees the new list.
+
+### 6.2 `getAllProductsByCategories`
+
+```js
+async getAllProductsByCategories({ state, dispatch, commit }) {
+  const categoryList = state.selectedCategories;
+
+  if (categoryList.length === 0) {
+    return dispatch('getAllProducts');         // reuse action
+  } else {
+    const filtered = await products.fetchProductCategories(categoryList);
+    commit('setproductData', filtered);
+  }
+}
+```
+
+* If the user hasn’t chosen any filters, reuse the plain “get all” action.
+* Otherwise call the endpoint that returns **only** the chosen categories.
+
+*Concepts involved*
+
+| Concept                                              | Explanation                                                                            |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| **Action composition** (`dispatch` inside an action) | Lets you reuse logic instead of duplicating it.                                        |
+| **API wrapper** (`products.*`)                       | Keeps HTTP details out of the store; the store only cares about *data*, not endpoints. |
+| **Async/await**                                      | Makes asynchronous code read like synchronous code.                                    |
+
+---
+
+## 7. Why do we use a store at all?
+
+| Pain without Vuex                                            | Store solves it by…                                                             |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| Passing props through 3‑4 component levels (“prop drilling”) | Any component can `mapState`, `mapGetters`, `mapActions` directly.              |
+| “Which component is allowed to change what?”                 | Only mutations may touch the data. Everything is predictable and can be logged. |
+| Race conditions / duplicated API calls                       | Centralised actions can cache or coordinate requests.                           |
+| Hard‑to‑reproduce bugs                                       | Time‑travel dev‑tools show each mutation step.                                  |
+
+---
+
+## 8. Big topics touched by the file
+
+1. **Vuex core ideas** – *state, getters, mutations, actions, modules*.
+2. **Vue 2 reactivity caveat** – why `Vue.delete` is needed.
+3. **Browser persistence** with `localStorage`.
+4. **ES6+ syntax** – arrow functions, spread (`...`), computed property names (`[val.id]`).
+5. **Asynchronous JavaScript** – `async/await`, `Promise`.
+6. **HTTP abstraction** – separating API logic (`/src/api/products.js`) from UI/state logic.
+7. **Module reusability** – clean separation makes unit‑testing and future refactor easier.
+
+---
+
+### How it all flows in the app
+
+```
+User clicks heart icon  ──▶ dispatch('updateFavList', product)
+                              ▲
+                              │ (mutation)
+Component created life‑cycle ─┘
+                               │
+ ──────────────────────────────┤
+ Filter changed                ▼
+  ──▶ commit('setSelectedCategories', list)
+      └─▶ dispatch('getAllProductsByCategories')
+             ├─ fetchProductCategories()  ← HTTP
+             └─ commit('setproductData', data)
+```
+
+All UI components simply **react** to `state.productData`, `state.gridColumns`, and `getter:hasFavourites`, without worrying about where the data came from.
+
+---
+
+That’s the full tour!
+If you’d like code examples of how to connect a component (`mapState`, `mapActions`) or how to test a mutation in Jest, let me know.
