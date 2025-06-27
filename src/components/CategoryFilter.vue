@@ -110,7 +110,6 @@ export default {
 
     clearFilters() {
       this.originalCategoriesLocal = [];
-
       this.clearSelectedCategories();
       this.getAllProductsByCategories();
     },

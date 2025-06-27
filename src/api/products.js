@@ -23,6 +23,7 @@ export const products = {
         `https://dummyjson.com/products/${productId}`
       );
       const data = response.data;
+
       return parseProducts(data);
     } catch (err) {
       throw new Error(err.message);
@@ -58,12 +59,9 @@ export const products = {
         )
       );
 
-      let allProducts = [];
-
-      for (let res of responses) {
-        const data = res.data.products.map(parseProducts);
-        allProducts = allProducts.concat(data);
-      }
+      const allProducts = responses.flatMap((res) =>
+        res.data.products.map(parseProducts)
+      );
 
       return allProducts;
     } catch (err) {
@@ -82,4 +80,3 @@ export const products = {
     }
   },
 };
-products.fetchProductsByPrice('desc');

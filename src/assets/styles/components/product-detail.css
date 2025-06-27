@@ -97,11 +97,10 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 24px;
   border: 1px solid var(--primary-color);
   border-radius: 12px;
-  width: 120px;
-  height: 40px;
-  padding: 0 0.5rem;
+  padding: 0px 1rem;
 }
 
 .quantity-display {

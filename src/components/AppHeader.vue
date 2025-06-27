@@ -40,7 +40,12 @@
             class="ri-heart-line"
             style="color: #f5f5f5"
           ></i>
-          <p class="favourite-list-count">{{ hasFavourites }}</p>
+          <p
+            v-if="hasFavourites.length > 0"
+            class="favourite-list-count"
+          >
+            {{ hasFavourites }}
+          </p>
         </button>
         <button class="header-button">
           <i

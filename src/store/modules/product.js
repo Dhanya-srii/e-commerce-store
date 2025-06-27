@@ -70,7 +70,8 @@ export const storeProducts = {
       const categoryList = state.selectedCategories;
       if (categoryList.length === 0) {
         return dispatch('getAllProducts');
-      } else {
+      }
+      else {
         const filtered = await products.fetchProductCategories(categoryList);
         commit('setproductData', filtered);
       }

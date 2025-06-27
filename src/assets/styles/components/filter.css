@@ -2,7 +2,6 @@
   background-color: rgb(238, 238, 238);
   display: flex;
   align-items: center;
-  height: 32px;
   padding: 0 18px;
   justify-content: space-between;
   white-space: nowrap;
@@ -24,7 +23,6 @@ i {
 .clear-filters {
   flex-shrink: 0;
   font-weight: 800;
-  padding: 8px 16px;
   background-color: var(--secondary-color);
   cursor: pointer;
 

@@ -20,6 +20,7 @@ button {
   font-weight: 600;
   display: inline-block;
   border: 1px solid black;
+  padding: 0.5rem;
 
 }
 
@@ -96,7 +97,6 @@ button {
 select {
   min-width: 135px;
   height: 40px;
-  /* padding: 12px; */
   text-align: center;
   font-size: 1rem;
   font-weight: 800;
@@ -106,8 +106,7 @@ select {
 }
 
 .close-filter {
-  height: 40px;
-  width: 40px;
+
   font-size: 1rem;
   text-align: center;
   margin: 16px;

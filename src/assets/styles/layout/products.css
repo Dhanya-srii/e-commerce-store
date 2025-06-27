@@ -2,11 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  min-width: 1700px;
+  margin-top: 4.5rem;
 }
 
 .container {
-  max-width: 1600px;
-  margin: 5rem 0rem 1rem 0rem;
   display: flex;
   justify-content: center;
   position: relative;
@@ -70,9 +71,7 @@
 .filters {
   display: flex;
   background-color: var(--secondary-color);
-  width: 100vw;
   padding: 1rem;
-  z-index: 1001;
   justify-content: center;
 }
 
