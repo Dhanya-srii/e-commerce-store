@@ -41,7 +41,7 @@
             style="color: #f5f5f5"
           ></i>
           <p
-            v-if="hasFavourites.length > 0"
+            v-if="hasFavourites"
             class="favourite-list-count"
           >
             {{ hasFavourites }}

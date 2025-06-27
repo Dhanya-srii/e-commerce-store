@@ -7,7 +7,6 @@ export const storeProducts = {
     productData: [],
     selectedCategories: [],
     showFilter: false,
-    favouritesListCount: 0,
     gridColumns: 4,
   },
 
