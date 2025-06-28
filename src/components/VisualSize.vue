@@ -1,23 +1,21 @@
 <template>
   <div class="visual-size">
-    <div class="sub-visual-size">
-      <div class="product-length">
-        <h4>{{ totalProducts }} PRODUCTS</h4>
-      </div>
-      <div>
-        <button
-          :class="['grid-button', { active: gridColumns === 2 }]"
-          @click="setGridColumns(2)"
-        >
-          <i class="ri-layout-grid-line"></i>
-        </button>
-        <button
-          :class="[{ active: gridColumns === 4 }]"
-          @click="setGridColumns(4)"
-        >
-          <i class="ri-layout-grid-2-line"></i>
-        </button>
-      </div>
+    <div class="product-length">
+      <h4>{{ totalProducts }} PRODUCTS</h4>
+    </div>
+    <div>
+      <button
+        :class="['grid-button', { active: gridColumns === 2 }]"
+        @click="setGridColumns(2)"
+      >
+        <i class="ri-layout-grid-line"></i>
+      </button>
+      <button
+        :class="[{ active: gridColumns === 4 }]"
+        @click="setGridColumns(4)"
+      >
+        <i class="ri-layout-grid-2-line"></i>
+      </button>
     </div>
   </div>
 </template>

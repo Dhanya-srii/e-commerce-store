@@ -1,87 +1,84 @@
 <template>
-  <div class="product-list">
+  <div
+    v-if="isLoading"
+    class="loading-container"
+  >
+    <div class="spinner"></div>
+    <p>Loading products...</p>
+  </div>
+
+  <div
+    v-else
+    class="product-list"
+  >
     <div
-      v-if="isLoading"
-      class="loading-container"
+      v-if="listProducts.length"
+      class="user-control-button"
     >
-      <div class="spinner"></div>
-      <p>Loading products...</p>
+      <div class="sub-user-control-button">
+        <button @click="toggleFilter">
+          <span>FILTERS</span><i class="ri-equalizer-3-line"></i></button
+        ><select
+          v-model="selectedOption"
+          @change="handleOptionChange"
+        >
+          <option
+            value=""
+            disabled
+          >
+            SORT BY
+          </option>
+          <option value="asc">Price Low To High</option>
+          <option value="desc">Price High To Low</option>
+          <option value="latest">Latest</option>
+        </select>
+      </div>
+    </div>
+    <visual-size
+      v-if="listProducts.length"
+      :totalProducts="listProducts.length"
+    />
+
+    <div
+      v-if="listProducts.length"
+      class="filters"
+    >
+      <div class="filter-container">
+        <button
+          v-for="(category, index) in selectedCategories"
+          :key="'Cat-' + index"
+          class="filter-pill"
+        >
+          <span>{{ category | initalCaps }}</span>
+          <button
+            class="remove-filter"
+            @click="removeCategory(category)"
+          >
+            <i class="ri-close-line"></i>
+          </button>
+        </button>
+      </div>
+
+      <button
+        class="clear-filters"
+        v-if="selectedCategories.length > 0"
+        @click="clearAllFilters()"
+      >
+        <span>Clear All</span> <i class="ri-close-circle-line"></i>
+      </button>
     </div>
     <div
-      v-else
-      class="container"
+      v-if="listProducts.length > 0"
+      :class="['products', `grid-${gridColumns}`]"
     >
-      <div
-        v-if="listProducts.length"
-        class="user-control-button"
-      >
-        <div class="sub-user-control-button">
-          <button @click="toggleFilter">
-            <span>FILTERS</span><i class="ri-equalizer-3-line"></i></button
-          ><select
-            v-model="selectedOption"
-            @change="handleOptionChange"
-          >
-            <option
-              value=""
-              disabled
-            >
-              SORT BY
-            </option>
-            <option value="asc">Price Low To High</option>
-            <option value="desc">Price High To Low</option>
-            <option value="latest">Latest</option>
-          </select>
-        </div>
-      </div>
-      <visual-size
-        v-if="listProducts.length"
-        :totalProducts="listProducts.length"
+      <product-cards
+        v-for="(product, index) in listProducts"
+        :key="index"
+        :productData="product"
       />
-
-      <div
-        v-if="listProducts.length"
-        class="filters"
-      >
-        <div class="sub-filters">
-          <div class="filter-container">
-            <button
-              v-for="(category, index) in selectedCategories"
-              :key="'Cat-' + index"
-              class="filter-pill"
-            >
-              <span>{{ category | initalCaps }}</span>
-              <button
-                class="remove-filter"
-                @click="removeCategory(category)"
-              >
-                <i class="ri-close-line"></i>
-              </button>
-            </button>
-          </div>
-
-          <button
-            class="clear-filters"
-            v-if="selectedCategories.length > 0"
-            @click="clearAllFilters()"
-          >
-            <span>Clear All</span> <i class="ri-close-circle-line"></i>
-          </button>
-        </div>
-      </div>
-      <div
-        v-if="listProducts.length > 0"
-        :class="['products', `grid-${gridColumns}`]"
-      >
-        <product-cards
-          v-for="(product, index) in listProducts"
-          :key="index"
-          :productData="product"
-        />
-      </div>
-      <div v-else>
-        <h2 class="product-status-message">Product Not Listed!</h2>
-      </div>
+    </div>
+    <div v-else>
+      <h2 class="product-status-message">Product Not Listed!</h2>
     </div>
   </div>
 </template>

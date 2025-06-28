@@ -1,37 +1,39 @@
 <template>
-  <div
-    class="product"
-    @click="goToProductDetail(productData.id)"
-  >
-    <div class="image-container">
-      <button
-        class="fav-icon"
-        @click.stop="updateFavList(productData)"
-      >
-        <i :class="[isFavourite ? 'ri-heart-fill' : 'ri-heart-line']"></i>
-      </button>
-      <img
-        class="product-image"
-        :src="productData.images[0]"
-        alt="Product image"
-      />
-    </div>
-
-    <div class="product-info">
-      <div class="sub-product-info">
-        <h4 class="product-title">
-          {{ productData.title | initalCaps }}
-        </h4>
-        <p class="price">${{ productData.price }}</p>
-      </div>
-      <div>
+  <div class="product-card">
+    <div
+      class="product"
+      @click="goToProductDetail(productData.id)"
+    >
+      <div class="image-container">
         <button
-          @click.stop
-          type="button"
-          class="add-cart-button"
+          class="fav-icon"
+          @click.stop="updateFavList(productData)"
         >
-          Add Cart
+          <i :class="[isFavourite ? 'ri-heart-fill' : 'ri-heart-line']"></i>
         </button>
+        <img
+          class="product-image"
+          :src="productData.images[0]"
+          alt="Product image"
+        />
+      </div>
+
+      <div class="product-info">
+        <div class="sub-product-info">
+          <h4 class="product-title">
+            {{ productData.title | initalCaps }}
+          </h4>
+          <p class="price">${{ productData.price }}</p>
+        </div>
+        <div>
+          <button
+            @click.stop
+            type="button"
+            class="add-cart-button"
+          >
+            Add Cart
+          </button>
+        </div>
       </div>
     </div>
   </div>

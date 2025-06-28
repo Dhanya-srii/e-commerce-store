@@ -1,16 +1,16 @@
 .visual-size {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   margin-top: 16px;
-  padding: 16px;
+  /* padding: 16px; */
   align-items: center;
+  width: 1600px;
 }
 
 .sub-visual-size {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-width: 1600px;
 }
 
 .product-length {
