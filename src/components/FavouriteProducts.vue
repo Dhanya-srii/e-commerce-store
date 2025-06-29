@@ -5,7 +5,7 @@
 
   <div
     v-else
-    class="fav-products"
+    class="product-list"
   >
     <visual-size :totalProducts="Object.keys(favouritesList).length" />
     <div :class="['products', `grid-${gridColumns}`]">

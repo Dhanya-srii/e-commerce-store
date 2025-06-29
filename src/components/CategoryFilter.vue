@@ -96,7 +96,7 @@ export default {
     } catch (err) {
       alert('Error loading products:', err);
     } finally {
-      this.isLoading = false;
+      // this.isLoading = false;
     }
   },
 

@@ -47,7 +47,10 @@
             {{ hasFavourites }}
           </p>
         </button>
-        <button class="header-button">
+        <button
+          class="header-button"
+          @click="goToProductCart"
+        >
           <i
             class="ri-shopping-cart-line"
             style="color: #f5f5f5"
@@ -91,7 +94,13 @@ export default {
         });
       }
     },
-
+    goToProductCart() {
+      if (this.$route.name != ROUTE_NAMES.PRODUCT_CART) {
+        this.$router.push({
+          name: ROUTE_NAMES.PRODUCT_CART,
+        });
+      }
+    },
     async resetSearch() {
       try {
         const productData = await products.fetchAllProducts();
