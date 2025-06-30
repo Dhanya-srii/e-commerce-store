@@ -1,7 +1,10 @@
 <template>
   <div class="cart">
     <div class="cart-wrapper">
-      <h1>{{"My Shopping Cart" | toUpperCase}} <span class="item-count">(5)</span></h1>
+      <h1>
+        {{ 'My Shopping Cart' | toUpperCase }}
+        <span class="item-count">(5)</span>
+      </h1>
 
       <div class="cart-content">
         <div class="cart-items">
@@ -55,7 +58,9 @@
             <h3>₹50,140.45</h3>
           </div>
 
-          <button class="checkout-button">{{"Checkout" | toUpperCase}}</button>
+          <button class="checkout-button">
+            {{ 'Checkout' | toUpperCase }}
+          </button>
           <p class="terms-text">
             By continuing, I confirm that I have read and accept the
             <a href="#">Terms and Conditions</a> and the
@@ -81,7 +86,7 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-  margin-top: 6.5rem;
+  margin: 24px;
 }
 
 .cart-content {
