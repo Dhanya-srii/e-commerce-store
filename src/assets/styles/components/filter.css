@@ -1,4 +1,4 @@
-.filter-pill {
+.filter-pill,.clear-filters {
   background-color: rgb(238, 238, 238);
   display: flex;
   align-items: center;
@@ -21,7 +21,7 @@ i {
 }
 
 
-.clear-filters[data-v-4375515c] {
+.clear-filters {
   flex-shrink: 0;
   font-weight: 800;
   background-color: var(--secondary-color);

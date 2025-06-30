@@ -1,12 +1,12 @@
 .product {
-  min-height: 500px;
+  min-height: 450px;
   min-width: 380px;
   cursor: pointer;
 }
 
 .product-card {
-  max-width: 25%;
-  flex: 25%;
+  /* max-width: 25%;
+  flex: 25%; */
   padding-right: 8px;
   padding-left: 8px;
   margin-bottom: 16px;

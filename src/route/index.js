@@ -7,7 +7,7 @@ import ProductsList from '@/components/ProductsList.vue';
 import ProductDetails from '@/components/ProductDetails.vue';
 import FavouriteProducts from '@/components/FavouriteProducts.vue';
 import PageNotFound from '@/components/PageNotFound.vue';
-import ProductCart from '@/components/ProductCart.vue';
+import ProductCart from '@/components/ProductCartList.vue';
 
 Vue.use(VueRouter);
 const routes = [

@@ -48,7 +48,7 @@
           </p>
         </button>
         <button
-          class="header-button"
+          class="cart"
           @click="goToProductCart"
         >
           <i

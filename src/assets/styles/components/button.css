@@ -6,7 +6,7 @@ button {
 .header-button {
   background-color: var(--primary-color);
   color: var(--secondary-color);
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   position: relative;
   padding: 8px;
 
@@ -26,9 +26,10 @@ button {
 
 }
 
-.header-button:hover {
+.header-button:hover,.cart:hover {
   background-color: rgb(64, 64, 64);
   border-radius: 45%;
+  /* padding: 8px; */
 }
 
 .fav-icon {
