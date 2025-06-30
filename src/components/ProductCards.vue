@@ -49,9 +49,7 @@ export default {
   props: ['productData'],
   mixins: [filterMixin],
   data() {
-    return {
-      cartProducts: [],
-    };
+    return {};
   },
   computed: {
     ...mapState({
@@ -75,7 +73,7 @@ export default {
     async getUserCart(productId) {
       try {
         const data = {
-          userId: 1,
+          userId: 5,
           products: [
             {
               id: productId,
