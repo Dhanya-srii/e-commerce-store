@@ -1,8 +1,7 @@
 import Vue from 'vue';
-
 import { products } from '/src/api/products.js';
+import { addCart } from '/src/api/cart';
 
-import { addCart, updateCart, getAllCarts } from '/src/api/cart';
 export const storeProducts = {
   state: {
     favouritesList: JSON.parse(localStorage.getItem('favouritesList')) || {},
@@ -10,130 +9,128 @@ export const storeProducts = {
     selectedCategories: [],
     showFilter: false,
     gridColumns: 4,
-    getCartProducts: {},
     cartProducts: [],
+    addedCartProducts: [],
   },
 
   mutations: {
-    updateFavList(state, val) {
-      if (state.favouritesList[val.id]) {
-        Vue.delete(state.favouritesList, val.id);
+    updateFavList(state, product) {
+      const id = product.id;
+      if (state.favouritesList[id]) {
+        Vue.delete(state.favouritesList, id);
       } else {
-        const favProduct = {
-          [val.id]: val,
-        };
-        state.favouritesList = {
-          ...state.favouritesList,
-          ...favProduct,
-        };
+        Vue.set(state.favouritesList, id, product);
       }
       localStorage.setItem(
         'favouritesList',
         JSON.stringify(state.favouritesList)
       );
     },
-    setCartProducts(state, allCartProducts) {
-      state.cartProducts = allCartProducts;
-    },
 
-    addProductToCart(state, { id, quantity }) {
-      Vue.set(state.getCartProducts, id, { quantity });
-    },
-
-    updateProductQuantity(state, { id, quantity }) {
-      if (state.getCartProducts[id]) {
-        state.getCartProducts[id].quantity = quantity;
-      }
-    },
-
-    removeProductFromCart(state, id) {
-      Vue.delete(state.getCartProducts, id);
+    setCartProducts(state, products) {
+      state.cartProducts = products;
     },
 
     setGridColumns(state, cols) {
       state.gridColumns = cols;
     },
 
-    setproductData(state, productList) {
-      state.productData = productList;
+    setProductData(state, products) {
+      state.productData = products;
     },
 
-    setSelectedCategories(state, categoryList) {
-      state.selectedCategories = categoryList;
+    setSelectedCategories(state, categories) {
+      state.selectedCategories = categories;
     },
 
     clearSelectedCategories(state) {
       state.selectedCategories = [];
     },
 
-    removeOneSelectedCategory(state, categoryToRemove) {
+    removeOneSelectedCategory(state, category) {
       state.selectedCategories = state.selectedCategories.filter(
-        (category) => category !== categoryToRemove
+        (c) => c !== category
       );
     },
 
     toggleFilter(state) {
       state.showFilter = !state.showFilter;
     },
+
+    addOrUpdateProductInCart(state, { product, quantity }) {
+      const idx = state.cartProducts.findIndex(
+        (item) => item.id === product.id
+      );
+      if (quantity <= 0) {
+        // Remove item
+        if (idx !== -1) state.cartProducts.splice(idx, 1);
+        state.addedCartProducts = state.addedCartProducts.filter(
+          (item) => item.id !== product.id
+        );
+      } else {
+        // Update or add
+        if (idx !== -1) {
+          Vue.set(state.cartProducts, idx, { id: product.id, quantity });
+        } else {
+          state.cartProducts.push({ id: product.id, quantity });
+        }
+
+        const fullIdx = state.addedCartProducts.findIndex(
+          (item) => item.id === product.id
+        );
+        if (fullIdx !== -1) {
+          Vue.set(state.addedCartProducts, fullIdx, { ...product, quantity });
+        } else {
+          state.addedCartProducts.push({ ...product, quantity });
+        }
+      }
+    },
+
+    removeProductFromCart(state, id) {
+      state.cartProducts = state.cartProducts.filter((item) => item.id !== id);
+      state.addedCartProducts = state.addedCartProducts.filter(
+        (item) => item.id !== id
+      );
+    },
   },
 
   getters: {
-
     hasFavourites: (state) => Object.keys(state.favouritesList).length,
-
-    getCartProducts: (state) => state.getCartProducts,
-
-    cartQuantity: (state) => (id) => state.getCartProducts[id]?.quantity || 0,
-
-    getAddedCartProducts: (state) => {
-      return state.cartProducts;
+    cartQuantity: (state) => (id) => {
+      return state.cartProducts.find((item) => item.id === id)?.quantity || 0;
     },
-
+    getCartProducts: (state) => state.cartProducts,
+    getAddedCartProducts: (state) => state.addedCartProducts,
   },
-  actions: {
 
+  actions: {
     async getAllProducts({ commit }) {
-      const productList = await products.fetchAllProducts();
-      commit('setproductData', productList);
-      return productList;
+      const productsList = await products.fetchAllProducts();
+      commit('setProductData', productsList);
     },
 
-    async getAllProductsByCategories({ state, dispatch, commit }) {
-      const categoryList = state.selectedCategories;
-      if (categoryList.length === 0) {
+    async getAllProductsByCategories({ state, commit, dispatch }) {
+      if (!state.selectedCategories.length) {
         return dispatch('getAllProducts');
-      } else {
-        const filtered = await products.fetchProductCategories(categoryList);
-        commit('setproductData', filtered);
       }
+      const filtered = await products.fetchProductCategories(
+        state.selectedCategories
+      );
+      commit('setProductData', filtered);
     },
 
     async addToCart({ commit }, product) {
       await addCart({
-        userId: 1,
+        userId: 5,
         products: [{ id: product.id, quantity: 1 }],
       });
-      commit('addProductToCart', { id: product.id, quantity: 1 });
+      console.log('store product', product);
+
+      commit('addOrUpdateProductInCart', { product, quantity: 1 });
     },
 
-    async changeQuantity({ commit }, { id, quantity }) {
-      if (quantity <= 0) {
-        commit('removeProductFromCart', id);
-      } else {
-        await updateCart(1, [{ id, quantity }]);
-        commit('updateProductQuantity', { id, quantity });
-      }
-    },
-    
-    async fetchUserCart({ commit }) {
-      try {
-        const userId = 1;
-        const res = await getAllCarts(userId);
-        const products = res.data.carts?.[0]?.products || [];
-        commit('setCartProducts', products);
-      } catch (e) {
-        console.error('Failed to fetch cart by user:', e);
-      }
+    updateQuantity({ commit }, { product, quantity }) {
+      commit('addOrUpdateProductInCart', { product, quantity });
     },
   },
 };

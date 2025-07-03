@@ -1,4 +1,5 @@
 <template>
+
   <div class="cart">
     <h1 v-if="getAddedCartProducts.length === 0">No items in cart.</h1>
 
@@ -13,7 +14,7 @@
 
       <div class="cart-content">
         <div class="cart-items">
-          <ProductCart
+          <product-cart
             v-for="product in getAddedCartProducts"
             :key="product.id"
             :product="product"
@@ -41,7 +42,7 @@
             <div class="price-details">
               <p>
                 <span>{{ 'Subtotal' | toUpperCase }}</span>
-                <span>${{ subtotal }}</span>
+                <span>${{ cartSubtotal }}</span>
               </p>
               <p>
                 <span>{{ 'shipping costs' | toUpperCase }}</span>
@@ -49,7 +50,7 @@
               </p>
               <p>
                 <span>{{ 'order discount' | toUpperCase }}</span>
-                <span>$0</span>
+                <span>${{cartSubtotal}}</span>
               </p>
             </div>
           </div>
@@ -61,7 +62,7 @@
                 'Prices include GST' | toUpperCase
               }}</span>
             </h3>
-            <h3>${{ subtotal }}</h3>
+            <h3>${{ cartSubtotal }}</h3>
           </div>
 
           <button class="checkout-button">
@@ -87,12 +88,14 @@ export default {
   name: 'ProductCartList',
   components: { ProductCart },
   mixins: [filterMixin],
-
+  mounted() {
+    console.log("getCartedProducts",this.getAddedCartProducts.total,this.getAddedCartProducts);
+  },
   computed: {
     ...mapGetters(['getAddedCartProducts']),
-    subtotal() {
+    cartSubtotal() {
       return this.getAddedCartProducts.reduce(
-        (sum, p) => sum + p.price * p.quantity,
+        (sum, item) => sum + item.price * item.quantity,
         0
       );
     },

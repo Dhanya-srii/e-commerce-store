@@ -55,7 +55,7 @@
           <div v-if="quantity === 0">
             <button
               class="addCart-details"
-              @click="handleAddToCart"
+              @click="addToCart(selectedProduct)"
             >
               Add to Cart
             </button>
@@ -67,14 +67,14 @@
             <div class="quantity-wrapper">
               <button
                 class="counter-button"
-                @click="updateQuantity(quantity - 1)"
+                @click="decreaseQuantity"
               >
                 -
               </button>
               <span class="quantity-display">{{ quantity }}</span>
               <button
                 class="counter-button"
-                @click="updateQuantity(quantity + 1)"
+                @click="increaseQuantity"
               >
                 +
               </button>
@@ -122,7 +122,7 @@ export default {
   },
   methods: {
     ...mapMutations(['updateFavList']),
-    ...mapActions(['addToCart', 'changeQuantity']),
+    ...mapActions(['addToCart', 'updateQuantity']),
 
     async getProductdata() {
       this.isLoading = true;
@@ -139,14 +139,25 @@ export default {
     toggleFavourite(product) {
       this.updateFavList(product);
     },
-    handleAddToCart() {
-      this.addToCart(this.selectedProduct);
-    },
-    updateQuantity(newQuantity) {
-      this.changeQuantity({
-        id: this.selectedProduct.id,
-        quantity: newQuantity,
+
+    increaseQuantity() {
+      this.updateQuantity({
+        product: this.selectedProduct,
+        quantity: this.quantity + 1,
       });
+    },
+    decreaseQuantity() {
+      if (this.quantity > 1) {
+        this.updateQuantity({
+          product: this.selectedProduct,
+          quantity: this.quantity - 1,
+        });
+      } else {
+        this.updateQuantity({
+          product: this.selectedProduct,
+          quantity: 0,
+        });
+      }
     },
   },
 };

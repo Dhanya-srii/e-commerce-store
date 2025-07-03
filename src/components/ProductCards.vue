@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions, mapState } from 'vuex';
+import { mapMutations,  mapState } from 'vuex';
 import filterMixin from '../mixins/filterMixin';
 import { ROUTE_NAMES } from '../constants/Routes';
 export default {
@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     ...mapMutations(['updateFavList']),
-    ...mapActions(['getUserCart']),
+    // ...mapActions(['getUserCart']),
     goToProductDetail(id) {
       this.$router.push({
         name: ROUTE_NAMES.PRODUCT_DETAIL,
