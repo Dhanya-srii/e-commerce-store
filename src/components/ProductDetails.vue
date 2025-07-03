@@ -51,29 +51,35 @@
       <p class="description">{{ selectedProduct.description }}</p>
 
       <div>
-        <h2>Size:</h2>
-        <div class="size-options">
-          <button class="size-option">50ml</button>
-          <button class="size-option">100ml</button>
-        </div>
-
         <div class="action-buttons">
-          <div class="quantity-controller">
+          <div v-if="quantity === 0">
             <button
-              class="counter-button"
-              @click="decreaseQuantity"
+              class="addCart-details"
+              @click="handleAddToCart"
             >
-              -
-            </button>
-            <p class="quantity-display">{{ quantity }}</p>
-            <button
-              class="counter-button"
-              @click="increaseQuantity"
-            >
-              +
+              Add to Cart
             </button>
           </div>
-          <button class="addCart-details">Add to Cart</button>
+          <div
+            v-else
+            class="quantity-controller"
+          >
+            <div class="quantity-wrapper">
+              <button
+                class="counter-button"
+                @click="updateQuantity(quantity - 1)"
+              >
+                -
+              </button>
+              <span class="quantity-display">{{ quantity }}</span>
+              <button
+                class="counter-button"
+                @click="updateQuantity(quantity + 1)"
+              >
+                +
+              </button>
+            </div>
+          </div>
           <button
             class="fav-detail"
             @click="toggleFavourite(selectedProduct)"
@@ -87,24 +93,28 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import { products } from '../api/products';
+
 export default {
   name: 'ProductDetail',
   data() {
     return {
-      value: 4.5,
-      quantity: 0,
       selectedProduct: {},
       isLoading: true,
+      value: 4.5,
     };
   },
   computed: {
     ...mapState({
       favouritesList: (state) => state.storeProducts.favouritesList,
     }),
+    ...mapGetters(['cartQuantity']),
     isFav() {
       return this.favouritesList[this.selectedProduct.id] != undefined;
+    },
+    quantity() {
+      return this.cartQuantity(this.selectedProduct.id);
     },
   },
   async created() {
@@ -112,29 +122,31 @@ export default {
   },
   methods: {
     ...mapMutations(['updateFavList']),
+    ...mapActions(['addToCart', 'changeQuantity']),
 
     async getProductdata() {
+      this.isLoading = true;
       try {
-        this.isLoading = true;
         const productId = this.$route.query.id;
         this.selectedProduct = await products.fetchProductData(productId);
-      } catch (error) {
-        alert('Error loading Product:', error);
       } finally {
         this.isLoading = false;
       }
     },
     goBackRoute() {
-      return this.$router.go(-1);
-    },
-    increaseQuantity() {
-      this.quantity++;
-    },
-    decreaseQuantity() {
-      if (this.quantity > 0) this.quantity--;
+      this.$router.go(-1);
     },
     toggleFavourite(product) {
       this.updateFavList(product);
+    },
+    handleAddToCart() {
+      this.addToCart(this.selectedProduct);
+    },
+    updateQuantity(newQuantity) {
+      this.changeQuantity({
+        id: this.selectedProduct.id,
+        quantity: newQuantity,
+      });
     },
   },
 };
@@ -145,3 +157,4 @@ export default {
 <style scoped src="@/assets/styles/vendors/ratings.css"></style>
 <style scoped src="@/assets/styles/abstracts/root.css"></style>
 <style scoped src="@/assets/styles/components/loading.css"></style>
+<style scoped src="@/assets/styles/components/ProductCart.css"></style>

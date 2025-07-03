@@ -26,13 +26,12 @@
           <p class="price">${{ productData.price }}</p>
         </div>
         <div>
-          <button
-            @click.stop="getUserCart(productData.id)"
+          <!-- <button
             type="button"
             class="add-cart-button"
           >
             Add Cart
-          </button>
+          </button> -->
         </div>
       </div>
     </div>
@@ -40,16 +39,17 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { mapMutations, mapActions, mapState } from 'vuex';
 import filterMixin from '../mixins/filterMixin';
 import { ROUTE_NAMES } from '../constants/Routes';
-import addCart from '../api/cart';
 export default {
   name: 'ProductCard',
   props: ['productData'],
   mixins: [filterMixin],
   data() {
-    return {};
+    return {
+      userId: 1,
+    };
   },
   computed: {
     ...mapState({
@@ -62,6 +62,7 @@ export default {
   },
   methods: {
     ...mapMutations(['updateFavList']),
+    ...mapActions(['getUserCart']),
     goToProductDetail(id) {
       this.$router.push({
         name: ROUTE_NAMES.PRODUCT_DETAIL,
@@ -69,24 +70,6 @@ export default {
           id,
         },
       });
-    },
-    async getUserCart(productId) {
-      try {
-        const data = {
-          userId: 5,
-          products: [
-            {
-              id: productId,
-              quantity: 1,
-            },
-          ],
-        };
-
-        const response = await addCart(data);
-        console.log('Added to cart:', response.data);
-      } catch (err) {
-        console.error('Error adding to cart:', err);
-      }
     },
   },
 };

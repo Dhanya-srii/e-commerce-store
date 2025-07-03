@@ -137,7 +137,7 @@ export default {
     ...mapMutations([
       'setproductData',
       'clearSelectedCategories',
-      'setSelectedCategories',
+      
       'removeOneSelectedCategory',
       'toggleFilter',
     ]),

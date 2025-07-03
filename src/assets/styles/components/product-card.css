@@ -1,8 +1,4 @@
-.product {
-  min-height: 450px;
-  min-width: 380px;
-  cursor: pointer;
-}
+
 
 .product-card {
   /* max-width: 25%;
@@ -12,6 +8,7 @@
   margin-bottom: 16px;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 .image-container {

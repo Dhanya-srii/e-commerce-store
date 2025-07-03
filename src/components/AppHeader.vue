@@ -62,7 +62,7 @@
 </template>
 <script>
 // Dependency
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 // API
 import { products } from '../api/products';
 
@@ -79,6 +79,7 @@ export default {
   },
   methods: {
     ...mapMutations(['setproductData']),
+    ...mapActions(['fetchUserCart']),
 
     goToProductList() {
       if (this.$route.name !== ROUTE_NAMES.PRODUCTS) {
@@ -94,7 +95,9 @@ export default {
         });
       }
     },
-    goToProductCart() {
+    async goToProductCart() {
+      await this.fetchUserCart();
+
       if (this.$route.name != ROUTE_NAMES.PRODUCT_CART) {
         this.$router.push({
           name: ROUTE_NAMES.PRODUCT_CART,
