@@ -19,8 +19,8 @@
     >
       {{ errorMessage }}
     </div>
-    <div v-if="showCreateLink">
-      <router-link to="create"> Create New Account </router-link>
+    <div v-if="showCreateAcc">
+      <router-link to="/create"> Create New Account </router-link>
     </div>
   </div>
 </template>
@@ -32,10 +32,10 @@ import { ROUTE_NAMES } from '../constants/Routes';
 export default {
   data() {
     return {
-      username: 'emilys',
-      password: 'emilyspass',
+      username: '',
+      password: '',
       errorMessage: '',
-      showCreateLink: false,
+      showCreateAcc: false,
     };
   },
   methods: {
@@ -49,17 +49,13 @@ export default {
 
         localStorage.setItem('accessToken', userData.accessToken);
 
-        const expireTime = new Date();
-        expireTime.setMinutes(expireTime.getMinutes() + 120);
-        
-        localStorage.setItem('tokenExpire', expireTime.toISOString());
-
         this.$router.push({ name: ROUTE_NAMES.PRODUCTS });
 
-      } catch (err) {
+      }
+       catch (err) {
         console.error('Login failed:', err);
         this.errorMessage = 'Incorrect username or password!';
-        this.showCreateLink = true;
+        this.showCreateAcc = true;
       }
     },
   },

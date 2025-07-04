@@ -19,7 +19,9 @@ export default {
       showFilter: (state) => state.storeProducts.showFilter,
     }),
     isNotFound() {
-      return this.$route.name === 'PageNotFound';
+      return (
+        this.$route.name === 'PageNotFound' || this.$route.name === 'LoginPage'
+      );
     },
   },
   methods: {
