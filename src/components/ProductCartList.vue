@@ -1,6 +1,5 @@
 <template>
-
-  <div class="cart">
+  <div  class="cart">
     <h1 v-if="getAddedCartProducts.length === 0">No items in cart.</h1>
 
     <div
@@ -9,13 +8,15 @@
     >
       <h1>
         {{ 'My Shopping Cart' | toUpperCase }}
-        <span class="item-count">({{ getAddedCartProducts.length || 0 }})</span>
+        <span class="item-count"
+          >({{ getAddedCartProducts.length || 0 }})</span
+        >
       </h1>
 
       <div class="cart-content">
         <div class="cart-items">
           <product-cart
-            v-for="product in getAddedCartProducts"
+            v-for="product in getAddedCartProducts.products"
             :key="product.id"
             :product="product"
           />
@@ -37,12 +38,17 @@
           <div class="order-breakdown">
             <p class="discount-info">
               <span>{{ 'Extra 15% off applied' | toUpperCase }}</span>
-              <span class="discount-amount"></span>
+              <span class="discount-amount">{{
+                (
+                  getAddedCartProducts.total -
+                  getAddedCartProducts.discountedTotal
+                ).toFixed(2)
+              }}</span>
             </p>
             <div class="price-details">
               <p>
                 <span>{{ 'Subtotal' | toUpperCase }}</span>
-                <span>${{ cartSubtotal }}</span>
+                <span>${{ getAddedCartProducts.total }}</span>
               </p>
               <p>
                 <span>{{ 'shipping costs' | toUpperCase }}</span>
@@ -50,7 +56,14 @@
               </p>
               <p>
                 <span>{{ 'order discount' | toUpperCase }}</span>
-                <span>${{cartSubtotal}}</span>
+                <span
+                  >${{
+                    (
+                      getAddedCartProducts.total -
+                      getAddedCartProducts.discountedTotal
+                    ).toFixed(2)
+                  }}</span
+                >
               </p>
             </div>
           </div>
@@ -62,7 +75,7 @@
                 'Prices include GST' | toUpperCase
               }}</span>
             </h3>
-            <h3>${{ cartSubtotal }}</h3>
+            <h3>${{ getAddedCartProducts.discountedTotal }}</h3>
           </div>
 
           <button class="checkout-button">
@@ -82,23 +95,18 @@
 <script>
 import ProductCart from './ProductCart.vue';
 import filterMixin from '@/mixins/filterMixin';
-import { mapGetters } from 'vuex';
-
+import { mapState } from 'vuex';
 export default {
   name: 'ProductCartList',
   components: { ProductCart },
   mixins: [filterMixin],
   mounted() {
-    console.log("getCartedProducts",this.getAddedCartProducts.total,this.getAddedCartProducts);
+    console.log('productCartList', this.getAddedCartProducts);
   },
   computed: {
-    ...mapGetters(['getAddedCartProducts']),
-    cartSubtotal() {
-      return this.getAddedCartProducts.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0
-      );
-    },
+    ...mapState({
+      getAddedCartProducts: (state) => state.storeProducts.cartProducts,
+    }),
   },
 };
 </script>

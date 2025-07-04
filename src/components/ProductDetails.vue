@@ -52,32 +52,14 @@
 
       <div>
         <div class="action-buttons">
-          <div v-if="quantity === 0">
-            <button
-              class="addCart-details"
-              @click="addToCart(selectedProduct)"
-            >
-              Add to Cart
-            </button>
+          <div @click="addCartProducts(selectedProduct)">
+            <button class="addCart-details">Add to Cart</button>
           </div>
-          <div
-            v-else
-            class="quantity-controller"
-          >
+          <div class="quantity-controller">
             <div class="quantity-wrapper">
-              <button
-                class="counter-button"
-                @click="decreaseQuantity"
-              >
-                -
-              </button>
-              <span class="quantity-display">{{ quantity }}</span>
-              <button
-                class="counter-button"
-                @click="increaseQuantity"
-              >
-                +
-              </button>
+              <button class="counter-button">-</button>
+              <span class="quantity-display">{{}}</span>
+              <button class="counter-button">+</button>
             </div>
           </div>
           <button
@@ -93,9 +75,8 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 import { products } from '../api/products';
-
 export default {
   name: 'ProductDetail',
   data() {
@@ -109,12 +90,8 @@ export default {
     ...mapState({
       favouritesList: (state) => state.storeProducts.favouritesList,
     }),
-    ...mapGetters(['cartQuantity']),
     isFav() {
       return this.favouritesList[this.selectedProduct.id] != undefined;
-    },
-    quantity() {
-      return this.cartQuantity(this.selectedProduct.id);
     },
   },
   async created() {
@@ -122,8 +99,7 @@ export default {
   },
   methods: {
     ...mapMutations(['updateFavList']),
-    ...mapActions(['addToCart', 'updateQuantity']),
-
+    ...mapActions(['addCartProducts']),
     async getProductdata() {
       this.isLoading = true;
       try {
@@ -138,26 +114,6 @@ export default {
     },
     toggleFavourite(product) {
       this.updateFavList(product);
-    },
-
-    increaseQuantity() {
-      this.updateQuantity({
-        product: this.selectedProduct,
-        quantity: this.quantity + 1,
-      });
-    },
-    decreaseQuantity() {
-      if (this.quantity > 1) {
-        this.updateQuantity({
-          product: this.selectedProduct,
-          quantity: this.quantity - 1,
-        });
-      } else {
-        this.updateQuantity({
-          product: this.selectedProduct,
-          quantity: 0,
-        });
-      }
     },
   },
 };
