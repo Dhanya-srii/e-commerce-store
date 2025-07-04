@@ -4,4 +4,6 @@ export const ROUTE_NAMES = {
   PRODUCT_DETAIL: 'ProductDetails',
   PAGE_NOT_FOUND: 'PageNotFound',
   PRODUCT_CART: 'ProductCart',
+  LOGIN_PAGE: 'LoginPage',
+  CREATE_ACCOUNT: 'CreateAccount',
 };

@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-
 import { ROUTE_NAMES } from '@/constants/Routes';
 
 import ProductsList from '@/components/ProductsList.vue';
@@ -8,13 +7,17 @@ import ProductDetails from '@/components/ProductDetails.vue';
 import FavouriteProducts from '@/components/FavouriteProducts.vue';
 import PageNotFound from '@/components/PageNotFound.vue';
 import ProductCart from '@/components/ProductCartList.vue';
+import LoginPage from '@/components/LoginPage.vue';
+
 
 Vue.use(VueRouter);
+
 const routes = [
   {
     path: '/',
-    redirect: { name: ROUTE_NAMES.PRODUCTS },
+    redirect: { name: ROUTE_NAMES.LOGIN_PAGE },
   },
+
   {
     path: '/products',
     component: ProductsList,
@@ -25,7 +28,6 @@ const routes = [
     component: FavouriteProducts,
     name: ROUTE_NAMES.FAVOURITE_PRODUCTS,
   },
-
   {
     path: '/product',
     component: ProductDetails,
@@ -37,13 +39,27 @@ const routes = [
     name: ROUTE_NAMES.PRODUCT_CART,
   },
   {
+    path: '/login',
+    component: LoginPage,
+    name: ROUTE_NAMES.LOGIN_PAGE,
+  },
+  // {
+  //   path: '/create',
+  //   component: CreateAccountPage,
+  //   name: ROUTE_NAMES.CREATE_ACCOUNT,
+  // },
+  {
     path: '*',
     component: PageNotFound,
     name: ROUTE_NAMES.PAGE_NOT_FOUND,
   },
 ];
+
 const router = new VueRouter({
   mode: 'history',
   routes,
 });
+
+
+
 export default router;

@@ -94,7 +94,7 @@ export default {
         });
       }
     },
-    async goToProductCart() {
+     goToProductCart() {
 
       if (this.$route.name != ROUTE_NAMES.PRODUCT_CART) {
         this.$router.push({
