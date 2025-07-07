@@ -7,7 +7,7 @@
     >
       <h1>
         {{ 'My Shopping Cart' | toUpperCase }}
-        <span class="item-count">({{ getAddedCartProducts.length || 0 }})</span>
+        <span class="item-count">({{ getAddedCartProducts.products.length || 0 }})</span>
       </h1>
 
       <div class="cart-content">
@@ -45,7 +45,7 @@
             <div class="price-details">
               <p>
                 <span>{{ 'Subtotal' | toUpperCase }}</span>
-                <span>${{ getAddedCartProducts.total }}</span>
+                <span>${{ getAddedCartProducts.total.toFixed(2) }}</span>
               </p>
               <p>
                 <span>{{ 'shipping costs' | toUpperCase }}</span>

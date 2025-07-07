@@ -25,7 +25,7 @@ export default {
       );
     },
   },
-  created() {
+  created() {  
     this.checkSession();
     setInterval(this.checkSession, 5000);
   },

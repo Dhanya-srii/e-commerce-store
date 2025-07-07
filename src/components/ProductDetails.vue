@@ -53,7 +53,7 @@
       <div>
         <div class="action-buttons">
           <div v-if="!amount">
-            <button @click="updateCart(selectedProduct)">Add to Cart</button>
+            <button class="addCart-details" @click="updateCart(selectedProduct)">Add to Cart</button>
           </div>
           <div
             class="quantity-controller"

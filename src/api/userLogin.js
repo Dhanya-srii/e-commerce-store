@@ -8,16 +8,13 @@ export async function loginUser(username, password) {
   });
 
   document.cookie = `accessToken=${res.data.accessToken}; expires=${new Date(
-    Date.now() + 60000
+    Date.now() + 2 * 60 * 60 * 1000
   )};`;
-  console.log(document.cookie, 'one');
 
   return res.data;
 }
 
 export async function getAuthUser() {
-  console.log(document.cookie, 'two');
-
   const token = document.cookie
     .split('; ')
     .find((ele) => ele.startsWith('accessToken='))
