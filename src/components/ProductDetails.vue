@@ -52,14 +52,30 @@
 
       <div>
         <div class="action-buttons">
-          <div @click="addCartProducts(selectedProduct)">
-            <button class="addCart-details">Add to Cart</button>
+          <div v-if="!amount">
+            <button @click="updateCart(selectedProduct)">Add to Cart</button>
           </div>
-          <div class="quantity-controller">
+          <div
+            class="quantity-controller"
+            v-else
+          >
             <div class="quantity-wrapper">
-              <button class="counter-button">-</button>
-              <span class="quantity-display">{{}}</span>
-              <button class="counter-button">+</button>
+              <button
+                @click="
+                  updateCart({ id: selectedProduct.id, quantityChange: -1 })
+                "
+              >
+                -
+              </button>
+
+              <span class="quantity-display">{{ amount }}</span>
+              <button
+                @click="
+                  updateCart({ id: selectedProduct.id, quantityChange: 1 })
+                "
+              >
+                +
+              </button>
             </div>
           </div>
           <button
@@ -89,17 +105,28 @@ export default {
   computed: {
     ...mapState({
       favouritesList: (state) => state.storeProducts.favouritesList,
+      cartProducts: (state) => state.storeProducts.cartData.products,
     }),
+
     isFav() {
       return this.favouritesList[this.selectedProduct.id] != undefined;
     },
+
+    amount() {
+      const product = this.cartProducts?.find(
+        (p) => p.id === this.selectedProduct.id
+      );
+      return product ? product.quantity : 0;
+    },
   },
+
   async created() {
     await this.getProductdata();
   },
+
   methods: {
-    ...mapMutations(['updateFavList']),
-    ...mapActions(['addCartProducts']),
+    ...mapMutations(['updateFavList', ]),
+    ...mapActions(['addCartProducts','updateCart']),
     async getProductdata() {
       this.isLoading = true;
       try {

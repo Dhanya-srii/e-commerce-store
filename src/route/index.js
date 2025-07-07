@@ -9,7 +9,6 @@ import PageNotFound from '@/components/PageNotFound.vue';
 import ProductCart from '@/components/ProductCartList.vue';
 import LoginPage from '@/components/LoginPage.vue';
 
-
 Vue.use(VueRouter);
 
 const routes = [
@@ -43,11 +42,6 @@ const routes = [
     component: LoginPage,
     name: ROUTE_NAMES.LOGIN_PAGE,
   },
-  // {
-  //   path: '/create',
-  //   component: CreateAccountPage,
-  //   name: ROUTE_NAMES.CREATE_ACCOUNT,
-  // },
   {
     path: '*',
     component: PageNotFound,
@@ -59,7 +53,5 @@ const router = new VueRouter({
   mode: 'history',
   routes,
 });
-
-
 
 export default router;

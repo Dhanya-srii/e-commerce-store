@@ -1,16 +1,13 @@
 <template>
-  <div  class="cart">
-    <h1 v-if="getAddedCartProducts.length === 0">No items in cart.</h1>
-
+  <div class="cart">
+    <h1 v-if="getAddedCartProducts.products.length === 0">No items in cart.</h1>
     <div
       v-else
       class="cart-wrapper"
     >
       <h1>
         {{ 'My Shopping Cart' | toUpperCase }}
-        <span class="item-count"
-          >({{ getAddedCartProducts.length || 0 }})</span
-        >
+        <span class="item-count">({{ getAddedCartProducts.length || 0 }})</span>
       </h1>
 
       <div class="cart-content">
@@ -100,12 +97,10 @@ export default {
   name: 'ProductCartList',
   components: { ProductCart },
   mixins: [filterMixin],
-  mounted() {
-    console.log('productCartList', this.getAddedCartProducts);
-  },
+
   computed: {
     ...mapState({
-      getAddedCartProducts: (state) => state.storeProducts.cartProducts,
+      getAddedCartProducts: (state) => state.storeProducts.cartData,
     }),
   },
 };

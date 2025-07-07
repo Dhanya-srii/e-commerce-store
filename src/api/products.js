@@ -79,16 +79,4 @@ export const products = {
       throw new Error(err.message);
     }
   },
-  // async fetchUserProduct(productId) {
-  //   try {
-  //     const response = await axios.get(
-  //       `https://dummyjson.com/carts/${productId}`
-  //     );
-  //     const data = response.data;
-  //     console.log(data);
-  //     return data;
-  //   } catch (err) {
-  //     throw new Error(err.message);
-  //   }
-  // },
 };

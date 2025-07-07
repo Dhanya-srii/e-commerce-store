@@ -18,14 +18,24 @@
 
         <div class="quantity-controller">
           <div class="quantity-wrapper">
-            <button class="counter-button" @click="decrement">-</button>
+            <button
+              class="counter-button"
+              @click="updateCart({ id: product.id, quantityChange: -1 })"
+            >
+              -
+            </button>
             <p class="quantity-display">{{ product.quantity }}</p>
-            <button class="counter-button" @click="increment">+</button>
+            <button
+              class="counter-button"
+              @click="updateCart({ id: product.id, quantityChange: 1 })"
+            >
+              +
+            </button>
           </div>
         </div>
       </div>
       <div class="cart-item-side">
-        <h3 class="cart-item-price">${{ product.price }}</h3>
+        <h3 class="cart-item-price">${{ product.price * product.quantity }}</h3>
         <div class="cart-item-actions">
           <button><i class="ri-edit-line"></i></button>
           <button>
@@ -38,30 +48,11 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 export default {
   props: ['product'],
-  mounted() {
-    console.log('productCart', this.product);
-  },
   methods: {
-    ...mapMutations(['updateCartQuantity']),
-    increment() {
-      const newQty = this.product.quantity + 1;
-      this.updateCartQuantity({
-        id: this.product.id,
-        quantity: newQty,
-      });
-    },
-    decrement() {
-      if (this.product.quantity > 1) {
-        const newQty = this.product.quantity - 1;
-        this.updateCartQuantity({
-          id: this.product.id,
-          quantity: newQty,
-        });
-      }
-    },
+    ...mapActions(['updateCart']),
   },
 };
 </script>

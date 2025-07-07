@@ -1,10 +1,33 @@
 import axios from 'axios';
 
 export async function loginUser(username, password) {
-  const res = await axios.post('https://dummyjson.com/user/login', {
+  const res = await axios.post('https://dummyjson.com/auth/login', {
     username,
     password,
-    expiresInMins: 120,
+    expiresInMins: 1,
   });
+
+  document.cookie = `accessToken=${res.data.accessToken}; expires=${new Date(
+    Date.now() + 60000
+  )};`;
+  console.log(document.cookie, 'one');
+
+  return res.data;
+}
+
+export async function getAuthUser() {
+  console.log(document.cookie, 'two');
+
+  const token = document.cookie
+    .split('; ')
+    .find((ele) => ele.startsWith('accessToken='))
+    ?.split('=')[1];
+
+  if (!token) throw new Error('Session expired');
+
+  const res = await axios.get('https://dummyjson.com/auth/me', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
   return res.data;
 }

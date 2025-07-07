@@ -1,37 +1,56 @@
 <template>
   <div id="app">
-    <app-header v-if="!isNotFound" />
+    <app-header v-if="!isHiddenHeader" />
     <category-filter v-if="showFilter" />
-
-    <router-view></router-view>
+    <router-view />
   </div>
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { mapState } from 'vuex';
 import AppHeader from './components/AppHeader.vue';
 import CategoryFilter from './components/CategoryFilter.vue';
+import { getAuthUser } from './api/userLogin';
+import { ROUTE_NAMES } from './constants/Routes';
 export default {
-  name: 'App',
   components: { AppHeader, CategoryFilter },
   computed: {
-    ...mapState({
-      showFilter: (state) => state.storeProducts.showFilter,
-    }),
-    isNotFound() {
-      return (
-        this.$route.name === 'PageNotFound' || this.$route.name === 'LoginPage'
+    ...mapState({ showFilter: (state) => state.storeProducts.showFilter }),
+    isLoginPage() {
+      return this.$route.name === ROUTE_NAMES.LOGIN_PAGE;
+    },
+    isHiddenHeader() {
+      return [ROUTE_NAMES.PAGE_NOT_FOUND, ROUTE_NAMES.LOGIN_PAGE].includes(
+        this.$route.name
       );
     },
   },
-  methods: {
-    ...mapMutations(['toggleFilter']),
+  created() {
+    this.checkSession();
+    setInterval(this.checkSession, 5000);
   },
-  data() {
-    return {};
+  methods: {
+    async checkSession() {
+      try {
+        await getAuthUser();
+        if (this.isLoginPage) {
+          this.$router.push({ name: ROUTE_NAMES.PRODUCTS });
+        }
+      } catch {
+        this.clearSession();
+        if (!this.isLoginPage) {
+          this.$router.push({ name: ROUTE_NAMES.LOGIN_PAGE });
+        }
+      }
+    },
+    clearSession() {
+      document.cookie =
+        'accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    },
   },
 };
 </script>
+
 <style src="@/assets/styles/abstracts/root.css"></style>
 <style src="@/assets/styles/base/scrollbar.css"></style>
 <style src="@/assets/styles/base/reset.css"></style>
@@ -39,6 +58,5 @@ export default {
 * {
   font-family: 'Lilita One', sans-serif;
   font-weight: 600;
-  font-style: normal;
 }
 </style>

@@ -5,5 +5,4 @@ export const ROUTE_NAMES = {
   PAGE_NOT_FOUND: 'PageNotFound',
   PRODUCT_CART: 'ProductCart',
   LOGIN_PAGE: 'LoginPage',
-  CREATE_ACCOUNT: 'CreateAccount',
 };
