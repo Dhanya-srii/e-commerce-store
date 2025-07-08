@@ -8,7 +8,7 @@ export async function loginUser(username, password) {
   });
 
   document.cookie = `accessToken=${res.data.accessToken}; expires=${new Date(
-    Date.now() + 2 * 60 * 60 * 1000
+    Date.now() + 600000
   )};`;
 
   return res.data;

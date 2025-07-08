@@ -25,11 +25,15 @@ export const storeProducts = {
       } else {
         Vue.set(state.favouritesList, id, product);
       }
-      localStorage.setItem('favouritesList', JSON.stringify(state.favouritesList));
+      localStorage.setItem(
+        'favouritesList',
+        JSON.stringify(state.favouritesList)
+      );
     },
 
     setCart(state, cart) {
       state.cartData = { ...cart };
+      console.log('setCart', state.cartData.products);
     },
 
     setProductData(state, products) {
@@ -42,7 +46,9 @@ export const storeProducts = {
       state.selectedCategories = [];
     },
     removeOneSelectedCategory(state, category) {
-      state.selectedCategories = state.selectedCategories.filter(c => c !== category);
+      state.selectedCategories = state.selectedCategories.filter(
+        (c) => c !== category
+      );
     },
     toggleFilter(state) {
       state.showFilter = !state.showFilter;
@@ -64,39 +70,48 @@ export const storeProducts = {
 
     async getAllProductsByCategories({ state, commit, dispatch }) {
       if (!state.selectedCategories.length) return dispatch('getAllProducts');
-      const filtered = await products.fetchProductCategories(state.selectedCategories);
+      const filtered = await products.fetchProductCategories(
+        state.selectedCategories
+      );
       commit('setProductData', filtered);
     },
 
     async updateCart({ commit, state }, newProduct) {
-      const cart = state.cartData.products;
-      const existing = cart.find(p => p.id === newProduct.id);
+      let cart = state.cartData.products;
 
-      if (newProduct.quantityChange) {
-        if (existing) {
-          existing.quantity += newProduct.quantityChange;
-          if (existing.quantity < 1) {
-            const index = cart.indexOf(existing);
-            cart.splice(index, 1);
-          }
-        }
+      if (newProduct.remove) {
+        cart = cart.filter((p) => p.id !== newProduct.id);
       } else {
-        if (existing) {
-          existing.quantity += 1;
+        const existing = cart.find((p) => p.id === newProduct.id);
+
+        if (newProduct.quantityChange) {
+          if (existing) {
+            existing.quantity += newProduct.quantityChange;
+            if (existing.quantity < 1) {
+              cart = cart.filter((p) => p.id !== newProduct.id);
+            }
+          }
         } else {
-          cart.push({ ...newProduct, quantity: 1 });
+          if (existing) {
+            existing.quantity += 1;
+          } else {
+            cart.push({ ...newProduct, quantity: 1 });
+          }
         }
       }
 
       try {
         const response = await addCart({
           userId: 5,
-          products: cart.map(p => ({ id: p.id, quantity: p.quantity })),
+          products: cart.map((p) => ({ id: p.id, quantity: p.quantity })),
         });
         commit('setCart', response.data);
+        console.log('response', response.data);
       } catch (err) {
         console.error('Error syncing cart:', err);
       }
+
+      state.cartData.products = cart;
     },
   },
 };

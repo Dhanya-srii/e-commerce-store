@@ -7,7 +7,9 @@
     >
       <h1>
         {{ 'My Shopping Cart' | toUpperCase }}
-        <span class="item-count">({{ getAddedCartProducts.products.length || 0 }})</span>
+        <span class="item-count"
+          >({{ getAddedCartProducts.products.length || 0 }})</span
+        >
       </h1>
 
       <div class="cart-content">
@@ -92,7 +94,7 @@
 <script>
 import ProductCart from './ProductCart.vue';
 import filterMixin from '@/mixins/filterMixin';
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 export default {
   name: 'ProductCartList',
   components: { ProductCart },
@@ -103,6 +105,7 @@ export default {
       getAddedCartProducts: (state) => state.storeProducts.cartData,
     }),
   },
+
 };
 </script>
 

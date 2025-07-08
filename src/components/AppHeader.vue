@@ -48,7 +48,7 @@
           </p>
         </button>
         <button
-          class="cart"
+          class="header-button"
           @click="goToProductCart"
         >
           <i
@@ -94,8 +94,7 @@ export default {
         });
       }
     },
-     goToProductCart() {
-
+    goToProductCart() {
       if (this.$route.name != ROUTE_NAMES.PRODUCT_CART) {
         this.$router.push({
           name: ROUTE_NAMES.PRODUCT_CART,

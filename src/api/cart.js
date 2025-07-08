@@ -10,18 +10,18 @@ export function addCart(data) {
   });
 }
 
-export function updateCart(cartId, products) {
-  return axios.put(
-    `https://dummyjson.com/carts/${cartId}`,
-    {
-      merge: true,
-      products: products,
-    },
-    {
-      headers: { 'Content-Type': 'application/json' },
-    }
-  );
-}
+// export function updateCart(cartId, products) {
+//   return axios.put(
+//     `https://dummyjson.com/carts/${cartId}`,
+//     {
+//       merge: true,
+//       products: products,
+//     },
+//     {
+//       headers: { 'Content-Type': 'application/json' },
+//     }
+//   );
+// }
 
 // export function deleteCart(cartId) {
 //   return axios.delete(`https://dummyjson.com/carts/${cartId}`);

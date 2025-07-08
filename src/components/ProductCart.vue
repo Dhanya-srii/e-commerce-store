@@ -2,7 +2,7 @@
   <div class="cart-item">
     <div class="cart-item-image">
       <img
-        :src="product.thumbnail"
+        :src="product.images[0]"
         alt="Product image"
       />
       <span class="cart-item-stock"><i class="ri-check-line"></i>IN STOCK</span>
@@ -35,10 +35,12 @@
         </div>
       </div>
       <div class="cart-item-side">
-        <h3 class="cart-item-price">${{ product.price * product.quantity }}</h3>
+        <h3 class="cart-item-price">
+          ${{ (product.price * product.quantity).toFixed(2) }}
+        </h3>
         <div class="cart-item-actions">
           <button><i class="ri-edit-line"></i></button>
-          <button>
+          <button @click="updateCart({ id: product.id, remove: true })">
             <i class="ri-delete-bin-line"></i>
           </button>
         </div>

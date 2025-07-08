@@ -60,7 +60,7 @@
             v-else
           >
             <div class="quantity-wrapper">
-              <button
+              <button class="counter-button"
                 @click="
                   updateCart({ id: selectedProduct.id, quantityChange: -1 })
                 "
@@ -69,7 +69,7 @@
               </button>
 
               <span class="quantity-display">{{ amount }}</span>
-              <button
+              <button class="counter-button"
                 @click="
                   updateCart({ id: selectedProduct.id, quantityChange: 1 })
                 "
@@ -146,9 +146,10 @@ export default {
 };
 </script>
 
+<style scoped src="@/assets/styles/components/ProductCart.css"></style>
 <style scoped src="@/assets/styles/components/product-detail.css"></style>
+
 <style scoped src="@/assets/styles/components/button.css"></style>
 <style scoped src="@/assets/styles/vendors/ratings.css"></style>
 <style scoped src="@/assets/styles/abstracts/root.css"></style>
 <style scoped src="@/assets/styles/components/loading.css"></style>
-<style scoped src="@/assets/styles/components/ProductCart.css"></style>

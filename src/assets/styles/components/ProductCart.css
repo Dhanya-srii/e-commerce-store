@@ -87,13 +87,13 @@ button {
 .quantity-controller {
   display: flex;
   padding: 0px 16px;
+  
 }
 .quantity-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 16px;
-  /* border: 1px solid black; */
   padding: 16px 0px;
 }
 .quantity-display {
@@ -105,4 +105,5 @@ button {
   font-size: 1rem;
   border-radius: 50%;
   padding: 4px;
+  border:1px solid black;
 }
