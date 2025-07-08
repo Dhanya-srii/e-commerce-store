@@ -9,3 +9,10 @@ export function parseProducts(product) {
     brand: product.brand,
   };
 }
+
+export function parseUser(user) {
+  return {
+    username: user.username,
+    id: user.id,
+  };
+}

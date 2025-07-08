@@ -94,7 +94,7 @@
 <script>
 import ProductCart from './ProductCart.vue';
 import filterMixin from '@/mixins/filterMixin';
-import { mapState, mapMutations } from 'vuex';
+import { mapState } from 'vuex';
 export default {
   name: 'ProductCartList',
   components: { ProductCart },

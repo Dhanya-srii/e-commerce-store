@@ -10,7 +10,7 @@
 import { mapState } from 'vuex';
 import AppHeader from './components/AppHeader.vue';
 import CategoryFilter from './components/CategoryFilter.vue';
-import { getAuthUser } from './api/userLogin';
+import { user } from './api/user';
 import { ROUTE_NAMES } from './constants/Routes';
 export default {
   components: { AppHeader, CategoryFilter },
@@ -25,14 +25,14 @@ export default {
       );
     },
   },
-  created() {  
+  created() {
     this.checkSession();
     setInterval(this.checkSession, 5000);
   },
   methods: {
     async checkSession() {
       try {
-        await getAuthUser();
+        await user.getAuthUser();
         if (this.isLoginPage) {
           this.$router.push({ name: ROUTE_NAMES.PRODUCTS });
         }

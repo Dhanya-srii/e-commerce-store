@@ -33,10 +33,9 @@ export const storeProducts = {
 
     setCart(state, cart) {
       state.cartData = { ...cart };
-      console.log('setCart', state.cartData.products);
     },
 
-    setProductData(state, products) {
+    setproductData(state, products) {
       state.productData = products;
     },
     setSelectedCategories(state, categories) {
@@ -65,7 +64,7 @@ export const storeProducts = {
   actions: {
     async getAllProducts({ commit }) {
       const productsList = await products.fetchAllProducts();
-      commit('setProductData', productsList);
+      commit('setproductData', productsList);
     },
 
     async getAllProductsByCategories({ state, commit, dispatch }) {
@@ -73,7 +72,7 @@ export const storeProducts = {
       const filtered = await products.fetchProductCategories(
         state.selectedCategories
       );
-      commit('setProductData', filtered);
+      commit('setproductData', filtered);
     },
 
     async updateCart({ commit, state }, newProduct) {
@@ -106,7 +105,6 @@ export const storeProducts = {
           products: cart.map((p) => ({ id: p.id, quantity: p.quantity })),
         });
         commit('setCart', response.data);
-        console.log('response', response.data);
       } catch (err) {
         console.error('Error syncing cart:', err);
       }

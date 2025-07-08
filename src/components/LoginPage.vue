@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { loginUser } from '../api/userLogin';
+import { user } from '../api/user';
 import { ROUTE_NAMES } from '../constants/Routes';
 
 export default {
@@ -47,10 +47,11 @@ export default {
   methods: {
     async loginUserHandler() {
       try {
-        await loginUser(this.username, this.password);
+        await user.loginUser(this.username, this.password);
         this.$router.push({ name: ROUTE_NAMES.PRODUCTS });
-      } catch {
-        this.errorMessage = 'Incorrect username or password!';
+      } catch (err) {
+        console.error(err.message);
+        this.errorMessage = 'Invalid username or password';
       }
     },
   },
