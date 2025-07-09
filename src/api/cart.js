@@ -5,9 +5,13 @@ import axios from 'axios';
 // }
 
 export function addCart(data) {
-  return axios.post(`https://dummyjson.com/carts/add`, data, {
-    headers: { 'Content-Type': 'application/json' },
-  });
+  try {
+    axios.post(`https://dummyjson.com/carts/add`, data, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (err) {
+    throw new Error(err);
+  }
 }
 
 // export function updateCart(cartId, products) {

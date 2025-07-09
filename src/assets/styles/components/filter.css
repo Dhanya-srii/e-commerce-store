@@ -1,4 +1,5 @@
-.filter-pill,.clear-filters {
+.filter-pill,
+.clear-filters {
   background-color: rgb(238, 238, 238);
   display: flex;
   align-items: center;
@@ -26,5 +27,6 @@ i {
   font-weight: 800;
   background-color: var(--secondary-color);
   cursor: pointer;
-  margin: 8px;
+  margin: 0px;
+  padding: 0px;
 }

@@ -7,15 +7,17 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import AppHeader from './components/AppHeader.vue';
 import CategoryFilter from './components/CategoryFilter.vue';
-import { user } from './api/user';
 import { ROUTE_NAMES } from './constants/Routes';
+
 export default {
   components: { AppHeader, CategoryFilter },
   computed: {
-    ...mapState({ showFilter: (state) => state.storeProducts.showFilter }),
+    ...mapState({
+      showFilter: (state) => state.storeProducts.showFilter,
+    }),
     isLoginPage() {
       return this.$route.name === ROUTE_NAMES.LOGIN_PAGE;
     },
@@ -27,25 +29,33 @@ export default {
   },
   created() {
     this.checkSession();
-    setInterval(this.checkSession, 5000);
   },
   methods: {
+    ...mapActions(['logout', 'getUser']),
     async checkSession() {
       try {
-        await user.getAuthUser();
+        const token = document.cookie
+          .split('; ')
+          .find((ele) => ele.startsWith('accessToken='))
+          ?.split('=')[1];
+
+        if (!token) {
+          this.logout();
+          if (!this.isLoginPage) {
+            this.$router.push({ name: ROUTE_NAMES.LOGIN_PAGE });
+          }
+          return;
+        }
+        await this.getUser();
         if (this.isLoginPage) {
           this.$router.push({ name: ROUTE_NAMES.PRODUCTS });
         }
       } catch {
-        this.clearSession();
+        this.logout();
         if (!this.isLoginPage) {
           this.$router.push({ name: ROUTE_NAMES.LOGIN_PAGE });
         }
       }
-    },
-    clearSession() {
-      document.cookie =
-        'accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     },
   },
 };

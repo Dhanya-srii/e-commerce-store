@@ -56,13 +56,16 @@
             style="color: #f5f5f5"
           ></i>
         </button>
+        <button  class="header-button" @click="logoutRedirect()">
+          <i class="ri-logout-box-r-line"></i>
+        </button>
       </div>
     </div>
   </div>
 </template>
 <script>
 // Dependency
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 // API
 import { products } from '../api/products';
 
@@ -79,7 +82,13 @@ export default {
   },
   methods: {
     ...mapMutations(['setproductData']),
-
+    ...mapActions(['logout']),
+    logoutRedirect() {
+      this.logout();
+      this.$router.push({
+        name: ROUTE_NAMES.LOGIN_PAGE,
+      });
+    },
     goToProductList() {
       if (this.$route.name !== ROUTE_NAMES.PRODUCTS) {
         this.$router.push({

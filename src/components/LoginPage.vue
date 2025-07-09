@@ -1,3 +1,4 @@
+
 <template>
   <div class="login-container">
     <div class="login-wrapper-container">
@@ -6,7 +7,7 @@
       <div class="user-details">
         <label class="label">NAME</label>
         <input
-          required="true"
+          required
           v-model="username"
           placeholder="Name"
         />
@@ -14,25 +15,25 @@
       <div class="user-details">
         <label class="label">PASSWORD</label>
         <input
-          required="true"
+          required
           v-model="password"
           type="password"
           placeholder="Password"
         />
       </div>
-
       <button @click="loginUserHandler">LOGIN</button>
-      <div
+      <p
         v-if="errorMessage"
         style="color: red"
       >
         {{ errorMessage }}
-      </div>
+      </p>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations, mapActions } from 'vuex';
 import { user } from '../api/user';
 import { ROUTE_NAMES } from '../constants/Routes';
 
@@ -45,12 +46,15 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['startSessionTimeout']),
+    ...mapMutations(['setUser']),
     async loginUserHandler() {
       try {
-        await user.loginUser(this.username, this.password);
+        const parsedUser = await user.loginUser(this.username, this.password);
+        this.setUser(parsedUser);
+        this.startSessionTimeout(this.$router);
         this.$router.push({ name: ROUTE_NAMES.PRODUCTS });
-      } catch (err) {
-        console.error(err.message);
+      } catch {
         this.errorMessage = 'Invalid username or password';
       }
     },

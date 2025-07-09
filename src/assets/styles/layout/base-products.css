@@ -17,5 +17,9 @@
 }
 
 .fav-products {
-  /* margin-top: 5.3rem; */
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  justify-content: flex-start;
+  min-width: 1600px;
 }
