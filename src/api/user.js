@@ -2,18 +2,18 @@ import axios from 'axios';
 import { parseUser } from './parser';
 
 export const user = {
+  
   async loginUser(username, password) {
     try {
       const res = await axios.post('https://dummyjson.com/auth/login', {
         username,
         password,
-        expiresInMins: 1,
+        expiresInMins: 5,
       });
 
       document.cookie = `accessToken=${
         res.data.accessToken
       }; expires=${new Date(Date.now() + 60000)};`;
-
       return parseUser(res.data);
     } catch (err) {
       throw new Error('Login failed');

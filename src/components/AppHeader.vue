@@ -55,21 +55,28 @@
             class="ri-shopping-cart-line"
             style="color: #f5f5f5"
           ></i>
+          <p
+            v-if="getAddedCartProducts.totalQuantity"
+            class="favourite-list-count"
+          >
+            {{ getAddedCartProducts.totalQuantity }}
+          </p>
         </button>
-        <button  class="header-button" @click="logoutRedirect()">
-          <i class="ri-logout-box-r-line"></i>
+        <button
+          class="header-button"
+          @click="logoutRedirect()"
+        >
+          <i class="ri-logout-circle-r-line"></i>
         </button>
       </div>
     </div>
   </div>
 </template>
 <script>
-// Dependency
-import { mapGetters, mapMutations, mapActions } from 'vuex';
-// API
+import { mapGetters, mapMutations, mapActions, mapState } from 'vuex';
 import { products } from '../api/products';
-
 import { ROUTE_NAMES } from '../constants/Routes';
+
 export default {
   data() {
     return {
@@ -79,10 +86,13 @@ export default {
   },
   computed: {
     ...mapGetters(['hasFavourites']),
+    ...mapState({
+      getAddedCartProducts: (state) => state.storeProducts.cartData,
+    }),
   },
   methods: {
-    ...mapMutations(['setproductData']),
-    ...mapActions(['logout']),
+    ...mapMutations(['setProductData']),
+    ...mapActions(['logout', 'getAllProducts']),
     logoutRedirect() {
       this.logout();
       this.$router.push({
@@ -112,8 +122,8 @@ export default {
     },
     async resetSearch() {
       try {
-        const productData = await products.fetchAllProducts();
-        this.setproductData(productData);
+        const productData = this.getAllProducts();
+        this.setProductData(productData);
         this.searchQuery = '';
         this.showClear = false;
       } catch (error) {
@@ -125,7 +135,7 @@ export default {
       if (!this.searchQuery) return;
       try {
         const results = await products.fetchSearchProduct(this.searchQuery);
-        this.setproductData(results);
+        this.setProductData(results);
         this.showClear = true;
       } catch (error) {
         alert('Error Searching Product', error);

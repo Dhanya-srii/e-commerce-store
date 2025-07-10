@@ -1,5 +1,4 @@
 import { user } from '@/api/user';
-
 export const users = {
   state: {
     userData: '',
@@ -13,9 +12,11 @@ export const users = {
     },
   },
   actions: {
+
     async getUser({ commit }) {
       try {
         const response = await user.getAuthUser();
+
         commit('setUser', response.data);
 
         return response.data;
@@ -30,11 +31,10 @@ export const users = {
       commit('clearUser');
     },
     startSessionTimeout({ dispatch }, router) {
-
       setTimeout(() => {
         dispatch('logout');
         router.push('/login');
-      }, 60000);
+      }, 60000 * 5);
     },
   },
 };

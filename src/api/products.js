@@ -2,16 +2,18 @@ import axios from 'axios';
 import { parseProducts } from './parser';
 
 export const products = {
-  async fetchAllProducts() {
+  
+  async fetchAllProducts(limit, skip) {
     try {
-      const response = await axios.get('https://dummyjson.com/products');
+      const response = await axios.get(
+        `https://dummyjson.com/products?limit=${limit}&skip=${skip}`
+      );
       const data = response.data.products;
       return data.map(parseProducts);
     } catch (err) {
-      throw new Error(err);
+      alert(err.message);
     }
   },
-
   /**
    * retrieves the product data of given product id
    * @param {string} productId

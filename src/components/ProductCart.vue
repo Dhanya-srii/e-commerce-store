@@ -16,22 +16,20 @@
           <p><span>Style number:</span> 311887_01</p>
         </div>
 
-        <div class="quantity-controller">
-          <div class="quantity-wrapper">
-            <button
-              class="counter-button"
-              @click="updateCart({ id: product.id, quantityChange: -1 })"
-            >
-              -
-            </button>
-            <p class="quantity-display">{{ product.quantity }}</p>
-            <button
-              class="counter-button"
-              @click="updateCart({ id: product.id, quantityChange: 1 })"
-            >
-              +
-            </button>
-          </div>
+        <div class="addCart-details">
+          <button
+            class="counter-button"
+            @click="updateCart({ id: product.id, quantityChange: -1 })"
+          >
+            -
+          </button>
+          <span>{{ product.quantity }}</span>
+          <button
+            class="counter-button"
+            @click="updateCart({ id: product.id, quantityChange: 1 })"
+          >
+            +
+          </button>
         </div>
       </div>
       <div class="cart-item-side">
@@ -60,3 +58,18 @@ export default {
 </script>
 
 <style scoped src="@/assets/styles/components/ProductCart.css"></style>
+<style scoped src="@/assets/styles/components/button.css">
+/* .addCart-details[data-v-093a09a2] {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 4px 42px;
+    border-radius: 24px;
+    font-size: 18px;
+    display: flex
+;
+    justify-content: space-between;
+    gap: 32px;
+    align-items: center;
+    width: fit-content;
+    margin-top: 16px; */
+</style>

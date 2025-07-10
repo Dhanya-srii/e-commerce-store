@@ -53,31 +53,35 @@
       <div>
         <div class="action-buttons">
           <div v-if="!amount">
-            <button class="addCart-details" @click="updateCart(selectedProduct)">Add to Cart</button>
+            <button
+              class="addCart-details"
+              @click="updateCart(selectedProduct)"
+            >
+              Add to Cart
+            </button>
           </div>
           <div
-            class="quantity-controller"
+            class="addCart-details"
             v-else
           >
-            <div class="quantity-wrapper">
-              <button class="counter-button"
-                @click="
-                  updateCart({ id: selectedProduct.id, quantityChange: -1 })
-                "
-              >
-                -
-              </button>
+            <button
+              class="counter-button"
+              @click="
+                updateCart({ id: selectedProduct.id, quantityChange: -1 })
+              "
+            >
+              -
+            </button>
 
-              <span class="quantity-display">{{ amount }}</span>
-              <button class="counter-button"
-                @click="
-                  updateCart({ id: selectedProduct.id, quantityChange: 1 })
-                "
-              >
-                +
-              </button>
-            </div>
+            <span>{{ amount }}</span>
+            <button
+              class="counter-button"
+              @click="updateCart({ id: selectedProduct.id, quantityChange: 1 })"
+            >
+              +
+            </button>
           </div>
+
           <button
             class="fav-detail"
             @click="toggleFavourite(selectedProduct)"
@@ -125,8 +129,8 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['updateFavList', ]),
-    ...mapActions(['addCartProducts','updateCart']),
+    ...mapMutations(['updateFavList']),
+    ...mapActions(['addCartProducts', 'updateCart']),
     async getProductdata() {
       this.isLoading = true;
       try {
@@ -146,7 +150,6 @@ export default {
 };
 </script>
 
-<style scoped src="@/assets/styles/components/ProductCart.css"></style>
 <style scoped src="@/assets/styles/components/product-detail.css"></style>
 
 <style scoped src="@/assets/styles/components/button.css"></style>

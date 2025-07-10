@@ -8,7 +8,7 @@
     class="product-list"
   >
     <visual-size :totalProducts="Object.keys(favouritesList).length" />
-    <div :class="['fav-products', `grid-${gridColumns}`]">
+    <div :class="['products', `grid-${gridColumns}`]">
       <product-cards
         v-for="(product, index) in favouritesList"
         :key="product.id || index"

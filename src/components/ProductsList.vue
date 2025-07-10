@@ -76,7 +76,14 @@
         :key="index"
         :productData="product"
       />
+      <button
+        class="load"
+        @click="getAllProducts()"
+      >
+        load
+      </button>
     </div>
+
     <div v-else>
       <h2 class="product-status-message">Product Not Listed!</h2>
     </div>
@@ -108,7 +115,11 @@ export default {
       selectedOption: '',
     };
   },
-
+  watch: {
+    $route(to, from) {
+      console.log('Route changed from:', from.path, 'to:', to.path);
+    },
+  },
   computed: {
     ...mapState({
       productData: (state) => state.storeProducts.productData,
@@ -132,12 +143,12 @@ export default {
       this.isLoading = false;
     }
   },
+
   methods: {
     ...mapActions(['getAllProducts', 'getAllProductsByCategories']),
     ...mapMutations([
-      'setproductData',
+      'setProductData',
       'clearSelectedCategories',
-
       'removeOneSelectedCategory',
       'toggleFilter',
     ]),
@@ -160,7 +171,7 @@ export default {
         const sortedProducts = await products.fetchProductsByPrice(
           this.selectedOption
         );
-        this.setproductData(sortedProducts);
+        this.setProductData(sortedProducts);
       } catch (err) {
         alert('Error fetching sorted products:', err.message);
       }
@@ -178,3 +189,11 @@ export default {
 <style scoped src="@/assets/styles/components/loading.css"></style>
 <style scoped src="@/assets/styles/components/button.css"></style>
 <style src="@/assets/styles/components/elementsVariable.css"></style>
+<style scoped>
+.load {
+  padding: 16px;
+  margin: 16px;
+  height: 16px;
+  width: 50px;
+}
+</style>

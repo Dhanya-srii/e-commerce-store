@@ -46,6 +46,7 @@ export default {
           }
           return;
         }
+
         await this.getUser();
         if (this.isLoginPage) {
           this.$router.push({ name: ROUTE_NAMES.PRODUCTS });

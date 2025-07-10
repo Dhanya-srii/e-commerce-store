@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import { products } from '/src/api/products.js';
-import { addCart } from '/src/api/cart.js';
+import { cart } from '/src/api/cart.js';
 
 export const storeProducts = {
   state: {
@@ -9,6 +9,11 @@ export const storeProducts = {
     selectedCategories: [],
     showFilter: false,
     gridColumns: 4,
+    allProducts: [],
+    limit: 30,
+    skip: 0,
+    totalProducts: 194,
+    loadMore: true,
     cartData: {
       products: [],
       total: 0,
@@ -31,8 +36,8 @@ export const storeProducts = {
       );
     },
 
-    setCart(state, cart) {
-      state.cartData = { ...cart };
+    setCart(state, carts) {
+      state.cartData = { ...carts };
     },
 
     setProductData(state, products) {
@@ -55,6 +60,13 @@ export const storeProducts = {
     setGridColumns(state, cols) {
       state.gridColumns = cols;
     },
+    resetProductsList(state) {
+      state.limit = 30;
+      state.skip = 0;
+      state.allProducts = [];
+      state.loadMore = true;
+      console.log(state.limit, state.skip);
+    },
   },
 
   getters: {
@@ -62,13 +74,32 @@ export const storeProducts = {
   },
 
   actions: {
-    async getAllProducts({ commit }) {
-      const productsList = await products.fetchAllProducts();
-      commit('setProductData', productsList);
+    async getAllProducts({ state, commit }) {
+      try {
+        if (state.loadMore) {
+          const productsList = await products.fetchAllProducts(
+            state.limit,
+            state.skip
+          );
+
+          state.allProducts = state.allProducts.concat(productsList);
+
+          state.skip += state.limit;
+          if (state.allProducts.length >= state.totalProducts) {
+            state.loadMore = false;
+          }
+          commit('setProductData', state.allProducts);
+        }
+      } catch (err) {
+        alert('Error loading products:', err.message);
+      }
     },
 
     async getAllProductsByCategories({ state, commit, dispatch }) {
-      if (!state.selectedCategories.length) return dispatch('getAllProducts');
+      if (!state.selectedCategories.length) {
+        commit('resetProductsList');
+        dispatch('getAllProducts');
+      }
       const filtered = await products.fetchProductCategories(
         state.selectedCategories
       );
@@ -76,41 +107,47 @@ export const storeProducts = {
     },
 
     async updateCart({ commit, state }, newProduct) {
-      let cart = state.cartData.products;
-
+      let carts = state.cartData.products;
+      // if,else(if(if(if)),else(if)(else))
       if (newProduct.remove) {
-        cart = cart.filter((p) => p.id !== newProduct.id);
+        carts = carts.filter((p) => p.id !== newProduct.id);
       } else {
-        const existing = cart.find((p) => p.id === newProduct.id);
+        const existing = carts.find((p) => p.id === newProduct.id);
 
         if (newProduct.quantityChange) {
           if (existing) {
             existing.quantity += newProduct.quantityChange;
             if (existing.quantity < 1) {
-              cart = cart.filter((p) => p.id !== newProduct.id);
+              carts = carts.filter((p) => p.id !== newProduct.id);
             }
           }
         } else {
           if (existing) {
             existing.quantity += 1;
           } else {
-            cart.push({ ...newProduct, quantity: 1 });
+            carts.push({ ...newProduct, quantity: 1 });
           }
         }
       }
-
-      try {
-        const response = await addCart({
-          userId: 5,
-          products: cart.map((p) => ({ id: p.id, quantity: p.quantity })),
+      if (carts.length > 0) {
+        try {
+          const response = await cart.addCart({
+            userId: 5,
+            products: carts.map((p) => ({ id: p.id, quantity: p.quantity })),
+          });
+          commit('setCart', response.data);
+        } catch (err) {
+          alert('Error syncing carts: ' + err.message);
+        }
+      } else {
+        commit('setCart', {
+          products: [],
+          total: 0,
+          discountedTotal: 0,
+          totalQuantity: 0,
         });
-        commit('setCart', response.data);
-        console.log(response);
-      } catch (err) {
-        console.error('Error syncing cart:', err);
       }
-
-      state.cartData.products = cart;
+      state.cartData.products = carts;
     },
   },
 };

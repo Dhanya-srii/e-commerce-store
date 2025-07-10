@@ -1,6 +1,6 @@
 <template>
   <div
-    class="filter-container"
+    class="modal-filter-container"
     @click="toggleFilter"
   >
     <div
@@ -128,7 +128,7 @@ export default {
 <style scoped src="@/assets/styles/components/loading.css"></style>
 <style scoped src="@/assets/styles/components/elementsVariable.css"></style>
 <style scoped>
-.filter-container {
+.modal-filter-container {
   position: fixed;
   top: 0;
   left: 0;

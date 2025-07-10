@@ -67,7 +67,10 @@
             </div>
           </div>
 
-          <div class="total">
+          <div
+            class="total"
+          
+          >
             <h3>
               {{ 'Grand Total' | toUpperCase }}
               <span class="gst-note">{{
@@ -77,7 +80,7 @@
             <h3>${{ getAddedCartProducts.discountedTotal }}</h3>
           </div>
 
-          <button class="checkout-button">
+          <button   @click="names='sri'" class="checkout-button">
             {{ 'Checkout' | toUpperCase }}
           </button>
           <p class="terms-text">
@@ -99,13 +102,21 @@ export default {
   name: 'ProductCartList',
   components: { ProductCart },
   mixins: [filterMixin],
-
+  data() {
+    return {
+      names: 'dhanya',
+    };
+  },
+  watch: {
+    names(oldvalue, newvalue) {
+      console.log('oldvalue', oldvalue, 'newvalue', newvalue);
+    },
+  },
   computed: {
     ...mapState({
       getAddedCartProducts: (state) => state.storeProducts.cartData,
     }),
   },
-
 };
 </script>
 
