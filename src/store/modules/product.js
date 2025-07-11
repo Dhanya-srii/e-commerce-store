@@ -65,7 +65,6 @@ export const storeProducts = {
       state.skip = 0;
       state.allProducts = [];
       state.loadMore = true;
-      console.log(state.limit, state.skip);
     },
   },
 

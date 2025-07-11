@@ -91,7 +91,7 @@ export default {
     }),
   },
   methods: {
-    ...mapMutations(['setProductData']),
+    ...mapMutations(['setProductData', 'resetProductsList']),
     ...mapActions(['logout', 'getAllProducts']),
     logoutRedirect() {
       this.logout();
@@ -122,6 +122,7 @@ export default {
     },
     async resetSearch() {
       try {
+        this.resetProductsList();
         const productData = this.getAllProducts();
         this.setProductData(productData);
         this.searchQuery = '';

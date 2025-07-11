@@ -115,11 +115,7 @@ export default {
       selectedOption: '',
     };
   },
-  watch: {
-    $route(to, from) {
-      console.log('Route changed from:', from.path, 'to:', to.path);
-    },
-  },
+
   computed: {
     ...mapState({
       productData: (state) => state.storeProducts.productData,

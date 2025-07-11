@@ -7,12 +7,23 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 import AppHeader from './components/AppHeader.vue';
 import CategoryFilter from './components/CategoryFilter.vue';
 import { ROUTE_NAMES } from './constants/Routes';
 
 export default {
+  watch: {
+    '$route.name': {
+      handler(to) {
+        if (to != 'ProductList') {
+          this.resetProductsList();
+        }
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
   components: { AppHeader, CategoryFilter },
   computed: {
     ...mapState({
@@ -31,6 +42,7 @@ export default {
     this.checkSession();
   },
   methods: {
+  ...mapMutations(['resetProductsList']),
     ...mapActions(['logout', 'getUser']),
     async checkSession() {
       try {
