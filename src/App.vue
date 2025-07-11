@@ -42,7 +42,7 @@ export default {
     this.checkSession();
   },
   methods: {
-  ...mapMutations(['resetProductsList']),
+    ...mapMutations(['resetProductsList']),
     ...mapActions(['logout', 'getUser']),
     async checkSession() {
       try {
@@ -50,6 +50,7 @@ export default {
           .split('; ')
           .find((ele) => ele.startsWith('accessToken='))
           ?.split('=')[1];
+        console.log(token);
 
         if (!token) {
           this.logout();
@@ -63,7 +64,7 @@ export default {
         if (this.isLoginPage) {
           this.$router.push({ name: ROUTE_NAMES.PRODUCTS });
         }
-      } catch {
+      } catch { 
         this.logout();
         if (!this.isLoginPage) {
           this.$router.push({ name: ROUTE_NAMES.LOGIN_PAGE });
