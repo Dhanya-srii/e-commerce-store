@@ -2,6 +2,12 @@ import axios from 'axios';
 import { parseUser } from './parser';
 
 export const user = {
+  /**
+   *retrieves the 
+   */
+
+  
+  
   async loginUser(username, password) {
     try {
       const res = await axios.post('https://dummyjson.com/auth/login', {

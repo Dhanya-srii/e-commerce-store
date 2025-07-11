@@ -3,9 +3,9 @@ import { parseProducts } from './parser';
 
 export const products = {
   /**
-   * retrieves list of product data by limit
+   * retrieves product data by limit
    * @param {Number} limitSkip
-   * @returns returns list of product data by limit
+   * @returns returns product data by limit
    */
   async fetchAllProducts(limit, skip) {
     try {
@@ -52,8 +52,8 @@ export const products = {
     }
   },
   /**
-   * retrieves the  categories  of  product data
-   * @returns returns the  categories  of  product data .
+   * retrieves the  categories  of  product
+   * @returns returns the  categories  of  product .
    */
   async fetchProductCategoriesList() {
     try {
@@ -88,8 +88,8 @@ export const products = {
       throw new Error(err.message);
     }
   },
-    /**
-   * retrieves the product data by price 
+  /**
+   * retrieves the product data by price
    * @param {string} sort
    * @returns returns the product data by price .
    */
