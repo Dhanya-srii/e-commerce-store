@@ -2,7 +2,11 @@ import axios from 'axios';
 import { parseProducts } from './parser';
 
 export const products = {
-  
+  /**
+   * retrieves list of product data by limit
+   * @param {Number} limitSkip
+   * @returns returns list of product data by limit
+   */
   async fetchAllProducts(limit, skip) {
     try {
       const response = await axios.get(
@@ -31,6 +35,11 @@ export const products = {
       throw new Error(err.message);
     }
   },
+  /**
+   * retrieves the searched product data
+   * @param {string} query
+   * @returns returns the searched product data .
+   */
   async fetchSearchProduct(query) {
     try {
       const response = await axios.get(
@@ -42,6 +51,10 @@ export const products = {
       throw new Error(err.message);
     }
   },
+  /**
+   * retrieves the  categories  of  product data
+   * @returns returns the  categories  of  product data .
+   */
   async fetchProductCategoriesList() {
     try {
       const response = await axios.get(
@@ -53,6 +66,11 @@ export const products = {
       throw new Error(err.message);
     }
   },
+  /**
+   * retrieves the selected category of  product data
+   * @param {string} categoryList
+   * @returns returns the selected category of  product data .
+   */
   async fetchProductCategories(categoryList) {
     try {
       const responses = await Promise.all(
@@ -70,6 +88,11 @@ export const products = {
       throw new Error(err.message);
     }
   },
+    /**
+   * retrieves the product data by price 
+   * @param {string} sort
+   * @returns returns the product data by price .
+   */
   async fetchProductsByPrice(sort) {
     try {
       const response = await axios.get(

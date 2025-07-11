@@ -2,7 +2,6 @@ import axios from 'axios';
 import { parseUser } from './parser';
 
 export const user = {
-  
   async loginUser(username, password) {
     try {
       const res = await axios.post('https://dummyjson.com/auth/login', {
@@ -14,6 +13,7 @@ export const user = {
       document.cookie = `accessToken=${
         res.data.accessToken
       }; expires=${new Date(Date.now() + 60000)};`;
+
       return parseUser(res.data);
     } catch (err) {
       throw new Error('Login failed');
@@ -32,8 +32,7 @@ export const user = {
       const res = await axios.get('https://dummyjson.com/auth/me', {
         headers: { Authorization: `Bearer ${token}` },
       });
-
-      return res;
+      return parseUser(res.data);
     } catch {
       throw new Error('Session expired');
     }

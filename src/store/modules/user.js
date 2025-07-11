@@ -12,13 +12,10 @@ export const users = {
     },
   },
   actions: {
-
     async getUser({ commit }) {
       try {
         const response = await user.getAuthUser();
-
         commit('setUser', response.data);
-
         return response.data;
       } catch {
         commit('clearUser');
