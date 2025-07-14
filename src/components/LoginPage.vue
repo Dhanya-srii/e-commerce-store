@@ -53,6 +53,7 @@ export default {
         this.setUser(parsedUser);
         this.startSessionTimeout(this.$router);
         this.$router.push({ name: ROUTE_NAMES.PRODUCTS });
+        
       } catch {
         this.errorMessage = 'Invalid username or password';
       }

@@ -50,8 +50,7 @@ export default {
           .split('; ')
           .find((ele) => ele.startsWith('accessToken='))
           ?.split('=')[1];
-        console.log(token);
-
+   
         if (!token) {
           this.logout();
           if (!this.isLoginPage) {

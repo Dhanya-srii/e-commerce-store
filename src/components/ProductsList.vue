@@ -133,6 +133,7 @@ export default {
     try {
       this.isLoading = true;
       await this.getAllProducts();
+      window.addEventListener('scroll', this.handleScroll);
     } catch (error) {
       alert('Error loading products:', error);
     } finally {
@@ -148,7 +149,19 @@ export default {
       'removeOneSelectedCategory',
       'toggleFilter',
     ]),
+    // handleScroll() {
+    //   const productDiv = this.$refs.scroll;
+    //   console.log(productDiv);
 
+    //   const myScrollTop = productDiv.scrollTop;
+    //   const myScrollHeight = productDiv.scrollHeight;
+    //   const difference = myScrollHeight - myScrollTop;
+    //   const height = productDiv.clientHeight;
+    //   const offPageHeight = 5;
+    //   if (difference < height + offPageHeight) {
+    //     this.getAllProducts();
+    //   }
+    // },
     clearAllFilters() {
       this.clearSelectedCategories();
       this.getAllProductsByCategories();
