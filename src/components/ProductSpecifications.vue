@@ -1,5 +1,5 @@
 <template>
-  <div class="visual-size">
+  <div class="product-specifications">
     <div class="product-length">
       <h4>{{ totalProducts }} PRODUCTS</h4>
     </div>

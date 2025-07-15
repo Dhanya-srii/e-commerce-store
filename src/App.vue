@@ -50,7 +50,7 @@ export default {
           .split('; ')
           .find((ele) => ele.startsWith('accessToken='))
           ?.split('=')[1];
-   
+
         if (!token) {
           this.logout();
           if (!this.isLoginPage) {
@@ -63,7 +63,7 @@ export default {
         if (this.isLoginPage) {
           this.$router.push({ name: ROUTE_NAMES.PRODUCTS });
         }
-      } catch { 
+      } catch {
         this.logout();
         if (!this.isLoginPage) {
           this.$router.push({ name: ROUTE_NAMES.LOGIN_PAGE });

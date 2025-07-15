@@ -14,7 +14,7 @@
       @click="goBackRoute"
       class="back-button"
     >
-      Back
+      <i class="ri-arrow-left-line"></i>
     </button>
     <div class="sub-images">
       <div
@@ -23,16 +23,17 @@
         :key="image"
       >
         <img
-          class="sub-images"
+          class="sub-image"
           :src="image"
           alt="image"
+          @click="handleHeroImage(image)"
         />
       </div>
     </div>
 
     <div class="main-image-section">
       <img
-        :src="selectedProduct.images[0]"
+        :src="heroImage || selectedProduct.images[0]"
         alt="Product image"
       />
     </div>
@@ -104,6 +105,7 @@ export default {
       selectedProduct: {},
       isLoading: true,
       value: 4.5,
+      heroImage: '',
     };
   },
   computed: {
@@ -145,6 +147,9 @@ export default {
     },
     toggleFavourite(product) {
       this.updateFavList(product);
+    },
+    handleHeroImage(e) {
+      this.heroImage = e;
     },
   },
 };

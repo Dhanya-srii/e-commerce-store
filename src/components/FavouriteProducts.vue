@@ -7,7 +7,9 @@
     v-else
     class="product-list"
   >
-    <visual-size :totalProducts="Object.keys(favouritesList).length" />
+    <product-specifications
+      :totalProducts="Object.keys(favouritesList).length"
+    />
     <div :class="['products', `grid-${gridColumns}`]">
       <product-cards
         v-for="(product, index) in favouritesList"
@@ -21,13 +23,13 @@
 <script>
 import ProductCards from './ProductCards.vue';
 import { mapGetters, mapState } from 'vuex';
-import VisualSize from './VisualSize.vue';
+import ProductSpecifications from './ProductSpecifications.vue';
 
 export default {
   name: 'FavouriteProducts',
   components: {
     ProductCards,
-    VisualSize,
+    ProductSpecifications,
   },
   computed: {
     ...mapState({

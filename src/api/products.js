@@ -78,6 +78,12 @@ export const products = {
           axios.get(`https://dummyjson.com/products/category/${category}`)
         )
       );
+      // let totalProducts = 0;
+      // for (let i of responses) {
+      //   console.log(i.data.total);
+      //   totalProducts += i.data.total;
+      // }
+      // console.log(totalProducts);
 
       const allProducts = responses.flatMap((res) =>
         res.data.products.map(parseProducts)

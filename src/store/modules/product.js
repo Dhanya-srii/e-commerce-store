@@ -12,7 +12,7 @@ export const storeProducts = {
     allProducts: [],
     limit: 30,
     skip: 0,
-    totalProducts: 194,
+    totalProducts: null,
     loadMore: true,
     cartData: {
       products: [],
@@ -75,7 +75,11 @@ export const storeProducts = {
   actions: {
     async getAllProducts({ state, commit }) {
       try {
-        if (state.loadMore) {
+        if (state.selectedCategories.length === 0) {
+          state.totalProducts = 194;
+        }
+
+        if (state.allProducts.length <= state.totalProducts) {
           const productsList = await products.fetchAllProducts(
             state.limit,
             state.skip
@@ -102,6 +106,8 @@ export const storeProducts = {
       const filtered = await products.fetchProductCategories(
         state.selectedCategories
       );
+      state.totalProducts = filtered.length;
+
       commit('setProductData', filtered);
     },
 

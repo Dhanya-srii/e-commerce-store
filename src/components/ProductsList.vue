@@ -9,13 +9,14 @@
 
   <div
     v-else
+    v-lazy:30="getAllProducts"
     class="product-list"
   >
     <div
       v-if="listProducts.length"
-      class="user-control-button"
+      class="filter-sort-panel"
     >
-      <div class="sub-user-control-button">
+      <div class="sub-filter-sort-panel">
         <button @click="toggleFilter">
           <span>FILTERS</span><i class="ri-equalizer-3-line"></i></button
         ><select
@@ -34,13 +35,13 @@
         </select>
       </div>
     </div>
-    <visual-size
+    <product-specifications
       v-if="listProducts.length"
       :totalProducts="listProducts.length"
     />
 
     <div
-      v-if="listProducts.length"
+      v-if="selectedCategories.length"
       class="filters"
     >
       <div class="filter-container">
@@ -76,12 +77,6 @@
         :key="index"
         :productData="product"
       />
-      <button
-        class="load"
-        @click="getAllProducts()"
-      >
-        load
-      </button>
     </div>
 
     <div v-else>
@@ -97,16 +92,20 @@ import { mapState, mapMutations, mapActions } from 'vuex';
 import ProductCards from './ProductCards.vue';
 // Mixins
 import filterMixin from '@/mixins/filterMixin';
-import VisualSize from './VisualSize.vue';
+import ProductSpecifications from './ProductSpecifications.vue';
 // api
 import { products } from '/src/api/products.js';
+// directives
+import { lazy } from '/src/directives/lazy.js';
 export default {
   name: 'ProductListing',
   components: {
     ProductCards,
-    VisualSize,
+    ProductSpecifications,
   },
-
+  directives: {
+    lazy: lazy,
+  },
   mixins: [filterMixin],
   data() {
     return {
@@ -133,7 +132,6 @@ export default {
     try {
       this.isLoading = true;
       await this.getAllProducts();
-      window.addEventListener('scroll', this.handleScroll);
     } catch (error) {
       alert('Error loading products:', error);
     } finally {
@@ -149,19 +147,6 @@ export default {
       'removeOneSelectedCategory',
       'toggleFilter',
     ]),
-    // handleScroll() {
-    //   const productDiv = this.$refs.scroll;
-    //   console.log(productDiv);
-
-    //   const myScrollTop = productDiv.scrollTop;
-    //   const myScrollHeight = productDiv.scrollHeight;
-    //   const difference = myScrollHeight - myScrollTop;
-    //   const height = productDiv.clientHeight;
-    //   const offPageHeight = 5;
-    //   if (difference < height + offPageHeight) {
-    //     this.getAllProducts();
-    //   }
-    // },
     clearAllFilters() {
       this.clearSelectedCategories();
       this.getAllProductsByCategories();
@@ -197,7 +182,7 @@ export default {
 <style scoped src="@/assets/styles/components/selectable-item.css"></style>
 <style scoped src="@/assets/styles/components/loading.css"></style>
 <style scoped src="@/assets/styles/components/button.css"></style>
-<style src="@/assets/styles/components/elementsVariable.css"></style>
+<style scoped src="@/assets/styles/components/elementsVariable.css"></style>
 <style scoped>
 .load {
   padding: 16px;

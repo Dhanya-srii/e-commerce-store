@@ -1,13 +1,10 @@
 <template>
   <div class="header-container">
     <div class="sub-header-container">
-      <div
-        class="brand"
-        @click="goToProductList()"
-      >
-        <h1 class="brand-name">PLUGO</h1>
+      <div @click="goToProductList()">
+        <h1 class="product-brand">PLUGO</h1>
       </div>
-      <div class="user-controls">
+      <div class="user-control-container">
         <input
           class="search-input"
           type="text"
@@ -17,14 +14,14 @@
         />
         <button
           @click="searchProduct"
-          class="header-button"
+          class="user-control-button"
         >
           <i class="ri-search-line"></i>
         </button>
         <button
           v-if="showClear"
           @click="resetSearch"
-          class="header-button"
+          class="user-control-button"
         >
           <i
             class="ri-eraser-line"
@@ -33,7 +30,7 @@
         </button>
 
         <button
-          class="header-button"
+          class="user-control-button"
           @click="goToFavourites()"
         >
           <i
@@ -48,7 +45,7 @@
           </p>
         </button>
         <button
-          class="header-button"
+          class="user-control-button"
           @click="goToProductCart"
         >
           <i
@@ -63,8 +60,8 @@
           </p>
         </button>
         <button
-          class="header-button"
-          @click="logoutRedirect()"
+          class="user-control-button"
+          @click="toLogout()"
         >
           <i class="ri-logout-circle-r-line"></i>
         </button>
@@ -93,7 +90,7 @@ export default {
   methods: {
     ...mapMutations(['setProductData', 'resetProductsList']),
     ...mapActions(['logout', 'getAllProducts']),
-    logoutRedirect() {
+    toLogout() {
       this.logout();
       this.$router.push({
         name: ROUTE_NAMES.LOGIN_PAGE,

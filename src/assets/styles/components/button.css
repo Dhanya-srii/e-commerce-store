@@ -3,7 +3,7 @@ button {
   cursor: pointer;
 }
 
-.header-button {
+.user-control-button {
   background-color: var(--primary-color);
   color: var(--secondary-color);
   font-size: 1.5rem;
@@ -26,7 +26,7 @@ button {
 
 }
 
-.header-button:hover,
+.user-control-button:hover,
 .cart:hover {
   background-color: rgb(64, 64, 64);
   border-radius: 45%;
@@ -49,7 +49,8 @@ button {
 
 
 .back-button {
-  width: 85px;
+  /* width: 85px; */
+  width: 35px;
   padding: 0.5rem;
   font-size: 1.2rem;
   border-radius: 8px;
@@ -59,18 +60,6 @@ button {
   border: 2px solid var(--primary-color);
 }
 
-
-/* .addCart-details {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  padding: 8px 42px;
-  border-radius: 24px;
-  font-size: 18px;
-  display: flex;
-  justify-content: space-between;
-  gap: 32px;
-  align-items: center;
-} */
 .addCart-details {
   background-color: var(--primary-color);
   color: var(--secondary-color);
@@ -102,7 +91,7 @@ button {
   margin-top: 16px;
 }
 
-.user-control-button button,
+.filter-sort-panel button,
 select {
   min-width: 135px;
   height: 40px;
