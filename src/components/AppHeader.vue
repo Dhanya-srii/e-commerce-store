@@ -20,7 +20,7 @@
         </button>
         <button
           v-if="showClear"
-          @click="resetSearch"
+          @click="clearSearch"
           class="user-control-button"
         >
           <i
@@ -53,10 +53,10 @@
             style="color: #f5f5f5"
           ></i>
           <p
-            v-if="getAddedCartProducts.totalQuantity"
+            v-if="getCartProductsQuantity"
             class="favourite-list-count"
           >
-            {{ getAddedCartProducts.totalQuantity }}
+            {{ getCartProductsQuantity }}
           </p>
         </button>
         <button
@@ -70,6 +70,7 @@
   </div>
 </template>
 <script>
+//
 import { mapGetters, mapMutations, mapActions, mapState } from 'vuex';
 import { products } from '../api/products';
 import { ROUTE_NAMES } from '../constants/Routes';
@@ -84,11 +85,17 @@ export default {
   computed: {
     ...mapGetters(['hasFavourites']),
     ...mapState({
-      getAddedCartProducts: (state) => state.storeProducts.cartData,
+      getCartProductsQuantity: (state) =>
+        state.storeProducts.cartData.totalQuantity,
+      totalProducts: (state) => state.storeProducts.totalProducts,
     }),
   },
   methods: {
-    ...mapMutations(['setProductData', 'resetProductsList']),
+    ...mapMutations([
+      'setProductData',
+      'resetProductsList',
+      'setTotalProducts',
+    ]),
     ...mapActions(['logout', 'getAllProducts']),
     toLogout() {
       this.logout();
@@ -117,26 +124,27 @@ export default {
         });
       }
     },
-    async resetSearch() {
-      try {
-        this.resetProductsList();
-        const productData = this.getAllProducts();
-        this.setProductData(productData);
-        this.searchQuery = '';
-        this.showClear = false;
-      } catch (error) {
-        alert('Error loading products:', error);
-      }
-    },
-
     async searchProduct() {
       if (!this.searchQuery) return;
       try {
         const results = await products.fetchSearchProduct(this.searchQuery);
+        this.setTotalProducts(results.length);
         this.setProductData(results);
         this.showClear = true;
       } catch (error) {
         alert('Error Searching Product', error);
+      }
+    },
+    async clearSearch() {
+      try {
+        this.resetProductsList();
+        const productData = this.getAllProducts();
+        this.setProductData(productData);
+        this.setTotalProducts(194);
+        this.searchQuery = '';
+        this.showClear = false;
+      } catch (error) {
+        alert('Error loading products:', error);
       }
     },
   },

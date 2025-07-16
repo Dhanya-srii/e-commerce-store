@@ -12,7 +12,7 @@ export const storeProducts = {
     allProducts: [],
     limit: 30,
     skip: 0,
-    totalProducts: null,
+    totalProducts: 194,
     loadMore: true,
     cartData: {
       products: [],
@@ -39,7 +39,10 @@ export const storeProducts = {
     setCart(state, carts) {
       state.cartData = { ...carts };
     },
-
+    setTotalProducts(state, total) {
+      state.totalProducts = total;
+      console.log(state.totalProducts);
+    },
     setProductData(state, products) {
       state.productData = products;
     },
@@ -75,10 +78,9 @@ export const storeProducts = {
   actions: {
     async getAllProducts({ state, commit }) {
       try {
-        if (state.selectedCategories.length === 0) {
-          state.totalProducts = 194;
-        }
-
+        // if (state.selectedCategories.length === 0) {
+        //   state.totalProducts = 194;
+        // }
         if (state.allProducts.length <= state.totalProducts) {
           const productsList = await products.fetchAllProducts(
             state.limit,
@@ -106,8 +108,8 @@ export const storeProducts = {
       const filtered = await products.fetchProductCategories(
         state.selectedCategories
       );
-      state.totalProducts = filtered.length;
-
+      // state.totalProducts = filtered.length;
+      commit('setTotalProducts', filtered.length);
       commit('setProductData', filtered);
     },
 

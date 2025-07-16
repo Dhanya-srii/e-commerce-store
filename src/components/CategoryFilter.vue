@@ -99,12 +99,17 @@ export default {
       this.isLoading = false;
     }
   },
-
+  watch: {
+    originalCategories: {
+      
+    },
+  },
   methods: {
     ...mapMutations([
       'setSelectedCategories',
       'clearSelectedCategories',
       'toggleFilter',
+      'setTotalProducts',
     ]),
     ...mapActions(['getAllProductsByCategories']),
 
