@@ -21,7 +21,7 @@ button {
   font-size: 14px;
   font-weight: 600;
   display: inline-block;
-  border: 1px solid black;
+  border: 1px solid var(--primary-color);
   padding: 0.5rem;
 
 }
@@ -49,8 +49,7 @@ button {
 
 
 .back-button {
-  /* width: 85px; */
-  width: 35px;
+  width: 38px;
   padding: 0.5rem;
   font-size: 1.2rem;
   border-radius: 8px;
@@ -76,7 +75,7 @@ button {
 
 .addCart-details button {
   font-size: 20px;
-  background-color: black;
+  background-color: var(--primary-color);
   color: white;
 }
 

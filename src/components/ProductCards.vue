@@ -20,7 +20,7 @@
 
       <div class="product-info">
         <div class="sub-product-info">
-          <h4 class="product-title">
+          <h4>
             {{ productData.title | initalCaps }}
           </h4>
           <p class="price">${{ productData.price }}</p>

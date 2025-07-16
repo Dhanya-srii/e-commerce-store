@@ -16,7 +16,6 @@ export function parseUser(user) {
     id: user.id,
     accessToken: user.accessToken,
     password: user.password,
-
   };
 }
 

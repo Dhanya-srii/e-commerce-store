@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <div class="login-wrapper-container">
-      <h3 class="title">Login / Join Us</h3>
+      <h3 class="login-title">Login / Join Us</h3>
       <p class="message">Enter your name and password to log in</p>
       <div class="user-details">
         <label class="label">NAME</label>

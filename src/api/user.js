@@ -18,7 +18,7 @@ export const user = {
 
       document.cookie = `accessToken=${
         res.data.accessToken
-      }; expires=${new Date(Date.now() + 60000)};`;
+      }; expires=${new Date(Date.now() + 60000 * 5)};`;
 
       return parseUser(res.data);
     } catch (err) {

@@ -40,7 +40,7 @@
 
     <div class="product-details">
       <p class="brand-title">EVERYDAY HUMANS</p>
-      <h1 class="title">{{ selectedProduct.title }}</h1>
+      <h1 class="product-title">{{ selectedProduct.title }}</h1>
       <el-rate
         v-model="value"
         disabled

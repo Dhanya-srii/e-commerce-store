@@ -45,7 +45,6 @@ export const storeProducts = {
     },
     setSelectedCategories(state, categories) {
       state.selectedCategories = categories;
-      console.log(state.selectedCategories);
     },
     clearSelectedCategories(state) {
       state.selectedCategories = [];
