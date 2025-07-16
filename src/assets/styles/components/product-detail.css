@@ -30,6 +30,20 @@
   object-fit: cover;
 }
 
+.addCart-details {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 4px 42px;
+  border-radius: 24px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  align-items: center;
+  width: fit-content;
+  margin-top: 16px;
+}
+
 
 .main-image-section {
   background-color: #f0f0f0;

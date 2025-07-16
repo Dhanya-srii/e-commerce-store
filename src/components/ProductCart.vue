@@ -59,17 +59,4 @@ export default {
 
 <style scoped src="@/assets/styles/components/ProductCart.css"></style>
 <style scoped src="@/assets/styles/components/button.css">
-/* .addCart-details[data-v-093a09a2] {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 4px 42px;
-    border-radius: 24px;
-    font-size: 18px;
-    display: flex
-;
-    justify-content: space-between;
-    gap: 32px;
-    align-items: center;
-    width: fit-content;
-    margin-top: 16px; */
 </style>
