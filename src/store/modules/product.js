@@ -78,9 +78,9 @@ export const storeProducts = {
   actions: {
     async getAllProducts({ state, commit }) {
       try {
-        // if (state.selectedCategories.length === 0) {
-        //   state.totalProducts = 194;
-        // }
+        if (state.selectedCategories.length === 0) {
+          state.totalProducts = 194;
+        }
         if (state.allProducts.length <= state.totalProducts) {
           const productsList = await products.fetchAllProducts(
             state.limit,
@@ -88,7 +88,6 @@ export const storeProducts = {
           );
 
           state.allProducts = state.allProducts.concat(productsList);
-
           state.skip += state.limit;
           if (state.allProducts.length >= state.totalProducts) {
             state.loadMore = false;
@@ -108,7 +107,6 @@ export const storeProducts = {
       const filtered = await products.fetchProductCategories(
         state.selectedCategories
       );
-      // state.totalProducts = filtered.length;
       commit('setTotalProducts', filtered.length);
       commit('setProductData', filtered);
     },

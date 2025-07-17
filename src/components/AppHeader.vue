@@ -128,7 +128,7 @@ export default {
       if (!this.searchQuery) return;
       try {
         const results = await products.fetchSearchProduct(this.searchQuery);
-        this.setTotalProducts(results.length);
+        // this.setTotalProducts(results.length);
         this.setProductData(results);
         this.showClear = true;
       } catch (error) {
@@ -140,7 +140,7 @@ export default {
         this.resetProductsList();
         const productData = this.getAllProducts();
         this.setProductData(productData);
-        this.setTotalProducts(194);
+        // this.setTotalProducts(194);
         this.searchQuery = '';
         this.showClear = false;
       } catch (error) {

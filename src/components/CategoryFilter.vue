@@ -99,17 +99,12 @@ export default {
       this.isLoading = false;
     }
   },
-  watch: {
-    originalCategories: {
-      
-    },
-  },
+
   methods: {
     ...mapMutations([
       'setSelectedCategories',
       'clearSelectedCategories',
       'toggleFilter',
-      'setTotalProducts',
     ]),
     ...mapActions(['getAllProductsByCategories']),
 
@@ -131,6 +126,7 @@ export default {
 <style scoped src="@/assets/styles/layout/products.css"></style>
 <style scoped src="@/assets/styles/components/button.css"></style>
 <style scoped src="@/assets/styles/components/loading.css"></style>
+<style scoped src="@/assets/styles/components/elementsVariable.css"></style>
 <style src="@/assets/styles/components/elementsVariable.css"></style>
 
 <style scoped>

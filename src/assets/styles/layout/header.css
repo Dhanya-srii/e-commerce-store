@@ -16,7 +16,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 
 .user-control-container {
@@ -45,8 +44,8 @@
   font-size: 1.2rem;
   text-align: center;
   color: var(--secondary-color);
-  right: -8px;
-  top: -8px;
+  right: -5px;
+  top: -5px;
 }
 
 .cart {
