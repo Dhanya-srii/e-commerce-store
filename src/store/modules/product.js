@@ -11,9 +11,9 @@ export const storeProducts = {
     gridColumns: 4,
     allProducts: [],
     limit: 30,
-    skip: 0,
-    totalProducts: 194,
+    totalProducts: 0,
     loadMore: true,
+    searchProduct: '',
     cartData: {
       products: [],
       total: 0,
@@ -35,13 +35,14 @@ export const storeProducts = {
         JSON.stringify(state.favouritesList)
       );
     },
-
+    setSearchProduct(state, search) {
+      state.searchProduct = search;
+    },
     setCart(state, carts) {
       state.cartData = { ...carts };
     },
     setTotalProducts(state, total) {
       state.totalProducts = total;
-      console.log(state.totalProducts);
     },
     setProductData(state, products) {
       state.productData = products;
@@ -65,7 +66,7 @@ export const storeProducts = {
     },
     resetProductsList(state) {
       state.limit = 30;
-      state.skip = 0;
+      state.totalProducts = 0;
       state.allProducts = [];
       state.loadMore = true;
     },
@@ -78,24 +79,29 @@ export const storeProducts = {
   actions: {
     async getAllProducts({ state, commit }) {
       try {
-        if (state.selectedCategories.length === 0) {
-          state.totalProducts = 194;
-        }
-        if (state.allProducts.length <= state.totalProducts) {
-          const productsList = await products.fetchAllProducts(
+        const currentLength = state.allProducts.length;
+        if (currentLength < state.totalProducts || state.totalProducts === 0) {
+          const { data: productsList, total } = await products.fetchAllProducts(
             state.limit,
-            state.skip
+            currentLength,
+            state.searchProduct
           );
 
+          if (state.totalProducts === 0) {
+            commit('setTotalProducts', total);
+          }
+
           state.allProducts = state.allProducts.concat(productsList);
-          state.skip += state.limit;
           if (state.allProducts.length >= state.totalProducts) {
             state.loadMore = false;
           }
+
           commit('setProductData', state.allProducts);
         }
+
+        return state.allProducts;
       } catch (err) {
-        alert('Error loading products:', err.message);
+        alert('Error loading products: ' + err.message);
       }
     },
 
@@ -103,17 +109,18 @@ export const storeProducts = {
       if (!state.selectedCategories.length) {
         commit('resetProductsList');
         dispatch('getAllProducts');
+        return;
       }
-      const filtered = await products.fetchProductCategories(
-        state.selectedCategories
-      );
-      commit('setTotalProducts', filtered.length);
+
+      const { products: filtered, totalProducts } =
+        await products.fetchProductsCategories(state.selectedCategories);
+
+      commit('setTotalProducts', totalProducts);
       commit('setProductData', filtered);
     },
 
     async updateCart({ commit, state }, newProduct) {
       let carts = state.cartData.products;
-      // if,else(if(if(if)),else(if)(else))
       if (newProduct.remove) {
         carts = carts.filter((p) => p.id !== newProduct.id);
       } else {

@@ -72,7 +72,7 @@
 <script>
 //
 import { mapGetters, mapMutations, mapActions, mapState } from 'vuex';
-import { products } from '../api/products';
+// import { products } from '../api/products';
 import { ROUTE_NAMES } from '../constants/Routes';
 
 export default {
@@ -94,9 +94,9 @@ export default {
     ...mapMutations([
       'setProductData',
       'resetProductsList',
-      'setTotalProducts',
+      'setSearchProduct',
     ]),
-    ...mapActions(['logout', 'getAllProducts']),
+    ...mapActions(['logout', 'getAllProducts', 'getSearchProducts']),
     toLogout() {
       this.logout();
       this.$router.push({
@@ -127,24 +127,25 @@ export default {
     async searchProduct() {
       if (!this.searchQuery) return;
       try {
-        const results = await products.fetchSearchProduct(this.searchQuery);
-        // this.setTotalProducts(results.length);
+        this.setSearchProduct(this.searchQuery);
+        this.resetProductsList();
+        const results = await this.getAllProducts();
         this.setProductData(results);
         this.showClear = true;
       } catch (error) {
-        alert('Error Searching Product', error);
+        alert('Error Searching Product: ' + error.message);
       }
     },
     async clearSearch() {
       try {
-        this.resetProductsList();
-        const productData = this.getAllProducts();
-        this.setProductData(productData);
-        // this.setTotalProducts(194);
         this.searchQuery = '';
+        this.setSearchProduct('');
+        this.resetProductsList();
+        const results = await this.getAllProducts();
+        this.setProductData(results);
         this.showClear = false;
       } catch (error) {
-        alert('Error loading products:', error);
+        alert('Error loading products: ' + error.message);
       }
     },
   },

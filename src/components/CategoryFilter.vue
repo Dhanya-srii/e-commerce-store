@@ -14,6 +14,7 @@
         <div class="spinner"></div>
         <p>Loading products...</p>
       </div>
+
       <div
         v-else
         class="categories"
@@ -27,10 +28,9 @@
             <i class="ri-close-large-line"></i>
           </button>
         </div>
+
         <div class="filters-panel-body">
-          <div>
-            <h3 class="custom">Category</h3>
-          </div>
+          <h3 class="custom">Category</h3>
 
           <div
             v-for="(category, index) in categoryList"
@@ -38,21 +38,23 @@
             class="selectable-item"
           >
             <el-checkbox
-              :label="category"
+              :label="category.slug"
               v-model="originalCategoriesLocal"
               class="custom"
             >
-              {{ category | initalCaps }}
+              {{ category.slug | initalCaps }}
             </el-checkbox>
           </div>
         </div>
+
         <div class="filter-panel-footer">
           <button
             class="clear-all"
             v-if="originalCategories.length > 0"
             @click="clearFilters"
           >
-            <span>Clear All</span> <i class="ri-close-circle-line"></i>
+            <span>Clear All</span>
+            <i class="ri-close-circle-line"></i>
           </button>
           <button
             class="apply-filter"
@@ -90,11 +92,11 @@ export default {
   async created() {
     try {
       this.isLoading = true;
-      const categoryData = await products.fetchProductCategoriesList();
+      const categoryData = await products.fetchCategoryNames();
       this.categoryList = categoryData;
       this.originalCategoriesLocal = [...this.originalCategories];
     } catch (err) {
-      alert('Error loading products:', err);
+      alert('Error loading products: ' + err.message);
     } finally {
       this.isLoading = false;
     }
@@ -112,6 +114,7 @@ export default {
       this.originalCategoriesLocal = [];
       this.clearSelectedCategories();
       this.getAllProductsByCategories();
+      this.getAllProducts();
     },
 
     applyFilters() {
