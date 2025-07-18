@@ -167,14 +167,14 @@ export default {
 };
 </script>
 
-<style scoped src="@/styles/vendors/ratings.css"></style>
-<style scoped src="@/styles/base/scrollbar.css"></style>
-<style scoped src="@/styles/layout/base-products.css"></style>
-<style scoped src="@/styles/layout/products.css"></style>
-<style scoped src="@/styles/components/filter.css"></style>
-<style scoped src="@/styles/components/selectable-item.css"></style>
-<style scoped src="@/styles/components/button.css"></style>
-<style scoped src="@/styles/components/elementsVariable.css"></style>
+<style scoped src="@/styles/vendors/ratings.scss"></style>
+<style scoped src="@/styles/base/scrollbar.scss"></style>
+<style scoped src="@/styles/layout/base-products.scss"></style>
+<style scoped src="@/styles/layout/products.scss"></style>
+<style scoped src="@/styles/components/filter.scss"></style>
+<style scoped src="@/styles/components/selectable-item.scss"></style>
+<style scoped src="@/styles/components/button.scss"></style>
+<style scoped src="@/styles/components/elementsVariable.scss"></style>
 <style scoped>
 .load {
   padding: 16px;

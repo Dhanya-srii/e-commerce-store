@@ -62,5 +62,5 @@ export default {
 };
 </script>
 
-<style scoped src="@/styles/components/ProductCart.css"></style>
-<style scoped src="@/styles/components/button.css"></style>
+<style scoped src="@/styles/components/ProductCart.scss"></style>
+<style scoped src="@/styles/components/button.scss"></style>

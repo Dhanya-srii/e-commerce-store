@@ -37,9 +37,7 @@ export default {
       setGridView: SET_GRID_VIEW,
     };
   },
-  created() {
-    console.log(SET_GRID_VIEW);
-  },
+
   computed: {
     ...mapState({
       gridColumns: (state) => state.storeProducts.gridColumns,
@@ -50,8 +48,8 @@ export default {
   },
 };
 </script>
-<style scoped src="@/styles/components/button.css"></style>
-<style scoped src="@/styles/components/visualSize.css"></style>
+<style scoped src="@/styles/components/button.scss"></style>
+<style scoped src="@/styles/components/visualSize.scss"></style>
 <style scoped>
 button.active {
   border: 1px solid #333;

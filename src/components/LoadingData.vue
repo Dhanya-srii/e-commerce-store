@@ -4,4 +4,4 @@
     <p>Loading products...</p>
   </div>
 </template>
-<style scoped src="@/styles/components/loading.css"></style>
+<style scoped src="@/styles/components/loading.scss"></style>

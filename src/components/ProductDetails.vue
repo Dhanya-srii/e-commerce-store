@@ -157,8 +157,8 @@ export default {
 };
 </script>
 
-<style scoped src="@/styles/components/product-detail.css"></style>
+<style scoped src="@/styles/components/product-detail.scss"></style>
 
-<style scoped src="@/styles/components/button.css"></style>
-<style scoped src="@/styles/vendors/ratings.css"></style>
-<style scoped src="@/styles/abstracts/root.css"></style>
+<style scoped src="@/styles/components/button.scss"></style>
+<style scoped src="@/styles/vendors/ratings.scss"></style>
+<style scoped src="@/styles/abstracts/root.scss"></style>

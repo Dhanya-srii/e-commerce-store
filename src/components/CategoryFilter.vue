@@ -36,7 +36,7 @@
               v-model="originalCategoriesLocal"
               class="custom"
             >
-              {{ category.slug  }}
+              {{ category.slug }}
             </el-checkbox>
           </div>
         </div>
@@ -121,10 +121,10 @@ export default {
 };
 </script>
 
-<style scoped src="@/styles/layout/products.css"></style>
-<style scoped src="@/styles/components/button.css"></style>
-<style scoped src="@/styles/components/elementsVariable.css"></style>
-<style src="@/styles/components/elementsVariable.css"></style>
+<style scoped src="@/styles/layout/products.scss"></style>
+<style scoped src="@/styles/components/button.scss"></style>
+<style scoped src="@/styles/components/elementsVariable.scss"></style>
+<style src="@/styles/components/elementsVariable.scss"></style>
 
 <style scoped>
 .modal-filter-container {

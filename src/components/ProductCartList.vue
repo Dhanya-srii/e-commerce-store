@@ -6,7 +6,7 @@
       class="cart-wrapper"
     >
       <p class="cart-title">
-        {{ 'My Shopping Cart'  }}
+        {{ 'My Shopping Cart' }}
         <span class="item-count"
           >({{ getAddedCartProducts.products.length || 0 }})</span
         >
@@ -24,11 +24,11 @@
         <div class="cart-summary">
           <p class="free-shipping">
             <i class="ri-truck-line"></i>
-            {{ "You've earned free shipping"  }}
+            {{ "You've earned free shipping" }}
           </p>
           <p class="free-returns">
             <i class="ri-clockwise-line"></i>
-            {{ 'Free returns on all qualifying orders'  }}
+            {{ 'Free returns on all qualifying orders' }}
           </p>
           <select class="promo-select">
             <option value="">{{ 'Apply a promo card' }}</option>
@@ -70,16 +70,12 @@
           <div class="total">
             <h3>
               {{ 'Grand Total' }}
-              <span class="gst-note">{{
-                'Prices include GST'
-              }}</span>
+              <span class="gst-note">{{ 'Prices include GST' }}</span>
             </h3>
             <h3>${{ getAddedCartProducts.discountedTotal }}</h3>
           </div>
 
-          <button
-            class="checkout-button"
-          >
+          <button class="checkout-button">
             {{ 'Checkout' }}
           </button>
           <p class="terms-text">
@@ -107,4 +103,4 @@ export default {
 };
 </script>
 
-<style scoped src="@/styles/components/ProductCartList.css"></style>
+<style scoped src="@/styles/components/ProductCartList.scss"></style>

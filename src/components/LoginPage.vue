@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     ...mapActions(['startSessionTimeout']),
-    ...mapMutations(['setUser']), 
+    ...mapMutations(['setUser']),
     async loginUserHandler() {
       try {
         const parsedUser = await user.loginUser(this.username, this.password);
@@ -60,4 +60,4 @@ export default {
   },
 };
 </script>
-<style scoped src="@/styles/components/login-page.css"></style>
+<style scoped src="@/styles/components/login-page.scss"></style>
