@@ -50,13 +50,17 @@
 <script>
 import { mapActions } from 'vuex';
 export default {
-  props: ['product'],
+  props: {
+    product: {
+      type: Object,
+      required: true,
+    },
+  },
   methods: {
     ...mapActions(['updateCart']),
   },
 };
 </script>
 
-<style scoped src="@/assets/styles/components/ProductCart.css"></style>
-<style scoped src="@/assets/styles/components/button.css">
-</style>
+<style scoped src="@/styles/components/ProductCart.css"></style>
+<style scoped src="@/styles/components/button.css"></style>

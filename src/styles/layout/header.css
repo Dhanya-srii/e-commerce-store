@@ -32,6 +32,8 @@
 
 .product-brand {
   cursor: pointer;
+  font-size: 32px;
+  font-weight: bold;
   color: var(--secondary-color)
 }
 

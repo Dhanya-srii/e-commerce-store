@@ -1,6 +1,6 @@
 <template>
-  <div class="login-container">
-    <div class="login-wrapper-container">
+  <div class="login-wrapper-container">
+    <div class="login-container">
       <h3 class="login-title">Login / Join Us</h3>
       <p class="message">Enter your name and password to log in</p>
       <div class="user-details">
@@ -53,7 +53,6 @@ export default {
         this.setUser(parsedUser);
         this.startSessionTimeout(this.$router);
         this.$router.push({ name: ROUTE_NAMES.PRODUCTS });
-        
       } catch {
         this.errorMessage = 'Invalid username or password';
       }
@@ -61,4 +60,4 @@ export default {
   },
 };
 </script>
-<style scoped src="@/assets/styles/components/login-page.css"></style>
+<style scoped src="@/styles/components/login-page.css"></style>

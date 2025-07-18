@@ -4,7 +4,7 @@
     class="loading-container"
   >
     <div class="spinner"></div>
-    <p>Loading products...</p>
+    <p>Loading...</p>
   </div>
 
   <div
@@ -165,7 +165,7 @@ export default {
         const sortedProducts = await products.fetchProductsByPrice(
           this.selectedOption
         );
-        this.setProductData(sortedProducts);
+        this.setProductData(sortedProducts.data);
       } catch (err) {
         alert('Error fetching sorted products:', err.message);
       }
@@ -174,15 +174,15 @@ export default {
 };
 </script>
 
-<style scoped src="@/assets/styles/vendors/ratings.css"></style>
-<style scoped src="@/assets/styles/base/scrollbar.css"></style>
-<style scoped src="@/assets/styles/layout/base-products.css"></style>
-<style scoped src="@/assets/styles/layout/products.css"></style>
-<style scoped src="@/assets/styles/components/filter.css"></style>
-<style scoped src="@/assets/styles/components/selectable-item.css"></style>
-<style scoped src="@/assets/styles/components/loading.css"></style>
-<style scoped src="@/assets/styles/components/button.css"></style>
-<style scoped src="@/assets/styles/components/elementsVariable.css"></style>
+<style scoped src="@/styles/vendors/ratings.css"></style>
+<style scoped src="@/styles/base/scrollbar.css"></style>
+<style scoped src="@/styles/layout/base-products.css"></style>
+<style scoped src="@/styles/layout/products.css"></style>
+<style scoped src="@/styles/components/filter.css"></style>
+<style scoped src="@/styles/components/selectable-item.css"></style>
+<style scoped src="@/styles/components/loading.css"></style>
+<style scoped src="@/styles/components/button.css"></style>
+<style scoped src="@/styles/components/elementsVariable.css"></style>
 <style scoped>
 .load {
   padding: 16px;

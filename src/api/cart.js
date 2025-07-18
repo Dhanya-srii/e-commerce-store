@@ -9,9 +9,14 @@ export const cart = {
 
   async addCart(data) {
     try {
-      return await axios.post(`https://dummyjson.com/carts/add`, data, {
-        headers: { 'Content-Type': 'application/json' },
-      });
+      const response = await axios.post(
+        `https://dummyjson.com/carts/add`,
+        data,
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+      return response;
     } catch (err) {
       throw new Error(err);
     }

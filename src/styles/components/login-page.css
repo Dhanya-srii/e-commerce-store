@@ -1,4 +1,4 @@
-.login-container {
+.login-wrapper-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,7 +6,7 @@
   background: #f9f9f9;
 }
 
-.login-wrapper-container {
+.login-container {
   display: flex;
   flex-direction: column;
   align-items: center;

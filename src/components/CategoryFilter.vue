@@ -110,27 +110,27 @@ export default {
     ]),
     ...mapActions(['getAllProductsByCategories']),
 
+    applyFilters() {
+      this.setSelectedCategories(this.originalCategoriesLocal);
+      this.toggleFilter();
+      this.getAllProductsByCategories();
+    },
+
     clearFilters() {
       this.originalCategoriesLocal = [];
       this.clearSelectedCategories();
       this.getAllProductsByCategories();
       this.getAllProducts();
     },
-
-    applyFilters() {
-      this.setSelectedCategories(this.originalCategoriesLocal);
-      this.toggleFilter();
-      this.getAllProductsByCategories();
-    },
   },
 };
 </script>
 
-<style scoped src="@/assets/styles/layout/products.css"></style>
-<style scoped src="@/assets/styles/components/button.css"></style>
-<style scoped src="@/assets/styles/components/loading.css"></style>
-<style scoped src="@/assets/styles/components/elementsVariable.css"></style>
-<style src="@/assets/styles/components/elementsVariable.css"></style>
+<style scoped src="@/styles/layout/products.css"></style>
+<style scoped src="@/styles/components/button.css"></style>
+<style scoped src="@/styles/components/loading.css"></style>
+<style scoped src="@/styles/components/elementsVariable.css"></style>
+<style src="@/styles/components/elementsVariable.css"></style>
 
 <style scoped>
 .modal-filter-container {

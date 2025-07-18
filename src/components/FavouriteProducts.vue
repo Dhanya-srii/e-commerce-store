@@ -41,8 +41,8 @@ export default {
   },
 };
 </script>
-<style scoped src="@/assets/styles/layout/products.css"></style>
-<style scoped src="@/assets/styles/abstracts/root.css"></style>
-<style scoped src="@/assets/styles/layout/base-products.css"></style>
-<style scoped src="@/assets/styles/components/button.css"></style>
-<style scoped src="@/assets/styles/components/visualSize.css"></style>
+<style scoped src="@/styles/layout/products.css"></style>
+<style scoped src="@/styles/abstracts/root.css"></style>
+<style scoped src="@/styles/layout/base-products.css"></style>
+<style scoped src="@/styles/components/button.css"></style>
+<style scoped src="@/styles/components/visualSize.css"></style>

@@ -1,16 +1,16 @@
 <template>
   <div class="cart">
-    <h1 v-if="getAddedCartProducts.products.length === 0">No items in cart.</h1>
+    <p v-if="getAddedCartProducts.products.length === 0">No items in cart.</p>
     <div
       v-else
       class="cart-wrapper"
     >
-      <h1>
+      <p class="cart-title">
         {{ 'My Shopping Cart' | toUpperCase }}
         <span class="item-count"
           >({{ getAddedCartProducts.products.length || 0 }})</span
         >
-      </h1>
+      </p>
 
       <div class="cart-content">
         <div class="cart-items">
@@ -111,4 +111,4 @@ export default {
 };
 </script>
 
-<style scoped src="@/assets/styles/components/ProductCartList.css"></style>
+<style scoped src="@/styles/components/ProductCartList.css"></style>

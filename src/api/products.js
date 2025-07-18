@@ -18,11 +18,10 @@ export const products = {
       }limit=${limit}&skip=${skip}`;
 
     try {
-      const response = await axios.get(BASE_URL);
-      const data = response.data.products;
+      const { data } = await axios.get(BASE_URL);
       return {
-        data: data.map(parseProducts),
-        total: response.data.total,
+        data: data.products.map(parseProducts),
+        total: data.total,
       };
     } catch (err) {
       throw new Error(err.message);
@@ -37,12 +36,10 @@ export const products = {
 
   async fetchProductData(productId) {
     try {
-      const response = await axios.get(
+      const { data } = await axios.get(
         `https://dummyjson.com/products/${productId}`
       );
-      const data = response.data;
-
-      return parseProducts(data);
+      return { data: parseProducts(data) };
     } catch (err) {
       throw new Error(err.message);
     }
@@ -97,11 +94,10 @@ export const products = {
 
   async fetchProductsByPrice(sort) {
     try {
-      const response = await axios.get(
+      const { data } = await axios.get(
         `https://dummyjson.com/products?sortBy=title&order=${sort}`
       );
-      const data = response.data.products;
-      return data.map(parseProducts);
+      return { data: data.products.map(parseProducts) };
     } catch (err) {
       throw new Error(err.message);
     }

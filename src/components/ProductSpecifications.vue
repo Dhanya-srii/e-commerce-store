@@ -22,7 +22,12 @@
 <script>
 import { mapMutations, mapState } from 'vuex';
 export default {
-  props: ['totalProducts'],
+  props: {
+    totalProducts: {
+      type: Number,
+      required: true,
+    },
+  },
   computed: {
     ...mapState({
       gridColumns: (state) => state.storeProducts.gridColumns,
@@ -33,8 +38,8 @@ export default {
   },
 };
 </script>
-<style scoped src="@/assets/styles/components/button.css"></style>
-<style scoped src="@/assets/styles/components/visualSize.css"></style>
+<style scoped src="@/styles/components/button.css"></style>
+<style scoped src="@/styles/components/visualSize.css"></style>
 <style scoped>
 button.active {
   border: 1px solid #333;

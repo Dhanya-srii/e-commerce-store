@@ -43,7 +43,6 @@ export const storeProducts = {
     },
     setTotalProducts(state, total) {
       state.totalProducts = total;
-      console.log(state.totalProducts);
     },
     setProductData(state, products) {
       state.productData = products;

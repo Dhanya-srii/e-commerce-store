@@ -40,7 +40,7 @@
 
     <div class="product-details">
       <p class="brand-title">EVERYDAY HUMANS</p>
-      <h1 class="product-title">{{ selectedProduct.title }}</h1>
+      <p class="product-title">{{ selectedProduct.title }}</p>
       <el-rate
         v-model="value"
         disabled
@@ -132,12 +132,14 @@ export default {
 
   methods: {
     ...mapMutations(['updateFavList']),
-    ...mapActions(['addCartProducts', 'updateCart']),
+    ...mapActions(['updateCart']),
     async getProductdata() {
       this.isLoading = true;
       try {
         const productId = this.$route.query.id;
-        this.selectedProduct = await products.fetchProductData(productId);
+        const response = await products.fetchProductData(productId);
+        this.selectedProduct = response.data;
+        return this.selectedProduct;
       } catch (err) {
         alert(err.message);
       } finally {
@@ -157,9 +159,9 @@ export default {
 };
 </script>
 
-<style scoped src="@/assets/styles/components/product-detail.css"></style>
+<style scoped src="@/styles/components/product-detail.css"></style>
 
-<style scoped src="@/assets/styles/components/button.css"></style>
-<style scoped src="@/assets/styles/vendors/ratings.css"></style>
-<style scoped src="@/assets/styles/abstracts/root.css"></style>
-<style scoped src="@/assets/styles/components/loading.css"></style>
+<style scoped src="@/styles/components/button.css"></style>
+<style scoped src="@/styles/vendors/ratings.css"></style>
+<style scoped src="@/styles/abstracts/root.css"></style>
+<style scoped src="@/styles/components/loading.css"></style>

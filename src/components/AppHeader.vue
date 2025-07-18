@@ -1,8 +1,8 @@
 <template>
-  <div class="header-container">
+  <header class="header-container">
     <div class="sub-header-container">
       <div @click="goToProductList()">
-        <h1 class="product-brand">PLUGO</h1>
+        <p class="product-brand">PLUGO</p>
       </div>
       <div class="user-control-container">
         <input
@@ -67,7 +67,7 @@
         </button>
       </div>
     </div>
-  </div>
+  </header>
 </template>
 <script>
 import { mapGetters, mapMutations, mapActions, mapState } from 'vuex';
@@ -149,6 +149,6 @@ export default {
   },
 };
 </script>
-<style scoped src="@/assets/styles/layout/header.css"></style>
-<style scoped src="@/assets/styles/components/button.css"></style>
-<style scoped src="@/assets/styles/components/input.css"></style>
+<style scoped src="@/styles/layout/header.css"></style>
+<style scoped src="@/styles/components/button.css"></style>
+<style scoped src="@/styles/components/input.css"></style>

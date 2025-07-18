@@ -74,9 +74,9 @@ export default {
 };
 </script>
 
-<style src="@/assets/styles/abstracts/root.css"></style>
-<style src="@/assets/styles/base/scrollbar.css"></style>
-<style src="@/assets/styles/base/reset.css"></style>
+<style src="@/styles/abstracts/root.css"></style>
+<style src="@/styles/base/scrollbar.css"></style>
+<style src="@/styles/base/reset.css"></style>
 <style>
 * {
   font-family: 'Lilita One', sans-serif;
