@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <app-header v-if="!isHiddenHeader" />
+    <app-header v-if="!canShowHeader" />
     <category-filter v-if="showFilter" />
     <router-view />
   </div>
@@ -32,7 +32,7 @@ export default {
     isLoginPage() {
       return this.$route.name === ROUTE_NAMES.LOGIN_PAGE;
     },
-    isHiddenHeader() {
+    canShowHeader() {
       return [ROUTE_NAMES.PAGE_NOT_FOUND, ROUTE_NAMES.LOGIN_PAGE].includes(
         this.$route.name
       );

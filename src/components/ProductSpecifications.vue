@@ -7,15 +7,15 @@
       <button
         :class="[
           'grid-button',
-          { active: gridColumns === 2 },
+          { active: gridColumns === setGridView.TWO_COLUMNS },
         ]"
-        @click="setGridColumns(2)"
+        @click="setGridColumns(setGridView.TWO_COLUMNS)"
       >
         <i class="ri-layout-grid-line"></i>
       </button>
       <button
-        :class="[{ active: gridColumns === 4 }]"
-        @click="setGridColumns(4)"
+        :class="[{ active: gridColumns === setGridView.FOUR_COLUMNS }]"
+        @click="setGridColumns(setGridView.FOUR_COLUMNS)"
       >
         <i class="ri-layout-grid-2-line"></i>
       </button>
@@ -24,7 +24,7 @@
 </template>
 <script>
 import { mapMutations, mapState } from 'vuex';
-// import { SET_GRID_VIEW } from '../constants/ProductGrid';
+import { SET_GRID_VIEW } from '../constants/ProductGrid';
 export default {
   props: {
     totalProducts: {
@@ -32,7 +32,14 @@ export default {
       required: true,
     },
   },
-
+  data() {
+    return {
+      setGridView: SET_GRID_VIEW,
+    };
+  },
+  created() {
+    console.log(SET_GRID_VIEW);
+  },
   computed: {
     ...mapState({
       gridColumns: (state) => state.storeProducts.gridColumns,

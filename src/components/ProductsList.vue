@@ -105,10 +105,6 @@ export default {
       isLoading: true,
       categoryList: [],
       selectedOption: '',
-      obj: {
-        a: 1,
-        b: 2,
-      },
     };
   },
 

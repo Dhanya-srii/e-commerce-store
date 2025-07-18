@@ -20,7 +20,6 @@ export const user = {
         res.data.accessToken
       }; expires=${new Date(Date.now() + 60000)};`;
 
-      console.log(document.cookie);
       return {
         user: parseUser(res.data),
         refreshToken: res.data.refreshToken,
