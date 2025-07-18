@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Page not found!!!</h2>
+    <p>Page not found!!!</p>
     <router-link to="/">Go to Home</router-link>
   </div>
 </template>

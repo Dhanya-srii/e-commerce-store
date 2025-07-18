@@ -3,8 +3,7 @@ button {
   cursor: pointer;
 }
 
-. background-color: rgb(64, 64, 64);
-border-radius: 45%;{
+.user-control-button {
   background-color: var(--primary-color);
   color: var(--secondary-color);
   font-size: 1.5rem;
@@ -30,11 +29,6 @@ border-radius: 45%;{
 
 }
 
-// .user-control-button:hover,
-// .cart:hover {
-//   background-color: rgb(64, 64, 64);
-//   border-radius: 45%;
-// }
 
 .fav-icon {
   position: absolute;
@@ -44,23 +38,24 @@ border-radius: 45%;{
   margin: 1rem;
   font-weight: 300;
   border-radius: 50%;
+
+  &:hover {
+    background-color: rgba(202, 196, 196, 0.6);
+  }
 }
 
-.fav-icon:hover,
-.fav-detail:hover {
-  background-color: rgba(202, 196, 196, 0.6);
-}
 
 .back-button {
   width: 38px;
   padding: 0.5rem;
   font-size: 1.2rem;
   border-radius: 8px;
+
+  &:hover {
+    border: 2px solid var(--primary-color);
+  }
 }
 
-.back-button:hover {
-  border: 2px solid var(--primary-color);
-}
 
 
 
@@ -79,6 +74,10 @@ border-radius: 45%;{
   align-items: center;
   justify-content: center;
   margin-top: 16px;
+
+  &:hover {
+    background-color: rgba(202, 196, 196, 0.6);
+  }
 }
 
 .filter-sort-panel button,
@@ -100,11 +99,11 @@ select {
   margin: 16px;
   padding: 8px;
   background-color: #fffcfc;
-}
 
-.close-filter:hover {
-  border-radius: 50%;
-  background-color: rgba(202, 196, 196, 0.6);
+  &:hover {
+    border-radius: 50%;
+    background-color: rgba(202, 196, 196, 0.6);
+  }
 }
 
 .apply-filter {
@@ -120,12 +119,13 @@ select {
   width: 300px;
   text-align: center;
   background-color: var(--secondary-color);
+
+  i {
+    font-weight: 800;
+    font-size: 18px;
+  }
 }
 
-.clear-all>i {
-  font-weight: 800;
-  font-size: 18px;
-}
 
 .ri-heart-fill {
   color: red;

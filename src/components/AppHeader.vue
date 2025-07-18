@@ -149,6 +149,6 @@ export default {
   },
 };
 </script>
-<style scoped src="@/styles/layout/header.scss"></style>
-<style scoped src="@/styles/components/button.scss"></style>
-<style scoped src="@/styles/components/input.scss"></style>
+<style lang="scss" scoped src="@/styles/layout/header.scss"></style>
+<style lang="scss" scoped src="@/styles/components/button.scss"></style>
+<style lang="scss" scoped src="@/styles/components/input.scss"></style>

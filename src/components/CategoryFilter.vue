@@ -121,19 +121,13 @@ export default {
 };
 </script>
 
-<style scoped src="@/styles/layout/products.scss"></style>
-<style scoped src="@/styles/components/button.scss"></style>
-<style scoped src="@/styles/components/elementsVariable.scss"></style>
-<style src="@/styles/components/elementsVariable.scss"></style>
-
-<style scoped>
-.modal-filter-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(10, 10, 10, 0.4);
-  z-index: 999;
-}
-</style>
+<style lang="scss" scoped src="@/styles/layout/products.scss"></style>
+<style lang="scss" scoped src="@/styles/components/button.scss"></style>
+<style
+  lang="scss"
+  scoped
+  src="@/styles/components/elementsVariable.scss"
+></style>
+<style lang="scss" src="@/styles/components/elementsVariable.scss"></style>
+<style lang="scss" scoped src="@/styles/components/modal.scss"></style>
+<style lang="scss" src="@/styles/components/modal.scss"></style>

@@ -1,3 +1,9 @@
-#app {
-  background-color: rgba(0, 0, 0, 0.5);
+.modal-filter-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 10, 10, 0.4);
+  z-index: 999;
 }

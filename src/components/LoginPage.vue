@@ -60,4 +60,4 @@ export default {
   },
 };
 </script>
-<style scoped src="@/styles/components/login-page.scss"></style>
+<style  lang="scss" scoped src="@/styles/components/login-page.scss"></style>

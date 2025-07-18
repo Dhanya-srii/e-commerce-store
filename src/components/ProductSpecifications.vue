@@ -48,9 +48,9 @@ export default {
   },
 };
 </script>
-<style scoped src="@/styles/components/button.scss"></style>
-<style scoped src="@/styles/components/visualSize.scss"></style>
-<style scoped>
+<style lang="scss" scoped src="@/styles/components/button.scss"></style>
+<style lang="scss" scoped src="@/styles/components/visualSize.scss"></style>
+<style lang="scss" scoped>
 button.active {
   border: 1px solid #333;
 }

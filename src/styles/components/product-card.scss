@@ -54,26 +54,28 @@
   color: brown;
 }
 
-.grid-2 .product-card {
-  max-width: 50%;
-  flex: 50%;
-}
+.grid-2 {
+  .product-card {
+    max-width: 50%;
+    flex: 50%;
+  }
 
-.grid-2 .product {
-  min-height: 600px;
-  min-width: 765px;
-}
+  .product {
+    min-height: 600px;
+    min-width: 765px;
+  }
 
-.grid-2 .sub-product-info {
-  gap: 16px;
-  display: flex;
-  min-width: 760px;
-  justify-content: space-between;
-}
+  .sub-product-info {
+    gap: 16px;
+    display: flex;
+    min-width: 760px;
+    justify-content: space-between;
+  }
 
-.grid-2 .product img {
-  padding: 16px;
-  width: 500px;
-  height: 500px;
-  object-fit: cover;
+  .product img {
+    padding: 16px;
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+  }
 }

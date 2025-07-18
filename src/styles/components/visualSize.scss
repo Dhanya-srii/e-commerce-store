@@ -4,6 +4,12 @@
   margin-top: 16px;
   align-items: center;
   width: 1600px;
+
+  button {
+    padding: 16px;
+    background-color: var(--secondary-color);
+    font-size: 24px;
+  }
 }
 
 .sub-product-specifications {
@@ -15,10 +21,4 @@
 .product-length {
   font-size: 20px;
   letter-spacing: 3px;
-}
-
-.product-specifications button {
-  padding: 16px;
-  background-color: var(--secondary-color);
-  font-size: 24px;
 }

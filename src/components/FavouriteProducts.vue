@@ -1,6 +1,6 @@
 <template>
   <div v-if="!hasFavourites">
-    <h2 class="product-status-message">No Favourites Added!!</h2>
+    <p class="product-status-message">No Favourites Added!!</p>
   </div>
 
   <div
@@ -41,8 +41,8 @@ export default {
   },
 };
 </script>
-<style scoped src="@/styles/layout/products.scss"></style>
-<style scoped src="@/styles/abstracts/root.scss"></style>
-<style scoped src="@/styles/layout/base-products.scss"></style>
-<style scoped src="@/styles/components/button.scss"></style>
-<style scoped src="@/styles/components/visualSize.scss"></style>
+<style lang="scss" scoped src="@/styles/layout/products.scss"></style>
+<style lang="scss" scoped src="@/styles/abstracts/root.scss"></style>
+<style lang="scss" scoped src="@/styles/layout/base-products.scss"></style>
+<style lang="scss" scoped src="@/styles/components/button.scss"></style>
+<style lang="scss" scoped src="@/styles/components/visualSize.scss"></style>

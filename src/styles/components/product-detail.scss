@@ -53,13 +53,13 @@
   width: 450px;
   height: 680px;
   padding: 16px;
-}
 
-.main-image-section img {
-  background-position: center;
-  width: 400px;
-  height: 450px;
-  object-fit: contain;
+  img {
+    background-position: center;
+    width: 400px;
+    height: 450px;
+    object-fit: contain;
+  }
 }
 
 .product-details {

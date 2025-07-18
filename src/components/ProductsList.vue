@@ -74,7 +74,7 @@
     </div>
 
     <div v-else>
-      <h2 class="product-status-message">Product Not Listed!</h2>
+      <p class="product-status-message">Product Not Listed!</p>
     </div>
   </div>
 </template>
@@ -167,15 +167,15 @@ export default {
 };
 </script>
 
-<style scoped src="@/styles/vendors/ratings.scss"></style>
-<style scoped src="@/styles/base/scrollbar.scss"></style>
-<style scoped src="@/styles/layout/base-products.scss"></style>
-<style scoped src="@/styles/layout/products.scss"></style>
-<style scoped src="@/styles/components/filter.scss"></style>
-<style scoped src="@/styles/components/selectable-item.scss"></style>
-<style scoped src="@/styles/components/button.scss"></style>
-<style scoped src="@/styles/components/elementsVariable.scss"></style>
-<style scoped>
+<style lang="scss" scoped src="@/styles/vendors/ratings.scss"></style>
+<style lang="scss" scoped src="@/styles/base/scrollbar.scss"></style>
+<style lang="scss" scoped src="@/styles/layout/base-products.scss"></style>
+<style lang="scss" scoped src="@/styles/layout/products.scss"></style>
+<style lang="scss" scoped src="@/styles/components/filter.scss"></style>
+<style lang="scss" scoped src="@/styles/components/selectable-item.scss"></style>
+<style lang="scss" scoped src="@/styles/components/button.scss"></style>
+<style lang="scss" scoped src="@/styles/components/elementsVariable.scss"></style>
+<style lang="scss" scoped>
 .load {
   padding: 16px;
   margin: 16px;

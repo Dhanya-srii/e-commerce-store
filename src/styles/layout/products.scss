@@ -1,6 +1,5 @@
 .product-list {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   flex-direction: column;
   min-width: 1700px;
@@ -35,12 +34,13 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgb(236, 233, 233);
+
+  h3 {
+    font-weight: 600;
+    padding: 16px;
+  }
 }
 
-.filters-panel-header h3 {
-  font-weight: 600;
-  padding: 16px;
-}
 
 .filters-panel-body {
   display: flex;
@@ -93,6 +93,10 @@
   padding: 1rem 2rem;
   width: 100vw;
   border-bottom: 1px solid rgb(194, 192, 192);
+
+  option {
+    font-size: 14px;
+  }
 }
 
 .sub-filter-sort-panel {
@@ -100,8 +104,4 @@
   justify-content: space-between;
   align-items: center;
   min-width: 1600px;
-}
-
-.filter-sort-panel option {
-  font-size: 14px;
 }

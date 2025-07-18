@@ -53,12 +53,11 @@ button {
   font-size: 14px;
   text-transform: uppercase;
   margin-bottom: 8px;
-}
 
-.free-shipping>i,
-.free-returns>i {
-  padding: 16px;
-  font-size: 18px;
+  i {
+    padding: 16px;
+    font-size: 18px;
+  }
 }
 
 .free-shipping {
@@ -120,16 +119,18 @@ button {
 
 .total {
   margin: 38px 0;
+
+  h3 {
+    font-weight: 900;
+  }
+
+  .gst-note {
+    font-size: 15px;
+    color: gray;
+  }
 }
 
-.total h3 {
-  font-weight: 900;
-}
 
-.total .gst-note {
-  font-size: 15px;
-  color: gray;
-}
 
 .checkout-button {
   width: 100%;
@@ -146,8 +147,8 @@ button {
   margin: 16px 0;
   font-weight: 300;
   color: var(--primary-color);
-}
 
-.terms-text a {
-  color: var(--primary-color);
+  a {
+    color: var(--primary-color);
+  }
 }
