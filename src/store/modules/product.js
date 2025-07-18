@@ -14,7 +14,7 @@ export const storeProducts = {
     totalProducts: 0,
     loadMore: true,
     searchProduct: '',
-    cartData: {
+    cartData: JSON.parse(localStorage.getItem('cartProducts')) || {
       products: [],
       total: 0,
       discountedTotal: 0,
@@ -43,6 +43,7 @@ export const storeProducts = {
     },
     setTotalProducts(state, total) {
       state.totalProducts = total;
+      console.log(state.totalProducts);
     },
     setProductData(state, products) {
       state.productData = products;
@@ -81,21 +82,15 @@ export const storeProducts = {
       try {
         const currentLength = state.allProducts.length;
         if (currentLength < state.totalProducts || state.totalProducts === 0) {
-          const { data: productsList, total } = await products.fetchAllProducts(
+          const { data: productsList } = await products.fetchAllProducts(
             state.limit,
             currentLength,
             state.searchProduct
           );
-
-          if (state.totalProducts === 0) {
-            commit('setTotalProducts', total);
-          }
-
           state.allProducts = state.allProducts.concat(productsList);
           if (state.allProducts.length >= state.totalProducts) {
             state.loadMore = false;
           }
-
           commit('setProductData', state.allProducts);
         }
 
@@ -160,6 +155,7 @@ export const storeProducts = {
         });
       }
       state.cartData.products = carts;
+      localStorage.setItem('cartProducts', JSON.stringify(state.cartData));
     },
   },
 };

@@ -138,6 +138,8 @@ export default {
       try {
         const productId = this.$route.query.id;
         this.selectedProduct = await products.fetchProductData(productId);
+      } catch (err) {
+        alert(err.message);
       } finally {
         this.isLoading = false;
       }

@@ -70,9 +70,7 @@
   </div>
 </template>
 <script>
-//
 import { mapGetters, mapMutations, mapActions, mapState } from 'vuex';
-// import { products } from '../api/products';
 import { ROUTE_NAMES } from '../constants/Routes';
 
 export default {

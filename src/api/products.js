@@ -25,7 +25,7 @@ export const products = {
         total: response.data.total,
       };
     } catch (err) {
-      alert(err.message);
+      throw new Error(err.message);
     }
   },
 
@@ -85,7 +85,7 @@ export const products = {
       }
       return { products: allProducts, totalProducts };
     } catch (err) {
-      alert('Error fetching category products:', err);
+      throw new Error(err.message);
     }
   },
 
