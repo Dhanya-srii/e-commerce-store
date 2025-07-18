@@ -7,13 +7,7 @@
       class="filters-panel"
       @click.stop
     >
-      <div
-        v-if="isLoading"
-        class="loading-container"
-      >
-        <div class="spinner"></div>
-        <p>Loading products...</p>
-      </div>
+      <loading-data v-if="isLoading" />
 
       <div
         v-else
@@ -42,7 +36,7 @@
               v-model="originalCategoriesLocal"
               class="custom"
             >
-              {{ category.slug | initalCaps }}
+              {{ category.slug  }}
             </el-checkbox>
           </div>
         </div>
@@ -70,17 +64,18 @@
 
 <script>
 import { mapMutations, mapActions, mapState } from 'vuex';
-import filterMixin from '../mixins/filterMixin';
 import { products } from '../api/products';
-
+import LoadingData from './LoadingData.vue';
 export default {
-  mixins: [filterMixin],
   data() {
     return {
       categoryList: [],
       isLoading: true,
       originalCategoriesLocal: [],
     };
+  },
+  components: {
+    LoadingData,
   },
   computed: {
     ...mapState({
@@ -128,7 +123,6 @@ export default {
 
 <style scoped src="@/styles/layout/products.css"></style>
 <style scoped src="@/styles/components/button.css"></style>
-<style scoped src="@/styles/components/loading.css"></style>
 <style scoped src="@/styles/components/elementsVariable.css"></style>
 <style src="@/styles/components/elementsVariable.css"></style>
 

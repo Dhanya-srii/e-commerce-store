@@ -1,11 +1,5 @@
 <template>
-  <div
-    v-if="isLoading"
-    class="loading-container"
-  >
-    <div class="spinner"></div>
-    <p>Loading product...</p>
-  </div>
+  <loading-data v-if="isLoading" />
   <div
     v-else
     class="product-container"
@@ -98,6 +92,7 @@
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex';
 import { products } from '../api/products';
+import LoadingData from './LoadingData.vue';
 export default {
   name: 'ProductDetail',
   data() {
@@ -107,6 +102,9 @@ export default {
       value: 4.5,
       heroImage: '',
     };
+  },
+  components: {
+    LoadingData,
   },
   computed: {
     ...mapState({
@@ -164,4 +162,3 @@ export default {
 <style scoped src="@/styles/components/button.css"></style>
 <style scoped src="@/styles/vendors/ratings.css"></style>
 <style scoped src="@/styles/abstracts/root.css"></style>
-<style scoped src="@/styles/components/loading.css"></style>

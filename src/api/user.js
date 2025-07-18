@@ -20,11 +20,16 @@ export const user = {
         res.data.accessToken
       }; expires=${new Date(Date.now() + 60000)};`;
 
-      return parseUser(res.data);
+      console.log(document.cookie);
+      return {
+        user: parseUser(res.data),
+        refreshToken: res.data.refreshToken,
+      };
     } catch (err) {
       throw new Error('Login failed');
     }
   },
+
   /**
    *retrieves the authenticated user details
   @param {string} usernamePassword

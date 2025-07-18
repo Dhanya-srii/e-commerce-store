@@ -6,7 +6,7 @@
       class="cart-wrapper"
     >
       <p class="cart-title">
-        {{ 'My Shopping Cart' | toUpperCase }}
+        {{ 'My Shopping Cart'  }}
         <span class="item-count"
           >({{ getAddedCartProducts.products.length || 0 }})</span
         >
@@ -24,19 +24,19 @@
         <div class="cart-summary">
           <p class="free-shipping">
             <i class="ri-truck-line"></i>
-            {{ "You've earned free shipping" | toUpperCase }}
+            {{ "You've earned free shipping"  }}
           </p>
           <p class="free-returns">
             <i class="ri-clockwise-line"></i>
-            {{ 'Free returns on all qualifying orders' | toUpperCase }}
+            {{ 'Free returns on all qualifying orders'  }}
           </p>
           <select class="promo-select">
-            <option value="">{{ 'Apply a promo card' | toUpperCase }}</option>
+            <option value="">{{ 'Apply a promo card' }}</option>
           </select>
 
           <div class="order-breakdown">
             <p class="discount-info">
-              <span>{{ 'Extra 15% off applied' | toUpperCase }}</span>
+              <span>{{ 'Extra 15% off applied' }}</span>
               <span class="discount-amount">{{
                 (
                   getAddedCartProducts.total -
@@ -46,15 +46,15 @@
             </p>
             <div class="price-details">
               <p>
-                <span>{{ 'Subtotal' | toUpperCase }}</span>
+                <span>{{ 'Subtotal' }}</span>
                 <span>${{ getAddedCartProducts.total.toFixed(2) }}</span>
               </p>
               <p>
-                <span>{{ 'shipping costs' | toUpperCase }}</span>
+                <span>{{ 'shipping costs' }}</span>
                 <span>Free</span>
               </p>
               <p>
-                <span>{{ 'order discount' | toUpperCase }}</span>
+                <span>{{ 'order discount' }}</span>
                 <span
                   >${{
                     (
@@ -69,19 +69,18 @@
 
           <div class="total">
             <h3>
-              {{ 'Grand Total' | toUpperCase }}
+              {{ 'Grand Total' }}
               <span class="gst-note">{{
-                'Prices include GST' | toUpperCase
+                'Prices include GST'
               }}</span>
             </h3>
             <h3>${{ getAddedCartProducts.discountedTotal }}</h3>
           </div>
 
           <button
-            @click="names = 'sri'"
             class="checkout-button"
           >
-            {{ 'Checkout' | toUpperCase }}
+            {{ 'Checkout' }}
           </button>
           <p class="terms-text">
             By continuing, I confirm that I have read and accept the
@@ -96,13 +95,10 @@
 
 <script>
 import ProductCart from './ProductCart.vue';
-import filterMixin from '@/mixins/filterMixin';
 import { mapState } from 'vuex';
 export default {
   name: 'ProductCartList',
   components: { ProductCart },
-  mixins: [filterMixin],
-
   computed: {
     ...mapState({
       getAddedCartProducts: (state) => state.storeProducts.cartData,

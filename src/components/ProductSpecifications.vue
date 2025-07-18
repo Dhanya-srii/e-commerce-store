@@ -5,7 +5,10 @@
     </div>
     <div>
       <button
-        :class="['grid-button', { active: gridColumns === 2 }]"
+        :class="[
+          'grid-button',
+          { active: gridColumns === 2 },
+        ]"
         @click="setGridColumns(2)"
       >
         <i class="ri-layout-grid-line"></i>
@@ -21,6 +24,7 @@
 </template>
 <script>
 import { mapMutations, mapState } from 'vuex';
+// import { SET_GRID_VIEW } from '../constants/ProductGrid';
 export default {
   props: {
     totalProducts: {
@@ -28,6 +32,7 @@ export default {
       required: true,
     },
   },
+
   computed: {
     ...mapState({
       gridColumns: (state) => state.storeProducts.gridColumns,

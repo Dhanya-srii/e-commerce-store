@@ -1,12 +1,5 @@
 <template>
-  <div
-    v-if="isLoading"
-    class="loading-container"
-  >
-    <div class="spinner"></div>
-    <p>Loading...</p>
-  </div>
-
+  <loading-data v-if="isLoading" />
   <div
     v-else
     v-lazy:30="getAllProducts"
@@ -50,7 +43,7 @@
           :key="'Cat-' + index"
           class="filter-pill"
         >
-          <span>{{ category | initalCaps }}</span>
+          <span>{{ category }}</span>
           <button
             class="remove-filter"
             @click="removeCategory(category)"
@@ -68,6 +61,7 @@
         <span>Clear All</span> <i class="ri-close-circle-line"></i>
       </button>
     </div>
+
     <div
       v-if="listProducts.length > 0"
       :class="['products', `grid-${gridColumns}`]"
@@ -90,8 +84,7 @@
 import { mapState, mapMutations, mapActions } from 'vuex';
 // Component
 import ProductCards from './ProductCards.vue';
-// Mixins
-import filterMixin from '@/mixins/filterMixin';
+import LoadingData from './LoadingData.vue';
 import ProductSpecifications from './ProductSpecifications.vue';
 // api
 import { products } from '/src/api/products.js';
@@ -102,16 +95,20 @@ export default {
   components: {
     ProductCards,
     ProductSpecifications,
+    LoadingData,
   },
   directives: {
     lazy: lazy,
   },
-  mixins: [filterMixin],
   data() {
     return {
       isLoading: true,
       categoryList: [],
       selectedOption: '',
+      obj: {
+        a: 1,
+        b: 2,
+      },
     };
   },
 
@@ -180,7 +177,6 @@ export default {
 <style scoped src="@/styles/layout/products.css"></style>
 <style scoped src="@/styles/components/filter.css"></style>
 <style scoped src="@/styles/components/selectable-item.css"></style>
-<style scoped src="@/styles/components/loading.css"></style>
 <style scoped src="@/styles/components/button.css"></style>
 <style scoped src="@/styles/components/elementsVariable.css"></style>
 <style scoped>

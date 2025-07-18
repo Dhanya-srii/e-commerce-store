@@ -6,6 +6,7 @@
   padding: 0 18px;
   justify-content: space-between;
   white-space: nowrap;
+  text-transform: capitalize;
   font-size: 14px;
 }
 

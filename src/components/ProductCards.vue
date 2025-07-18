@@ -21,7 +21,7 @@
       <div class="product-info">
         <div class="sub-product-info">
           <h4>
-            {{ productData.title | initalCaps }}
+            {{ productData.title }}
           </h4>
           <p class="price">${{ productData.price }}</p>
         </div>
@@ -33,7 +33,6 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex';
-import filterMixin from '../mixins/filterMixin';
 import { ROUTE_NAMES } from '../constants/Routes';
 export default {
   name: 'ProductCard',
@@ -43,9 +42,6 @@ export default {
       required: true,
     },
   },
-
-  mixins: [filterMixin],
-
   computed: {
     ...mapState({
       favouritesList: (state) => state.storeProducts.favouritesList,
@@ -55,6 +51,7 @@ export default {
       return !!this.favouritesList[this.productData.id];
     },
   },
+
   methods: {
     ...mapMutations(['updateFavList']),
     goToProductDetail(id) {

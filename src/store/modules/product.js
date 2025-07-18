@@ -12,7 +12,6 @@ export const storeProducts = {
     allProducts: [],
     limit: 30,
     totalProducts: 0,
-    loadMore: true,
     searchProduct: '',
     cartData: JSON.parse(localStorage.getItem('cartProducts')) || {
       products: [],
@@ -47,6 +46,7 @@ export const storeProducts = {
     setProductData(state, products) {
       state.productData = products;
     },
+
     setSelectedCategories(state, categories) {
       state.selectedCategories = categories;
     },
@@ -68,7 +68,6 @@ export const storeProducts = {
       state.limit = 30;
       state.totalProducts = 0;
       state.allProducts = [];
-      state.loadMore = true;
     },
   },
 
@@ -87,9 +86,7 @@ export const storeProducts = {
             state.searchProduct
           );
           state.allProducts = state.allProducts.concat(productsList);
-          if (state.allProducts.length >= state.totalProducts) {
-            state.loadMore = false;
-          }
+       
           commit('setProductData', state.allProducts);
         }
 
