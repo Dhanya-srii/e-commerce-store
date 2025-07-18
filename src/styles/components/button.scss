@@ -3,12 +3,18 @@ button {
   cursor: pointer;
 }
 
-.user-control-button {
+. background-color: rgb(64, 64, 64);
+border-radius: 45%;{
   background-color: var(--primary-color);
   color: var(--secondary-color);
   font-size: 1.5rem;
   position: relative;
   padding: 8px;
+
+  &:hover {
+    background-color: rgb(64, 64, 64);
+    border-radius: 45%;
+  }
 }
 
 .add-cart-button {
@@ -24,11 +30,11 @@ button {
 
 }
 
-.user-control-button:hover,
-.cart:hover {
-  background-color: rgb(64, 64, 64);
-  border-radius: 45%;
-}
+// .user-control-button:hover,
+// .cart:hover {
+//   background-color: rgb(64, 64, 64);
+//   border-radius: 45%;
+// }
 
 .fav-icon {
   position: absolute;
