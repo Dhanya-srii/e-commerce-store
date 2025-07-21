@@ -1,3 +1,5 @@
+@use '../abstracts/root.scss' as *;
+
 .product-list {
   display: flex;
   align-items: center;
@@ -50,15 +52,12 @@
   gap: 2rem;
   padding: 16px;
 
-  .custom {
-    font-size: 1.17em;
-    font-weight: bold;
-  }
+
 }
 
 .filters {
   display: flex;
-  background-color: var(--secondary-color);
+  background-color: $secondary-color;
   padding: 16px 0px;
   justify-content: center;
   width: 1600px;
@@ -90,7 +89,7 @@
   position: sticky;
   bottom: 0;
   z-index: 1000;
-  background-color: var(--secondary-color);
+  background-color: $secondary-color;
 }
 
 .filter-sort-panel {

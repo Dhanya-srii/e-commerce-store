@@ -1,3 +1,5 @@
+@use '../abstracts/root.scss' as *;
+
 .product-specifications {
   display: flex;
   justify-content: space-between;
@@ -7,7 +9,7 @@
 
   .grid-button {
     padding: 16px;
-    background-color: var(--secondary-color);
+    background-color: $secondary-color;
     font-size: 24px;
   }
 

@@ -1,13 +1,16 @@
+@use '../abstracts/root.scss' as *;
+
 .search-input {
-  background-color: rgb(10, 10, 10);
+  background-color: $primary-color;
+  // background-color: rgb(10,10,10);
   font-size: 1.1rem;
   width: 130px;
   text-align: center;
   padding: 8px;
-  color: var(--secondary-color);
-  border: 1px solid var(--secondary-color);
+  color: $secondary-color;
+  border: 1px solid $secondary-color;
 }
 
 ::placeholder {
-  color: var(--secondary-color);
+  color: $secondary-color;
 }

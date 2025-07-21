@@ -1,3 +1,5 @@
+@use '../abstracts/root.scss' as *;
+
 .cart {
   width: 100vw;
   display: flex;
@@ -125,8 +127,8 @@
 
 .checkout-button {
   width: 100%;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  background-color: $primary-color;
+  color: $secondary-color;
   padding: 16px;
   font-size: 18px;
   text-transform: uppercase;
@@ -137,9 +139,9 @@
   font-size: 12px;
   margin: 16px 0;
   font-weight: 300;
-  color: var(--primary-color);
+  color: $primary-color;
 
   a {
-    color: var(--primary-color);
+    color: $primary-color;
   }
 }
