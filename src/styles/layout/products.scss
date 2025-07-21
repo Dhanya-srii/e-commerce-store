@@ -1,8 +1,6 @@
 @use '../abstracts/root.scss' as *;
 
 .product-list {
-  display: flex;
-  align-items: center;
   flex-direction: column;
   min-width: 1700px;
   height: calc(100vh - 70px);
@@ -11,7 +9,6 @@
 
 
 .filters-panel {
-  display: flex;
   flex-direction: column;
   gap: 2rem;
   top: 0%;
@@ -24,17 +21,13 @@
 }
 
 .categories {
-  display: flex;
   flex-direction: column;
   overflow-y: scroll;
   position: relative;
 }
 
 .filters-panel-header {
-  display: flex;
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
   border-bottom: 1px solid rgb(236, 233, 233);
 
   .filters-panel-title {
@@ -47,7 +40,6 @@
 
 
 .filters-panel-body {
-  display: flex;
   flex-direction: column;
   gap: 2rem;
   padding: 16px;
@@ -56,21 +48,12 @@
 }
 
 .filters {
-  display: flex;
   background-color: $secondary-color;
   padding: 16px 0px;
-  justify-content: center;
   width: 1600px;
 }
 
-.sub-filters {
-  max-width: 1600px;
-  display: flex;
-  justify-content: space-between;
-}
-
 .filter-container {
-  display: flex;
   overflow-x: auto;
   flex-wrap: nowrap;
   flex: 1;
@@ -79,9 +62,6 @@
 }
 
 .filter-panel-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   gap: 16px;
   min-width: 420px;
@@ -93,9 +73,6 @@
 }
 
 .filter-sort-panel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 1rem 2rem;
   width: 100vw;
   border-bottom: 1px solid rgb(194, 192, 192);
@@ -106,8 +83,5 @@
 }
 
 .sub-filter-sort-panel {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   min-width: 1600px;
 }

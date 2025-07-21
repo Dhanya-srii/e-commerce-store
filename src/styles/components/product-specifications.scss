@@ -1,10 +1,8 @@
 @use '../abstracts/root.scss' as *;
 
 .product-specifications {
-  display: flex;
-  justify-content: space-between;
+
   margin-top: 16px;
-  align-items: center;
   width: 1600px;
 
   .grid-button {
@@ -18,11 +16,6 @@
   }
 }
 
-.sub-product-specifications {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .product-length {
   font-size: 20px;

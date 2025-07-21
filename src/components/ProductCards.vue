@@ -1,5 +1,5 @@
 <template>
-  <div class="product-card">
+  <div class="product-card display-flex justify-content-center">
     <div
       class="product"
       @click="goToProductDetail(productData.id)"
@@ -18,8 +18,8 @@
         />
       </div>
 
-      <div class="product-info">
-        <div class="sub-product-info">
+      <div class="product-info display-flex align-items-start justify-content-center" >
+        <div class="sub-product-info display-flex align-items-start justify-content-space-between">
           <p class="product-card-title">
             {{ productData.title }}
           </p>

@@ -3,13 +3,15 @@
   <div
     v-else
     v-lazy:30="getAllProducts"
-    class="product-list"
+    class="product-list display-flex align-items-center"
   >
     <div
       v-if="listProducts.length"
-      class="filter-sort-panel"
+      class="filter-sort-panel display-flex align-items-center justify-content-center"
     >
-      <div class="sub-filter-sort-panel">
+      <div
+        class="sub-filter-sort-panel display-flex align-items-center justify-content-space-between"
+      >
         <button
           @click="toggleFilter"
           class="filter-sort-panel-button"
@@ -39,13 +41,13 @@
 
     <div
       v-if="selectedCategories.length"
-      class="filters"
+      class="filters display-flex justify-content-center"
     >
-      <div class="filter-container">
+      <div class="filter-container display-flex">
         <button
           v-for="(category, index) in selectedCategories"
           :key="'Cat-' + index"
-          class="filter-pill"
+          class="filter-pill display-flex align-items-center justify-content-space-between"
         >
           <span>{{ category }}</span>
           <button
@@ -58,7 +60,7 @@
       </div>
 
       <button
-        class="clear-filters"
+        class="clear-filters display-flex align-items-center justify-content-space-between"
         v-if="selectedCategories.length > 0"
         @click="clearAllFilters()"
       >
@@ -68,7 +70,10 @@
 
     <div
       v-if="listProducts.length > 0"
-      :class="['products', `grid-${gridColumns}`]"
+      :class="[
+        'products display-flex justify-content-start',
+        `grid-${gridColumns}`,
+      ]"
     >
       <product-cards
         v-for="(product, index) in listProducts"
@@ -78,7 +83,11 @@
     </div>
 
     <div v-else>
-      <p class="product-status-message">Product Not Listed!</p>
+      <p
+        class="product-status-message display-flex justify-content-center align-items-center"
+      >
+        Product Not Listed!
+      </p>
     </div>
   </div>
 </template>
@@ -176,6 +185,7 @@ export default {
 <style lang="scss" scoped src="@/styles/vendors/ratings.scss"></style>
 <style lang="scss" scoped src="@/styles/base/scrollbar.scss"></style>
 <style lang="scss" scoped src="@/styles/layout/base-products.scss"></style>
+<style lang="scss" scoped src="@/styles/abstracts/root.scss"></style>
 <style lang="scss" scoped src="@/styles/layout/products.scss"></style>
 <style lang="scss" scoped src="@/styles/components/filter.scss"></style>
 <style

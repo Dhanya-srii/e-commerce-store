@@ -1,9 +1,11 @@
 <template>
-  <div class="login-wrapper-container">
-    <div class="login-container">
+  <div
+    class="login-wrapper-container display-flex align-items-center justify-content-center"
+  >
+    <div class="login-container display-flex align-items-center">
       <p class="login-title">Login / Join Us</p>
       <p class="message">Enter your name and password to log in</p>
-      <div class="user-details">
+      <div class="user-details display-flex">
         <label class="label">NAME</label>
         <input
           class="user-input"
@@ -12,7 +14,7 @@
           placeholder="Name"
         />
       </div>
-      <div class="user-details">
+      <div class="user-details display-flex">
         <label class="label">PASSWORD</label>
         <input
           class="user-input"
@@ -68,3 +70,4 @@ export default {
 };
 </script>
 <style lang="scss" scoped src="@/styles/components/login-page.scss"></style>
+<style lang="scss" scoped src="@/styles/abstracts/root.scss"></style>

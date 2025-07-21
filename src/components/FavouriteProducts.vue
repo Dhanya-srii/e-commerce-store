@@ -1,16 +1,16 @@
 <template>
   <div v-if="!hasFavourites">
-    <p class="product-status-message">No Favourites Added!!</p>
+    <p class="product-status-message display-flex justify-content-center align-items-center">No Favourites Added!!</p>
   </div>
 
   <div
     v-else
-    class="product-list"
+    class="product-list display-flex align-items-center"
   >
     <product-specifications
       :totalProducts="Object.keys(favouritesList).length"
     />
-    <div :class="['products', `grid-${gridColumns}`]">
+    <div :class="['products display-flex justify-content-start', `grid-${gridColumns}`]">
       <product-cards
         v-for="(product, index) in favouritesList"
         :key="product.id || index"

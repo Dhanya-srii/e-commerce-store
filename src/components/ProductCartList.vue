@@ -1,5 +1,5 @@
 <template>
-  <div class="cart">
+  <div class="cart display-flex align-items-center justify-content-center">
     <p
       class="product-status-message"
       v-if="getAddedCartProducts.products.length === 0"
@@ -8,7 +8,7 @@
     </p>
     <div
       v-else
-      class="cart-wrapper"
+      class="cart-wrapper display-flex"
     >
       <p class="cart-title">
         My Shopping Cart
@@ -17,8 +17,8 @@
         >
       </p>
 
-      <div class="cart-content">
-        <div class="cart-items">
+      <div class="cart-content display-flex">
+        <div class="cart-items display-flex">
           <product-cart
             v-for="product in getAddedCartProducts.products"
             :key="product.id"
@@ -40,7 +40,7 @@
           </select>
 
           <div class="order-breakdown">
-            <p class="discount-info">
+            <p class="discount-info display-flex justify-content-space-between">
               <span class="discount-title">Extra 15% off applied</span>
               <span class="discount-amount">{{
                 (
@@ -50,15 +50,21 @@
               }}</span>
             </p>
             <div class="price-details">
-              <p class="sub-price-details">
+              <p
+                class="sub-price-details display-flex justify-content-space-between"
+              >
                 <span>Subtotal</span>
                 <span>${{ getAddedCartProducts.total.toFixed(2) }}</span>
               </p>
-              <p class="sub-price-details">
+              <p
+                class="sub-price-details display-flex justify-content-space-between"
+              >
                 <span>shipping costs</span>
                 <span>Free</span>
               </p>
-              <p class="sub-price-details">
+              <p
+                class="sub-price-details display-flex justify-content-space-between"
+              >
                 <span>order discount</span>
                 <span
                   >${{
@@ -72,21 +78,28 @@
             </div>
           </div>
 
-          <div class="total">
+          <div class="total display-flex justify-content-space-between">
             <p>
-             Grand Total
+              Grand Total
               <span class="gst-note">Prices include GST</span>
             </p>
             <p>${{ getAddedCartProducts.discountedTotal }}</p>
           </div>
 
-          <button class="checkout-button">
-            Checkout
-          </button>
+          <button class="checkout-button">Checkout</button>
           <p class="terms-text">
             By continuing, I confirm that I have read and accept the
-            <a href="#">Terms and Conditions</a> and the
-            <a href="#">Privacy Policy</a>.
+            <a
+              class="condition"
+              href="#"
+              >Terms and Conditions</a
+            >
+            and the
+            <a
+              class="condition"
+              href="#"
+              >Privacy Policy</a
+            >.
           </p>
         </div>
       </div>
@@ -115,3 +128,4 @@ export default {
 ></style>
 <style lang="scss" scoped src="@/styles/layout/base-products.scss"></style>
 <style lang="scss" src="@/styles/components/button.scss" scoped></style>
+<style lang="scss" scoped src="@/styles/abstracts/root.scss"></style>

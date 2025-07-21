@@ -2,7 +2,7 @@
   <loading-data v-if="isLoading" />
   <div
     v-else
-    class="product-container"
+    class="product-container display-flex justify-content-center align-items-start"
   >
     <button
       @click="goBackRoute"
@@ -10,7 +10,7 @@
     >
       <i class="ri-arrow-left-line"></i>
     </button>
-    <div class="sub-images">
+    <div class="sub-images display-flex">
       <div
         class="sub-img-div"
         v-for="image in selectedProduct.images"
@@ -25,7 +25,9 @@
       </div>
     </div>
 
-    <div class="main-image-section">
+    <div
+      class="main-image-section display-flex justify-content-center align-items-center"
+    >
       <img
         class="hero-image"
         :src="heroImage || selectedProduct.images[0]"
@@ -33,7 +35,7 @@
       />
     </div>
 
-    <div class="product-details">
+    <div class="product-details display-flex">
       <p class="brand-title">EVERYDAY HUMANS</p>
       <p class="product-title">{{ selectedProduct.title }}</p>
       <el-rate
@@ -47,7 +49,9 @@
       <p class="description">{{ selectedProduct.description }}</p>
 
       <div>
-        <div class="action-buttons">
+        <div
+          class="action-buttons display-flex align-items-center justify-content-start"
+        >
           <div v-if="!amount">
             <button
               class="addCart-details"
@@ -57,7 +61,7 @@
             </button>
           </div>
           <div
-            class="addCart-details"
+            class="addCart-details display-flex align-items-center justify-content-space-between"
             v-else
           >
             <button
@@ -79,7 +83,7 @@
           </div>
 
           <button
-            class="fav-detail"
+            class="fav-detail display-flex align-items-center justify-content-center"
             @click="toggleFavourite(selectedProduct)"
           >
             <i :class="[isFav ? 'ri-heart-fill' : 'ri-heart-line']"></i>

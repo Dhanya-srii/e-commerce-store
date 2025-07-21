@@ -1,10 +1,14 @@
 <template>
-  <header class="header-container">
-    <div class="sub-header-container">
+  <header class="header-container display-flex justify-content-center">
+    <div
+      class="sub-header-container display-flex justify-content-space-between align-items-center"
+    >
       <div @click="goToProductList()">
         <p class="product-brand">PLUGO</p>
       </div>
-      <div class="user-control-container">
+      <div
+        class="user-control-container display-flex justify-content-center align-items-center"
+      >
         <input
           class="search-input"
           type="text"
@@ -152,3 +156,4 @@ export default {
 <style lang="scss" scoped src="@/styles/layout/header.scss"></style>
 <style lang="scss" scoped src="@/styles/components/button.scss"></style>
 <style lang="scss" scoped src="@/styles/components/input.scss"></style>
+<style lang="scss" scoped src="@/styles/abstracts/root.scss"></style>

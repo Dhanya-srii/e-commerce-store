@@ -8,28 +8,15 @@
   padding: 1rem 2rem;
   background-color: $primary-color;
   z-index: 1;
-  display: flex;
-  justify-content: center;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .sub-header-container {
   min-width: 1600px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .user-control-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 16px;
-}
-
-.user-actions {
-  display: flex;
-  justify-content: space-between;
 }
 
 .product-brand {

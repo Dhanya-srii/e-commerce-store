@@ -1,26 +1,14 @@
 .products {
-  display: flex;
   flex-wrap: wrap;
   margin-top: 32px;
-  justify-content: flex-start;
   width: 1600px;
 }
 
 .product-status-message {
   width: 100vw;
   height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 32px;
   font-weight: bold;
   text-transform: uppercase;
 }
 
-.fav-products {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 32px;
-  justify-content: flex-start;
-  min-width: 1600px;
-}

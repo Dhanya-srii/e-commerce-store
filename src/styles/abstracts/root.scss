@@ -4,3 +4,27 @@ $fav-hover-color: rgba(255, 0, 0, 0.6);
 $secondary-color: #ffffff;
 $isFav: #ff0000;
 $basic-color: #585858;
+
+.display-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-start {
+  align-items: start;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-space-between {
+  justify-content: space-between
+}
+
+.justify-content-start {
+  justify-content: flex-start
+}

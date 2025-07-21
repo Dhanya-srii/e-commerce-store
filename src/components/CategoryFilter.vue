@@ -4,16 +4,16 @@
     @click="toggleFilter"
   >
     <div
-      class="filters-panel"
+      class="filters-panel display-flex"
       @click.stop
     >
       <loading-data v-if="isLoading" />
 
       <div
         v-else
-        class="categories"
+        class="categories display-flex"
       >
-        <div class="filters-panel-header">
+        <div class="filters-panel-header display-flex align-items-center justify-content-space-between">
           <p class="filters-panel-title">Product Filters</p>
           <button
             @click="toggleFilter"
@@ -23,13 +23,13 @@
           </button>
         </div>
 
-        <div class="filters-panel-body">
+        <div class="filters-panel-body display-flex">
           <p class="custom">Category</p>
 
           <div
             v-for="(category, index) in categoryList"
             :key="index"
-            class="selectable-item"
+            class="selectable-item display-flex"
           >
             <el-checkbox
               :label="category.slug"
@@ -41,7 +41,7 @@
           </div>
         </div>
 
-        <div class="filter-panel-footer">
+        <div class="filter-panel-footer display-flex align-items-center justify-content-center">
           <button
             class="clear-all"
             v-if="originalCategories.length > 0"
@@ -131,3 +131,4 @@ export default {
 <style lang="scss" src="@/styles/components/elementsVariable.scss"></style>
 <style lang="scss" scoped src="@/styles/components/modal.scss"></style>
 <style lang="scss" src="@/styles/components/modal.scss"></style>
+<style lang="scss" scoped src="@/styles/abstracts/root.scss"></style>

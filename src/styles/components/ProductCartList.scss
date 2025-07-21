@@ -2,15 +2,12 @@
 
 .cart {
   width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
 }
 
 .cart-wrapper {
   min-width: 1600px;
   min-height: 700px;
-  display: flex;
   flex-direction: column;
   gap: 32px;
   margin: 24px;
@@ -23,13 +20,11 @@
 }
 
 .cart-content {
-  display: flex;
   gap: 24px;
 }
 
 .cart-items {
   width: 60%;
-  display: flex;
   flex-direction: column;
   gap: 16px;
 }
@@ -69,12 +64,12 @@
 .promo-select {
   width: 100%;
   margin: 16px 0;
+  padding: 16px;
   border: none;
   font-size: 18px;
   background-color: #eeeeee;
   font-weight: 400;
   text-transform: uppercase;
-
 }
 
 .order-breakdown {
@@ -84,8 +79,6 @@
 }
 
 .discount-info {
-  display: flex;
-  justify-content: space-between;
   text-transform: uppercase;
 
   .discount-amount,
@@ -108,8 +101,7 @@
 
 .sub-price-details,
 .total {
-  display: flex;
-  justify-content: space-between;
+
   padding: 4px 0;
   text-transform: uppercase;
 
@@ -140,7 +132,7 @@
   font-weight: 300;
   color: $primary-color;
 
-  a {
+  .condition {
     color: $primary-color;
   }
 }
