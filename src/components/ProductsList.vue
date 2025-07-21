@@ -139,6 +139,7 @@ export default {
       'clearSelectedCategories',
       'removeOneSelectedCategory',
       'toggleFilter',
+      'setTotalProducts',
     ]),
     clearAllFilters() {
       this.clearSelectedCategories();
@@ -158,6 +159,7 @@ export default {
         const sortedProducts = await products.fetchProductsByPrice(
           this.selectedOption
         );
+        this.setTotalProducts(sortedProducts.length);
         this.setProductData(sortedProducts.data);
       } catch (err) {
         alert('Error fetching sorted products:', err.message);
@@ -172,9 +174,17 @@ export default {
 <style lang="scss" scoped src="@/styles/layout/base-products.scss"></style>
 <style lang="scss" scoped src="@/styles/layout/products.scss"></style>
 <style lang="scss" scoped src="@/styles/components/filter.scss"></style>
-<style lang="scss" scoped src="@/styles/components/selectable-item.scss"></style>
+<style
+  lang="scss"
+  scoped
+  src="@/styles/components/selectable-item.scss"
+></style>
 <style lang="scss" scoped src="@/styles/components/button.scss"></style>
-<style lang="scss" scoped src="@/styles/components/elementsVariable.scss"></style>
+<style
+  lang="scss"
+  scoped
+  src="@/styles/components/elementsVariable.scss"
+></style>
 <style lang="scss" scoped>
 .load {
   padding: 16px;

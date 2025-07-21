@@ -86,7 +86,7 @@ export const storeProducts = {
             state.searchProduct
           );
           state.allProducts = state.allProducts.concat(productsList);
-       
+
           commit('setProductData', state.allProducts);
         }
 
