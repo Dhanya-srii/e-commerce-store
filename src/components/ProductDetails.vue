@@ -54,7 +54,7 @@
         >
           <div v-if="!amount">
             <button
-              class="addCart-details"
+              class="addCart-details "
               @click="updateCart(selectedProduct)"
             >
               Add to Cart

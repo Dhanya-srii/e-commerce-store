@@ -51,7 +51,6 @@ export default {
       return !!this.favouritesList[this.productData.id];
     },
   },
-
   methods: {
     ...mapMutations(['updateFavList']),
     goToProductDetail(id) {

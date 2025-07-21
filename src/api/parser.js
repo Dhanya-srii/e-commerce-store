@@ -18,4 +18,3 @@ export function parseUser(user) {
     password: user.password,
   };
 }
-

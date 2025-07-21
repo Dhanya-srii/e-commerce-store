@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { ROUTE_NAMES } from '@/constants/Routes';
 
+import CategoryFilter from '@/components/CategoryFilter.vue';
 import ProductsList from '@/components/ProductsList.vue';
 import ProductDetails from '@/components/ProductDetails.vue';
 import FavouriteProducts from '@/components/FavouriteProducts.vue';
@@ -41,6 +42,11 @@ const routes = [
     path: '/login',
     component: LoginPage,
     name: ROUTE_NAMES.LOGIN_PAGE,
+  },
+  {
+    path: '/category',
+    component: CategoryFilter,
+    name: ROUTE_NAMES.CATEGORY_PAGE,
   },
   {
     path: '*',

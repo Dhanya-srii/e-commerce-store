@@ -13,7 +13,7 @@
         class="sub-filter-sort-panel display-flex align-items-center justify-content-space-between"
       >
         <button
-          @click="toggleFilter"
+          @click="toggleFilter()"
           class="filter-sort-panel-button"
         >
           <span>FILTERS</span><i class="ri-equalizer-3-line"></i></button
@@ -99,10 +99,14 @@ import { mapState, mapMutations, mapActions } from 'vuex';
 import ProductCards from './ProductCards.vue';
 import LoadingData from './LoadingData.vue';
 import ProductSpecifications from './ProductSpecifications.vue';
+// constants
+// import { ROUTE_NAMES } from '../constants/Routes';
+
 // api
 import { products } from '/src/api/products.js';
 // directives
 import { lazy } from '/src/directives/lazy.js';
+
 export default {
   name: 'ProductListing',
   components: {
@@ -158,7 +162,14 @@ export default {
       this.clearSelectedCategories();
       this.getAllProductsByCategories();
     },
-
+    // handleFilter() {
+    //   this.toggleFilter();
+    //   if (this.$route.name != ROUTE_NAMES.CATEGORY_PAGE) {
+    //     this.$router.push({
+    //       name: ROUTE_NAMES.CATEGORY_PAGE,
+    //     });
+    //   }
+    // },
     removeCategory(category) {
       this.removeOneSelectedCategory(category);
       this.getAllProductsByCategories();
