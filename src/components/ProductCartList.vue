@@ -1,12 +1,17 @@
 <template>
   <div class="cart">
-    <p class="product-status-message" v-if="getAddedCartProducts.products.length === 0">No items in cart.</p>
+    <p
+      class="product-status-message"
+      v-if="getAddedCartProducts.products.length === 0"
+    >
+      No items in cart.
+    </p>
     <div
       v-else
       class="cart-wrapper"
     >
       <p class="cart-title">
-        {{ 'My Shopping Cart' }}
+        My Shopping Cart
         <span class="item-count"
           >({{ getAddedCartProducts.products.length || 0 }})</span
         >
@@ -28,15 +33,15 @@
           </p>
           <p class="free-returns">
             <i class="ri-clockwise-line"></i>
-            {{ 'Free returns on all qualifying orders' }}
+            Free returns on all qualifying orders
           </p>
           <select class="promo-select">
-            <option value="">{{ 'Apply a promo card' }}</option>
+            <option value="">Apply a promo card</option>
           </select>
 
           <div class="order-breakdown">
             <p class="discount-info">
-              <span>{{ 'Extra 15% off applied' }}</span>
+              <span>Extra 15% off applied</span>
               <span class="discount-amount">{{
                 (
                   getAddedCartProducts.total -
@@ -46,15 +51,15 @@
             </p>
             <div class="price-details">
               <p>
-                <span>{{ 'Subtotal' }}</span>
+                <span>Subtotal</span>
                 <span>${{ getAddedCartProducts.total.toFixed(2) }}</span>
               </p>
               <p>
-                <span>{{ 'shipping costs' }}</span>
+                <span>shipping costs</span>
                 <span>Free</span>
               </p>
               <p>
-                <span>{{ 'order discount' }}</span>
+                <span>order discount</span>
                 <span
                   >${{
                     (
@@ -68,15 +73,15 @@
           </div>
 
           <div class="total">
-            <h3>
-              {{ 'Grand Total' }}
-              <span class="gst-note">{{ 'Prices include GST' }}</span>
-            </h3>
-            <h3>${{ getAddedCartProducts.discountedTotal }}</h3>
+            <p>
+             Grand Total
+              <span class="gst-note">Prices include GST</span>
+            </p>
+            <p>${{ getAddedCartProducts.discountedTotal }}</p>
           </div>
 
           <button class="checkout-button">
-            {{ 'Checkout' }}
+            Checkout
           </button>
           <p class="terms-text">
             By continuing, I confirm that I have read and accept the
@@ -103,5 +108,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped src="@/styles/components/ProductCartList.scss"></style>
+<style
+  lang="scss"
+  scoped
+  src="@/styles/components/ProductCartList.scss"
+></style>
 <style lang="scss" scoped src="@/styles/layout/base-products.scss"></style>
+<style lang="scss" src="@/styles/components/button.scss" scoped></style>

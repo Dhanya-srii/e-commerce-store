@@ -39,10 +39,7 @@
   margin-bottom: 8px;
   padding-top: 8px;
 
-}
-
-.product {
-  h4 {
+  .product-card-title {
     word-wrap: break-word;
     font-weight: 800;
     text-align: left;
@@ -54,6 +51,7 @@
     font-weight: 800;
     color: brown;
   }
+
 }
 
 
@@ -67,7 +65,7 @@
     min-height: 600px;
     min-width: 765px;
 
-    img {
+    .product-image {
       padding: 16px;
       width: 500px;
       height: 500px;

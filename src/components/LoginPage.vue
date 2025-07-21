@@ -1,7 +1,7 @@
 <template>
   <div class="login-wrapper-container">
     <div class="login-container">
-      <h3 class="login-title">Login / Join Us</h3>
+      <p class="login-title">Login / Join Us</p>
       <p class="message">Enter your name and password to log in</p>
       <div class="user-details">
         <label class="label">NAME</label>
@@ -20,7 +20,7 @@
           placeholder="Password"
         />
       </div>
-      <button @click="loginUserHandler">LOGIN</button>
+      <button class="login-btn" @click="loginUserHandler">LOGIN</button>
       <p
         v-if="errorMessage"
         style="color: red"

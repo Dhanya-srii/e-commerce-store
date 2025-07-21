@@ -1,6 +1,4 @@
-button {
-  cursor: pointer;
-}
+
 
 .addCart-details {
   background-color: var(--primary-color);
@@ -32,7 +30,7 @@ button {
   flex-direction: column;
   align-items: center;
 
-  img {
+  .cart-image {
     height: 150px;
     width: 180px;
   }
@@ -69,7 +67,8 @@ button {
 }
 
 .cart-item-title {
-  font-size: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
   margin-bottom: 16px;
 }
 

@@ -45,4 +45,4 @@ export default {
 <style lang="scss" scoped src="@/styles/abstracts/root.scss"></style>
 <style lang="scss" scoped src="@/styles/layout/base-products.scss"></style>
 <style lang="scss" scoped src="@/styles/components/button.scss"></style>
-<style lang="scss" scoped src="@/styles/components/visualSize.scss"></style>
+<style lang="scss" scoped src="@/styles/components/product-specifications.scss"></style>

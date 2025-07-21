@@ -54,7 +54,7 @@
   height: 680px;
   padding: 16px;
 
-  img {
+  .hero-image {
     background-position: center;
     width: 400px;
     height: 450px;
@@ -91,10 +91,6 @@
   font-size: 1rem;
 }
 
-button {
-  border: none;
-  cursor: pointer;
-}
 
 .action-buttons {
   display: flex;

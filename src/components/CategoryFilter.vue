@@ -14,7 +14,7 @@
         class="categories"
       >
         <div class="filters-panel-header">
-          <h3>Product Filters</h3>
+          <p class="filters-panel-title">Product Filters</p>
           <button
             @click="toggleFilter"
             class="close-filter"
@@ -24,7 +24,7 @@
         </div>
 
         <div class="filters-panel-body">
-          <h3 class="custom">Category</h3>
+          <p class="custom">Category</p>
 
           <div
             v-for="(category, index) in categoryList"

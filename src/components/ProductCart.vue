@@ -2,6 +2,7 @@
   <div class="cart-item">
     <div class="cart-item-image">
       <img
+      class="cart-image"
         :src="product.images[0]"
         alt="Product image"
       />
@@ -9,7 +10,7 @@
     </div>
     <div class="cart-item-content">
       <div class="cart-item-info">
-        <h2 class="cart-item-title">{{ product.title }}</h2>
+        <p class="cart-item-title">{{ product.title }}</p>
         <div class="cart-item-details">
           <p><span>Color:</span> High Risk Red-Puma Black</p>
           <p><span>Size:</span> UK 8</p>
@@ -33,9 +34,9 @@
         </div>
       </div>
       <div class="cart-item-side">
-        <h3 class="cart-item-price">
+        <p class="cart-item-price">
           ${{ (product.price * product.quantity).toFixed(2) }}
-        </h3>
+        </p>
         <div class="cart-item-actions">
           <button><i class="ri-edit-line"></i></button>
           <button @click="updateCart({ id: product.id, remove: true })">

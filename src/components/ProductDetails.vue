@@ -27,6 +27,7 @@
 
     <div class="main-image-section">
       <img
+        class="hero-image"
         :src="heroImage || selectedProduct.images[0]"
         alt="Product image"
       />

@@ -35,9 +35,11 @@
   align-items: center;
   border-bottom: 1px solid rgb(236, 233, 233);
 
-  h3 {
+  .filters-panel-title {
     font-weight: 600;
+    font-size: 1.17em;
     padding: 16px;
+
   }
 }
 
@@ -47,6 +49,11 @@
   flex-direction: column;
   gap: 2rem;
   padding: 16px;
+
+  .custom {
+    font-size: 1.17em;
+    font-weight: bold;
+  }
 }
 
 .filters {

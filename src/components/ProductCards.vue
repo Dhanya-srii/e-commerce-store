@@ -20,9 +20,9 @@
 
       <div class="product-info">
         <div class="sub-product-info">
-          <h4>
+          <p class="product-card-title">
             {{ productData.title }}
-          </h4>
+          </p>
           <p class="price">${{ productData.price }}</p>
         </div>
         <div></div>

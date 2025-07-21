@@ -1,7 +1,7 @@
 <template>
   <div class="product-specifications">
     <div class="product-length">
-      <h4>{{ totalProducts }} PRODUCTS</h4>
+      <p>{{ totalProducts }} PRODUCTS</p>
     </div>
     <div>
       <button
@@ -14,7 +14,10 @@
         <i class="ri-layout-grid-line"></i>
       </button>
       <button
-        :class="[{ active: gridColumns === setGridView.FOUR_COLUMNS }]"
+        :class="[
+          'grid-button',
+          { active: gridColumns === setGridView.FOUR_COLUMNS },
+        ]"
         @click="setGridColumns(setGridView.FOUR_COLUMNS)"
       >
         <i class="ri-layout-grid-2-line"></i>
@@ -49,9 +52,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped src="@/styles/components/button.scss"></style>
-<style lang="scss" scoped src="@/styles/components/visualSize.scss"></style>
-<style lang="scss" scoped>
-button.active {
-  border: 1px solid #333;
-}
-</style>
+<style
+  lang="scss"
+  scoped
+  src="@/styles/components/product-specifications.scss"
+></style>
