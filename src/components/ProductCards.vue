@@ -12,7 +12,7 @@
           <i :class="[isFavourite ? 'ri-heart-fill' : 'ri-heart-line']"></i>
         </button>
         <img
-          class="product-image"
+          class="product-image display-block"
           :src="productData.images[0]"
           alt="Product image"
         />

@@ -1,5 +1,5 @@
 <template>
-  <div class="cart-item display-flex">
+  <div class="cart-item display-flex justify-content-start">
     <div class="cart-item-image display-flex align-items-center">
       <img
         class="cart-image"
