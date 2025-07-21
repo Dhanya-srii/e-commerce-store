@@ -23,7 +23,7 @@
           <p class="product-card-title">
             {{ productData.title }}
           </p>
-          <p class="price">${{ productData.price }}</p>
+          <p class="card-price">${{ productData.price }}</p>
         </div>
         <div></div>
       </div>

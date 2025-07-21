@@ -52,7 +52,7 @@
   text-transform: uppercase;
   margin-bottom: 8px;
 
-  i {
+  .ri-clockwise-line {
     padding: 16px;
     font-size: 18px;
   }
@@ -88,7 +88,8 @@
   justify-content: space-between;
   text-transform: uppercase;
 
-  span {
+  .discount-amount,
+  .discount-title {
     font-weight: 300;
     font-size: 14px;
   }
@@ -105,7 +106,7 @@
   font-size: 14px;
 }
 
-.price-details p,
+.sub-price-details,
 .total {
   display: flex;
   justify-content: space-between;
@@ -122,8 +123,6 @@
     color: gray;
   }
 }
-
-
 
 .checkout-button {
   width: 100%;

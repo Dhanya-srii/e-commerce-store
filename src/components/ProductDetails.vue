@@ -43,7 +43,7 @@
         text-color="#ec9854"
         score-template="{value} points"
       ></el-rate>
-      <p class="price">${{ selectedProduct.price }}</p>
+      <p class="detail-price">${{ selectedProduct.price }}</p>
       <p class="description">{{ selectedProduct.description }}</p>
 
       <div>

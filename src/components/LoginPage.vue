@@ -6,6 +6,7 @@
       <div class="user-details">
         <label class="label">NAME</label>
         <input
+          class="user-input"
           required
           v-model="username"
           placeholder="Name"
@@ -14,13 +15,19 @@
       <div class="user-details">
         <label class="label">PASSWORD</label>
         <input
+          class="user-input"
           required
           v-model="password"
           type="password"
           placeholder="Password"
         />
       </div>
-      <button class="login-btn" @click="loginUserHandler">LOGIN</button>
+      <button
+        class="login-btn"
+        @click="loginUserHandler"
+      >
+        LOGIN
+      </button>
       <p
         v-if="errorMessage"
         style="color: red"
@@ -60,4 +67,4 @@ export default {
   },
 };
 </script>
-<style  lang="scss" scoped src="@/styles/components/login-page.scss"></style>
+<style lang="scss" scoped src="@/styles/components/login-page.scss"></style>

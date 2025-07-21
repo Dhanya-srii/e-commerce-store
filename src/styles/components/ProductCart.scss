@@ -48,7 +48,7 @@
   background-color: #ffff;
   border-radius: 12px;
 
-  i {
+  .ri-check-line {
     background-color: #4d7d04;
     color: $secondary-color;
     border-radius: 50%;
@@ -73,11 +73,12 @@
   margin-bottom: 16px;
 }
 
-.cart-item-details p {
+
+.about-product {
   font-weight: 300;
   padding: 4px 0;
 
-  span {
+  .about-product-title {
     color: gray;
     font-weight: 200;
   }
@@ -101,13 +102,14 @@
   font-size: 18px;
 }
 
-.cart-item-actions button {
+.user-btn {
   border: none;
   background: none;
   font-size: 24px;
   margin: 4px 8px;
 
-  i {
+  .ri-edit-line,
+  .ri-delete-bin-line {
     font-weight: 300;
   }
 }
@@ -129,4 +131,3 @@
 .quantity-display {
   font-size: 1.2rem;
 }
-

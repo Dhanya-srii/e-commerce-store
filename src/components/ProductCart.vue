@@ -12,9 +12,9 @@
       <div class="cart-item-info">
         <p class="cart-item-title">{{ product.title }}</p>
         <div class="cart-item-details">
-          <p><span>Color:</span> High Risk Red-Puma Black</p>
-          <p><span>Size:</span> UK 8</p>
-          <p><span>Style number:</span> 311887_01</p>
+          <p class="about-product"><span class="about-product-title">Color:</span> High Risk Red-Puma Black</p>
+          <p class="about-product"><span class="about-product-title">Size:</span> UK 8</p>
+          <p class="about-product"><span class="about-product-title">Style number:</span> 311887_01</p>
         </div>
 
         <div class="addCart-details">
@@ -38,8 +38,8 @@
           ${{ (product.price * product.quantity).toFixed(2) }}
         </p>
         <div class="cart-item-actions">
-          <button><i class="ri-edit-line"></i></button>
-          <button @click="updateCart({ id: product.id, remove: true })">
+          <button class="user-btn"><i class="ri-edit-line"></i></button>
+          <button class="user-btn" @click="updateCart({ id: product.id, remove: true })">
             <i class="ri-delete-bin-line"></i>
           </button>
         </div>

@@ -10,9 +10,13 @@
       class="filter-sort-panel"
     >
       <div class="sub-filter-sort-panel">
-        <button @click="toggleFilter">
+        <button
+          @click="toggleFilter"
+          class="filter-sort-panel-button"
+        >
           <span>FILTERS</span><i class="ri-equalizer-3-line"></i></button
         ><select
+          class="select-product"
           v-model="selectedOption"
           @change="handleOptionChange"
         >

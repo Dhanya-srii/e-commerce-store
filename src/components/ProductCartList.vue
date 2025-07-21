@@ -41,7 +41,7 @@
 
           <div class="order-breakdown">
             <p class="discount-info">
-              <span>Extra 15% off applied</span>
+              <span class="discount-title">Extra 15% off applied</span>
               <span class="discount-amount">{{
                 (
                   getAddedCartProducts.total -
@@ -50,15 +50,15 @@
               }}</span>
             </p>
             <div class="price-details">
-              <p>
+              <p class="sub-price-details">
                 <span>Subtotal</span>
                 <span>${{ getAddedCartProducts.total.toFixed(2) }}</span>
               </p>
-              <p>
+              <p class="sub-price-details">
                 <span>shipping costs</span>
                 <span>Free</span>
               </p>
-              <p>
+              <p class="sub-price-details">
                 <span>order discount</span>
                 <span
                   >${{

@@ -69,16 +69,19 @@ button {
   }
 }
 
-.filter-sort-panel button,
-select {
-  min-width: 135px;
-  height: 40px;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 800;
-  cursor: pointer;
-  background-color: $secondary-color;
-  border: 1px solid rgb(168, 164, 164);
+.filter-sort-panel {
+
+  .select-product,
+  .filter-sort-panel-button {
+    min-width: 135px;
+    height: 40px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    background-color: $secondary-color;
+    border: 1px solid rgb(168, 164, 164);
+  }
 }
 
 .close-filter {
@@ -108,7 +111,7 @@ select {
   text-align: center;
   background-color: $secondary-color;
 
-  i {
+  .ri-close-circle-line {
     font-weight: 800;
     font-size: 18px;
   }
