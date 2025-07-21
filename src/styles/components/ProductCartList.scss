@@ -91,11 +91,11 @@ button {
   justify-content: space-between;
   text-transform: uppercase;
 
-}
+  span {
+    font-weight: 300;
+    font-size: 14px;
+  }
 
-.discount-info span {
-  font-weight: 300;
-  font-size: 14px;
 }
 
 .discount-amount {

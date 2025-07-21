@@ -41,20 +41,22 @@
 
 }
 
-.product h4 {
-  word-wrap: break-word;
-  font-weight: 800;
-  text-align: left;
-  line-height: 24px;
-  max-width: 200px;
+.product {
+  h4 {
+    word-wrap: break-word;
+    font-weight: 800;
+    text-align: left;
+    line-height: 24px;
+    max-width: 200px;
+  }
+
+  .price {
+    font-weight: 800;
+    color: brown;
+  }
 }
 
-.product .price {
-  font-weight: 800;
-  color: brown;
-}
-
-.grid-2 {
+.product .grid-2 {
   .product-card {
     max-width: 50%;
     flex: 50%;
@@ -63,6 +65,13 @@
   .product {
     min-height: 600px;
     min-width: 765px;
+
+    img {
+      padding: 16px;
+      width: 500px;
+      height: 500px;
+      object-fit: cover;
+    }
   }
 
   .sub-product-info {
@@ -72,10 +81,4 @@
     justify-content: space-between;
   }
 
-  .product img {
-    padding: 16px;
-    width: 500px;
-    height: 500px;
-    object-fit: cover;
-  }
 }
