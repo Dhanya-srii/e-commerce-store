@@ -1,6 +1,6 @@
 <template>
   <div class="cart">
-    <p class="cart-title" v-if="getAddedCartProducts.products.length === 0">No items in cart.</p>
+    <p class="product-status-message" v-if="getAddedCartProducts.products.length === 0">No items in cart.</p>
     <div
       v-else
       class="cart-wrapper"
@@ -104,3 +104,4 @@ export default {
 </script>
 
 <style lang="scss" scoped src="@/styles/components/ProductCartList.scss"></style>
+<style lang="scss" scoped src="@/styles/layout/base-products.scss"></style>
