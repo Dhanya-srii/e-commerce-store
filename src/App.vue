@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <!-- <link
+      rel="stylesheet"
+      href="/src/styles.scss"
+    /> -->
     <app-header v-if="!canShowHeader" />
     <category-filter v-if="showFilter" />
     <router-view />
@@ -75,7 +79,7 @@ export default {
 </script>
 
 <style lang="scss" src="@/styles/abstracts/_variables.scss"></style>
- 
+<style lang="scss" src="@/styles/layout/_layout.scss"></style>
 <style lang="scss" src="@/styles/base/scrollbar.scss"></style>
 <style lang="scss" src="@/styles/base/reset.scss"></style>
 <style>

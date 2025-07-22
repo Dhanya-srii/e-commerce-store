@@ -72,3 +72,4 @@ export default {
 };
 </script>
 <style lang="scss" scoped src="@/styles/components/login-page.scss"></style>
+<style lang="scss" scoped src="@/styles/layout/login.scss"></style>

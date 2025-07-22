@@ -1,6 +1,5 @@
 <template>
   <div
-    v-if="isLoggedIn && toggleFilter"
     class="modal-filter-container"
     @click="toggleFilter"
   >
@@ -32,7 +31,6 @@
           <div
             v-for="(category, index) in categoryList"
             :key="index"
-            class="selectable-item display-flex"
           >
             <el-checkbox
               :label="category.slug"
@@ -129,11 +127,9 @@ export default {
 
 <style lang="scss" scoped src="@/styles/layout/products.scss"></style>
 <style lang="scss" scoped src="@/styles/components/button.scss"></style>
-<style
-  lang="scss"
-  scoped
-  src="@/styles/components/elementsVariable.scss"
-></style>
+
 <style lang="scss" src="@/styles/components/elementsVariable.scss"></style>
-<style lang="scss" scoped src="@/styles/components/modal.scss"></style>
+<style lang="scss" src="@/styles/components/filter.scss"></style>
+
+
 <style lang="scss" src="@/styles/components/modal.scss"></style>

@@ -99,9 +99,6 @@ import { mapState, mapMutations, mapActions } from 'vuex';
 import ProductCards from './ProductCards.vue';
 import LoadingData from './LoadingData.vue';
 import ProductSpecifications from './ProductSpecifications.vue';
-// constants
-// import { ROUTE_NAMES } from '../constants/Routes';
-
 // api
 import { products } from '/src/api/products.js';
 // directives
@@ -193,22 +190,11 @@ export default {
 
 <style lang="scss" scoped src="@/styles/layout/products.scss"></style>
 <style lang="scss" scoped src="@/styles/components/filter.scss"></style>
-<style
-  lang="scss"
-  scoped
-  src="@/styles/components/selectable-item.scss"
-></style>
+
 <style lang="scss" scoped src="@/styles/components/button.scss"></style>
 <style
   lang="scss"
   scoped
   src="@/styles/components/elementsVariable.scss"
 ></style>
-<style lang="scss" scoped>
-.load {
-  padding: 16px;
-  margin: 16px;
-  height: 16px;
-  width: 50px;
-}
-</style>
+

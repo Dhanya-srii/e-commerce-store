@@ -1,7 +1,7 @@
 <template>
   <div class="cart display-flex align-items-center justify-content-center">
     <p
-      class="product-status-message"
+      class="product-status-message display-flex justify-content-center align-items-center"
       v-if="getAddedCartProducts.products.length === 0"
     >
       No items in cart.
