@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="isLoggedIn && toggleFilter"
     class="modal-filter-container"
     @click="toggleFilter"
   >
@@ -13,7 +14,9 @@
         v-else
         class="categories display-flex"
       >
-        <div class="filters-panel-header display-flex align-items-center justify-content-space-between">
+        <div
+          class="filters-panel-header display-flex align-items-center justify-content-space-between"
+        >
           <p class="filters-panel-title">Product Filters</p>
           <button
             @click="toggleFilter"
@@ -41,7 +44,9 @@
           </div>
         </div>
 
-        <div class="filter-panel-footer display-flex align-items-center justify-content-center">
+        <div
+          class="filter-panel-footer display-flex align-items-center justify-content-center"
+        >
           <button
             class="clear-all"
             v-if="originalCategories.length > 0"
@@ -63,7 +68,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions, mapState } from 'vuex';
+import { mapMutations, mapActions, mapState, mapGetters } from 'vuex';
 import { products } from '../api/products';
 import LoadingData from './LoadingData.vue';
 export default {
@@ -82,6 +87,7 @@ export default {
       showFilter: (state) => state.storeProducts.showFilter,
       originalCategories: (state) => state.storeProducts.selectedCategories,
     }),
+    ...mapGetters(['isLoggedIn']),
   },
 
   async created() {

@@ -1,7 +1,7 @@
 import { user } from '@/api/user';
 export const users = {
   state: {
-    userData: '',
+    userData: null,
     refreshToken: '',
   },
   mutations: {
@@ -15,6 +15,9 @@ export const users = {
     setRefreshToken(state, token) {
       state.refreshToken = token;
     },
+  },
+  getters: {
+    isLoggedIn: (state) => state.userData,
   },
   actions: {
     async getUser({ commit }) {

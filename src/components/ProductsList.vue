@@ -122,6 +122,7 @@ export default {
       isLoading: true,
       categoryList: [],
       selectedOption: '',
+      isClicked: false,
     };
   },
 
@@ -162,14 +163,7 @@ export default {
       this.clearSelectedCategories();
       this.getAllProductsByCategories();
     },
-    // handleFilter() {
-    //   this.toggleFilter();
-    //   if (this.$route.name != ROUTE_NAMES.CATEGORY_PAGE) {
-    //     this.$router.push({
-    //       name: ROUTE_NAMES.CATEGORY_PAGE,
-    //     });
-    //   }
-    // },
+
     removeCategory(category) {
       this.removeOneSelectedCategory(category);
       this.getAllProductsByCategories();
