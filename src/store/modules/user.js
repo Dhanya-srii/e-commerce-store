@@ -41,7 +41,7 @@ export const users = {
       setTimeout(() => {
         dispatch('logout');
         router.push('/login');
-      }, 60000);
+      }, 600000);
     },
   },
 };
