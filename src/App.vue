@@ -78,6 +78,10 @@ export default {
 };
 </script>
 
+<style lang="scss">
+// @import '/src/styles.scss';
+</style>
+
 <style lang="scss" src="@/styles/abstracts/_variables.scss"></style>
 <style lang="scss" src="@/styles/layout/_layout.scss"></style>
 <style lang="scss" src="@/styles/base/scrollbar.scss"></style>
