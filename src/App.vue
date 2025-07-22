@@ -74,7 +74,9 @@ export default {
 };
 </script>
 
-<style lang="scss" src="/src/styles.scss"></style>
+<style scoped src="/home/dhan-zstch1544/Vue/mobile-applications/src/styles.scss">
+
+</style>
 <style>
 * {
   font-family: 'Lilita One', sans-serif;

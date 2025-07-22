@@ -125,11 +125,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped src="@/styles/components/button.scss"></style>
-
-<style lang="scss" src="@/styles/components/elementsVariable.scss"></style>
-
-<style lang="scss" src="@/styles/components/modal.scss"></style>
 
 <style lang="scss" scoped>
 .filter-pill,

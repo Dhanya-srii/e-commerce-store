@@ -123,4 +123,3 @@ export default {
   cursor: pointer;
 }
 </style>
-<style lang="scss" scoped src="@/styles/layout/login.scss"></style>

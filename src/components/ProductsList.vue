@@ -184,16 +184,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped src="@/styles/vendors/ratings.scss"></style>
-<style lang="scss" scoped src="@/styles/base/scrollbar.scss"></style>
-<style lang="scss" scoped src="@/styles/layout/base-products.scss"></style>
-
-<style lang="scss" scoped src="@/styles/components/filter.scss"></style>
-
-<style lang="scss" scoped src="@/styles/components/button.scss"></style>
-<style
-  lang="scss"
-  scoped
-  src="@/styles/components/elementsVariable.scss"
-></style>
 

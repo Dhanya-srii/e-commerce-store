@@ -53,7 +53,7 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped src="@/styles/components/button.scss"></style>
+
 <style lang="scss" scoped>
 .product-specifications {
   margin-top: 16px;

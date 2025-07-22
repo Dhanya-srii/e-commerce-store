@@ -237,6 +237,3 @@ export default {
   margin-top: 1rem;
 }
 </style>
-
-<style lang="scss" scoped src="@/styles/components/button.scss"></style>
-<style lang="scss" scoped src="@/styles/vendors/ratings.scss"></style>

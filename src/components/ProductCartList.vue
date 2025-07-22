@@ -251,5 +251,4 @@ export default {
   }
 }
 </style>
-<style lang="scss" scoped src="@/styles/layout/base-products.scss"></style>
-<style lang="scss" src="@/styles/components/button.scss" scoped></style>
+
