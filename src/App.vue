@@ -74,8 +74,7 @@ export default {
 };
 </script>
 
-<style scoped src="/home/dhan-zstch1544/Vue/mobile-applications/src/styles.scss">
-
+<style lang="scss" scoped src="/home/dhan-zstch1544/Vue/mobile-applications/src/styles.scss">
 </style>
 <style>
 * {

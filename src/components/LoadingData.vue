@@ -7,6 +7,7 @@
   </div>
 </template>
 <style lang="scss" scoped>
+
 .loading-container {
   height: 100vh;
   font-size: 18px;
