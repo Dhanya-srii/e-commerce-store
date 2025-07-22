@@ -9,22 +9,11 @@
 @import './styles/components/app-header.scss';
 @import './styles/components/button.scss';
 @import './styles/components/elementsVariable.scss';
-@import './styles/components/filter.scss';
-@import './styles/components/input.scss';
-@import './styles/components/loading.scss';
-@import './styles/components/login-page.scss';
 @import './styles/components/modal.scss';
-@import './styles/components/product-card.scss';
-@import './styles/components/product-detail.scss';
-@import './styles/components/product-specifications.scss';
-@import './styles/components/ProductCart.scss';
-@import './styles/components/ProductCartList.scss';
 
 // Layout
 @import './styles/layout/base-products.scss';
 @import './styles/layout/_layout.scss';
-@import './styles/layout/header.scss';
-@import './styles/layout/login.scss';
 
 //Vendors
-@import './styles/vendors/ratings.scss';
+@import url('//unpkg.com/element-ui@2.15.14/lib/theme-chalk/index.css');

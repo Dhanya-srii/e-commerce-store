@@ -154,6 +154,66 @@ export default {
 };
 </script>
 <style lang="scss" scoped src="@/styles/layout/header.scss"></style>
-<style lang="scss" scoped src="@/styles/components/app-header.scss"></style>
 <style lang="scss" scoped src="@/styles/components/button.scss"></style>
 <style lang="scss" scoped src="@/styles/components/input.scss"></style>
+<style lang="scss" scoped>
+.header-container {
+  width: 100vw;
+  position: sticky;
+  top: 0;
+  margin: 0%;
+  padding: 1rem 2rem;
+  background-color: $primary-color;
+  z-index: 1;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.sub-header-container {
+  min-width: 1600px;
+}
+
+.user-control-container {
+  gap: 16px;
+}
+
+.product-brand {
+  cursor: pointer;
+  font-size: 32px;
+  font-weight: bold;
+  color: $secondary-color;
+}
+
+.favourite-list-count {
+  position: absolute;
+  background-color: rgb(172, 30, 30);
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  font-size: 1.2rem;
+  text-align: center;
+  color: $secondary-color;
+  right: -5px;
+  top: -5px;
+}
+
+.cart {
+  background-color: $primary-color;
+  color: $secondary-color;
+  font-size: 1.5rem;
+  padding: 8px 4px 4px 8px;
+}
+
+.search-input {
+  background-color: $primary-color;
+  font-size: 1.1rem;
+  width: 130px;
+  text-align: center;
+  padding: 8px;
+  color: $secondary-color;
+  border: 1px solid $secondary-color;
+}
+
+::placeholder {
+  color: $secondary-color;
+}
+</style>

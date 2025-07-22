@@ -54,8 +54,24 @@ export default {
 };
 </script>
 <style lang="scss" scoped src="@/styles/components/button.scss"></style>
-<style
-  lang="scss"
-  scoped
-  src="@/styles/components/product-specifications.scss"
-></style>
+<style lang="scss" scoped>
+.product-specifications {
+  margin-top: 16px;
+  width: 1600px;
+
+  .grid-button {
+    padding: 16px;
+    background-color: $secondary-color;
+    font-size: 24px;
+  }
+
+  .grid-button.active {
+    border: 1px solid #333;
+  }
+}
+
+.product-length {
+  font-size: 20px;
+  letter-spacing: 3px;
+}
+</style>

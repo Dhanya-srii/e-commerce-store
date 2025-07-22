@@ -79,5 +79,90 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped src="@/styles/components/ProductCart.scss"></style>
+<style lang="scss" scoped>
+.cart-item {
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid #e2dddd;
+  height: 230px;
+}
+
+.cart-item-image {
+  width: 20%;
+  background-color: #eeee;
+
+  .cart-image {
+    height: 150px;
+    width: 180px;
+  }
+}
+
+.cart-item-stock {
+  margin-top: 8px;
+  font-size: 10px;
+  text-align: center;
+  color: #4d7d04;
+  border: 1px solid #4d7d04;
+  padding: 6px;
+  background-color: #ffff;
+  border-radius: 12px;
+
+  .ri-check-line {
+    background-color: #4d7d04;
+    color: $secondary-color;
+    border-radius: 50%;
+    margin: 4px;
+  }
+}
+
+.cart-item-content {
+  flex: 1;
+}
+
+.cart-item-info {
+  flex: 1;
+}
+
+.cart-item-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.about-product {
+  font-weight: 300;
+  padding: 4px 0;
+
+  .about-product-title {
+    color: gray;
+    font-weight: 200;
+  }
+}
+
+.cart-item-quantity {
+  margin-top: 16px;
+  padding: 16px 32px;
+  font-size: 16px;
+}
+
+.cart-item-side {
+  gap: 32px;
+}
+
+.cart-item-price {
+  font-size: 18px;
+}
+
+.user-btn {
+  border: none;
+  background: none;
+  font-size: 24px;
+  margin: 4px 8px;
+
+  .ri-edit-line,
+  .ri-delete-bin-line {
+    font-weight: 300;
+  }
+}
+</style>
 <style lang="scss" scoped src="@/styles/components/button.scss"></style>

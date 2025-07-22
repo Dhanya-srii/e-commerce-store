@@ -162,7 +162,81 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped src="@/styles/components/product-detail.scss"></style>
+<style lang="scss" scoped>
+.product-container {
+  max-width: 1300px;
+  min-height: 85vh;
+
+  margin: auto;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.sub-images {
+  cursor: pointer;
+  gap: 1rem;
+}
+
+.sub-img-div {
+  height: 200px;
+  width: 100%;
+  background-color: #f0f0f0;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.sub-image {
+  height: 190px;
+  width: 190px;
+  object-fit: cover;
+}
+
+.main-image-section {
+  background-color: #f0f0f0;
+  width: 450px;
+  height: 680px;
+  padding: 16px;
+
+  .hero-image {
+    background-position: center;
+    width: 400px;
+    height: 450px;
+    object-fit: contain;
+  }
+}
+
+.product-details {
+  flex: 1;
+  gap: 3rem;
+  transition: ease 1s;
+}
+
+.brand-title {
+  color: #808080;
+  font-size: 0.9rem;
+}
+
+.product-title {
+  color: #42324f;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.detail-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.description {
+  color: #808080;
+  font-size: 1rem;
+}
+
+.action-buttons {
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+</style>
 
 <style lang="scss" scoped src="@/styles/components/button.scss"></style>
 <style lang="scss" scoped src="@/styles/vendors/ratings.scss"></style>

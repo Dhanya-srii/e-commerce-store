@@ -71,5 +71,56 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped src="@/styles/components/login-page.scss"></style>
+<style scoped lang="scss">
+.login-wrapper-container {
+  height: 100vh;
+  background-color: #f9f9f9;
+}
+
+.login-container {
+  gap: 24px;
+  padding: 24px;
+  width: 320px;
+  border-radius: 8px;
+  background-color: $secondary-color;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.login-title {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.message {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.user-details {
+  width: 100%;
+}
+
+.label {
+  font-size: 12px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.user-input {
+  padding: 16px 12px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  outline: none;
+  font-size: 14px;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #959595;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+</style>
 <style lang="scss" scoped src="@/styles/layout/login.scss"></style>
