@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <p>hii</p>
     <app-header v-if="!canShowHeader" />
     <category-filter v-if="showFilter" />
     <router-view />
@@ -74,9 +75,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped src="/home/dhan-zstch1544/Vue/mobile-applications/src/styles.scss">
-</style>
-<style>
+<style
+  lang="scss"
+  src="/home/dhan-zstch1544/Vue/mobile-applications/src/styles.scss"
+>
 * {
   font-family: 'Lilita One', sans-serif;
   font-weight: 600;
