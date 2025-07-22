@@ -80,6 +80,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '/src/styles/abstracts/_variables.scss' as *;
+
 .cart-item {
   gap: 16px;
   padding: 16px;
@@ -165,4 +167,3 @@ export default {
   }
 }
 </style>
-

@@ -127,6 +127,8 @@ export default {
 
 
 <style lang="scss" scoped>
+@use '/src/styles/abstracts/_variables.scss' as *;
+
 .filter-pill,
 .clear-filters {
   background-color: rgb(238, 238, 238);
@@ -213,17 +215,5 @@ export default {
   background-color: $secondary-color;
 }
 
-.filter-sort-panel {
-  padding: 1rem 2rem;
-  width: 100vw;
-  border-bottom: 1px solid rgb(194, 192, 192);
 
-  option {
-    font-size: 14px;
-  }
-}
-
-.sub-filter-sort-panel {
-  min-width: 1600px;
-}
 </style>

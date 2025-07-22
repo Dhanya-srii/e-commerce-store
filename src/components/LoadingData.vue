@@ -7,6 +7,7 @@
   </div>
 </template>
 <style lang="scss" scoped>
+@use '/src/styles/abstracts/_variables.scss' as *;
 
 .loading-container {
   height: 100vh;

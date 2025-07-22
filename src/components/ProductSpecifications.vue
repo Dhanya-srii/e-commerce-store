@@ -55,6 +55,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '/src/styles/abstracts/_variables.scss' as *;
 .product-specifications {
   margin-top: 16px;
   width: 1600px;

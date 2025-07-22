@@ -155,6 +155,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '/src/styles/abstracts/_variables.scss' as *;
+
 .header-container {
   width: 100vw;
   position: sticky;
@@ -183,7 +185,7 @@ export default {
 
 .favourite-list-count {
   position: absolute;
-  background-color: rgb(172, 30, 30);
+  background-color: $isFav;
   border-radius: 50%;
   height: 25px;
   width: 25px;

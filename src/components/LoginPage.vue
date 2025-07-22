@@ -72,6 +72,8 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+@use '/src/styles/abstracts/_variables.scss' as *;
+
 .login-wrapper-container {
   height: 100vh;
   background-color: #f9f9f9;
