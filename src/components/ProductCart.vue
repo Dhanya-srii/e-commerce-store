@@ -1,6 +1,8 @@
 <template>
   <div class="cart-item display-flex justify-content-start">
-    <div class="cart-item-image display-flex align-items-center">
+    <div
+      class="cart-item-image display-flex align-items-center flex-direction-column"
+    >
       <img
         class="cart-image"
         :src="product.images[0]"
@@ -42,7 +44,9 @@
           </button>
         </div>
       </div>
-      <div class="cart-item-side display-flex align-items-center">
+      <div
+        class="cart-item-side display-flex align-items-center flex-direction-column"
+      >
         <p class="cart-item-price">
           ${{ (product.price * product.quantity).toFixed(2) }}
         </p>
@@ -77,4 +81,3 @@ export default {
 
 <style lang="scss" scoped src="@/styles/components/ProductCart.scss"></style>
 <style lang="scss" scoped src="@/styles/components/button.scss"></style>
-<style lang="scss" scoped src="@/styles/abstracts/root.scss"></style>

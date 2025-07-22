@@ -5,14 +5,14 @@
     @click="toggleFilter"
   >
     <div
-      class="filters-panel display-flex"
+      class="filters-panel display-flex flex-direction-column"
       @click.stop
     >
       <loading-data v-if="isLoading" />
 
       <div
         v-else
-        class="categories display-flex"
+        class="categories display-flex flex-direction-column"
       >
         <div
           class="filters-panel-header display-flex align-items-center justify-content-space-between"
@@ -26,7 +26,7 @@
           </button>
         </div>
 
-        <div class="filters-panel-body display-flex">
+        <div class="filters-panel-body display-flex flex-direction-column">
           <p class="custom">Category</p>
 
           <div
@@ -45,7 +45,7 @@
         </div>
 
         <div
-          class="filter-panel-footer display-flex align-items-center justify-content-center"
+          class="filter-panel-footer display-flex align-items-center justify-content-center flex-direction-column"
         >
           <button
             class="clear-all"
@@ -137,4 +137,3 @@ export default {
 <style lang="scss" src="@/styles/components/elementsVariable.scss"></style>
 <style lang="scss" scoped src="@/styles/components/modal.scss"></style>
 <style lang="scss" src="@/styles/components/modal.scss"></style>
-<style lang="scss" scoped src="@/styles/abstracts/root.scss"></style>

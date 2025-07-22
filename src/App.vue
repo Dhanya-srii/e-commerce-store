@@ -74,7 +74,8 @@ export default {
 };
 </script>
 
-<style lang="scss" src="@/styles/abstracts/root.scss"></style>
+<style lang="scss" src="@/styles/abstracts/_variables.scss"></style>
+ 
 <style lang="scss" src="@/styles/base/scrollbar.scss"></style>
 <style lang="scss" src="@/styles/base/reset.scss"></style>
 <style>

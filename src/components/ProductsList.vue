@@ -3,7 +3,7 @@
   <div
     v-else
     v-lazy:30="getAllProducts"
-    class="product-list display-flex align-items-center"
+    class="product-list display-flex align-items-center flex-direction-column"
   >
     <div
       v-if="listProducts.length"
@@ -190,7 +190,7 @@ export default {
 <style lang="scss" scoped src="@/styles/vendors/ratings.scss"></style>
 <style lang="scss" scoped src="@/styles/base/scrollbar.scss"></style>
 <style lang="scss" scoped src="@/styles/layout/base-products.scss"></style>
-<style lang="scss" scoped src="@/styles/abstracts/root.scss"></style>
+
 <style lang="scss" scoped src="@/styles/layout/products.scss"></style>
 <style lang="scss" scoped src="@/styles/components/filter.scss"></style>
 <style

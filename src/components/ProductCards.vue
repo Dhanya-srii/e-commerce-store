@@ -18,8 +18,12 @@
         />
       </div>
 
-      <div class="product-info display-flex align-items-start justify-content-center" >
-        <div class="sub-product-info display-flex align-items-start justify-content-space-between">
+      <div
+        class="product-info display-flex align-items-start justify-content-center flex-direction-column"
+      >
+        <div
+          class="sub-product-info display-flex align-items-start justify-content-space-between"
+        >
           <p class="product-card-title">
             {{ productData.title }}
           </p>
@@ -66,4 +70,3 @@ export default {
 </script>
 <style lang="scss" scoped src="@/styles/components/product-card.scss"></style>
 <style lang="scss" scoped src="@/styles/components/button.scss"></style>
-<style lang="scss" scoped src="@/styles/abstracts/root.scss"></style>

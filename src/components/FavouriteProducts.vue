@@ -1,16 +1,25 @@
 <template>
   <div v-if="!hasFavourites">
-    <p class="product-status-message display-flex justify-content-center align-items-center">No Favourites Added!!</p>
+    <p
+      class="product-status-message display-flex justify-content-center align-items-center"
+    >
+      No Favourites Added!!
+    </p>
   </div>
 
   <div
     v-else
-    class="product-list display-flex align-items-center"
+    class="product-list display-flex align-items-center flex-direction-column"
   >
     <product-specifications
       :totalProducts="Object.keys(favouritesList).length"
     />
-    <div :class="['products display-flex justify-content-start', `grid-${gridColumns}`]">
+    <div
+      :class="[
+        'products display-flex justify-content-start',
+        `grid-${gridColumns}`,
+      ]"
+    >
       <product-cards
         v-for="(product, index) in favouritesList"
         :key="product.id || index"
@@ -42,7 +51,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped src="@/styles/layout/products.scss"></style>
-<style lang="scss" scoped src="@/styles/abstracts/root.scss"></style>
+
 <style lang="scss" scoped src="@/styles/layout/base-products.scss"></style>
 <style lang="scss" scoped src="@/styles/components/button.scss"></style>
-<style lang="scss" scoped src="@/styles/components/product-specifications.scss"></style>
+<style
+  lang="scss"
+  scoped
+  src="@/styles/components/product-specifications.scss"
+></style>

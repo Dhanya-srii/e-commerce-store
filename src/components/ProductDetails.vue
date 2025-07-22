@@ -10,7 +10,7 @@
     >
       <i class="ri-arrow-left-line"></i>
     </button>
-    <div class="sub-images display-flex">
+    <div class="sub-images display-flex flex-direction-column">
       <div
         class="sub-img-div"
         v-for="image in selectedProduct.images"
@@ -35,7 +35,7 @@
       />
     </div>
 
-    <div class="product-details display-flex">
+    <div class="product-details display-flex flex-direction-column">
       <p class="brand-title">EVERYDAY HUMANS</p>
       <p class="product-title">{{ selectedProduct.title }}</p>
       <el-rate
@@ -54,7 +54,7 @@
         >
           <div v-if="!amount">
             <button
-              class="addCart-details "
+              class="addCart-details"
               @click="updateCart(selectedProduct)"
             >
               Add to Cart
@@ -166,4 +166,3 @@ export default {
 
 <style lang="scss" scoped src="@/styles/components/button.scss"></style>
 <style lang="scss" scoped src="@/styles/vendors/ratings.scss"></style>
-<style lang="scss" scoped src="@/styles/abstracts/root.scss"></style>

@@ -1,5 +1,7 @@
 <template>
-  <div class="product-specifications display-flex align-items-center justify-content-space-between">
+  <div
+    class="product-specifications display-flex align-items-center justify-content-space-between"
+  >
     <div class="product-length">
       <p>{{ totalProducts }} PRODUCTS</p>
     </div>
@@ -57,4 +59,3 @@ export default {
   scoped
   src="@/styles/components/product-specifications.scss"
 ></style>
-<style lang="scss" scoped src="@/styles/abstracts/root.scss"></style>

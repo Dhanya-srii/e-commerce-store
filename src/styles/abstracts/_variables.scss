@@ -1,16 +1,17 @@
 $primary-color: #181818;
-$font-family: lato;
-$fav-hover-color: rgba(255, 0, 0, 0.6);
 $secondary-color: #ffffff;
 $isFav: #ff0000;
 $basic-color: #585858;
 
+
 .display-flex {
   display: flex;
 }
+
 .display-block {
   display: block;
 }
+
 .align-items-center {
   align-items: center;
 }
@@ -29,4 +30,8 @@ $basic-color: #585858;
 
 .justify-content-start {
   justify-content: flex-start
+}
+
+.flex-direction-column {
+  flex-direction: column;
 }

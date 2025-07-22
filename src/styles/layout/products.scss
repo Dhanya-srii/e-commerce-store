@@ -1,7 +1,6 @@
-@use '../abstracts/root.scss' as *;
+@use '../abstracts/_variables.scss' as *;
 
 .product-list {
-  flex-direction: column;
   min-width: 1700px;
   height: calc(100vh - 70px);
   overflow-y: scroll;
@@ -9,7 +8,6 @@
 
 
 .filters-panel {
-  flex-direction: column;
   gap: 2rem;
   top: 0%;
   background-color: rgb(254, 254, 254);
@@ -21,7 +19,6 @@
 }
 
 .categories {
-  flex-direction: column;
   overflow-y: scroll;
   position: relative;
 }
@@ -34,13 +31,10 @@
     font-weight: 600;
     font-size: 1.17em;
     padding: 16px;
-
   }
 }
 
-
 .filters-panel-body {
-  flex-direction: column;
   gap: 2rem;
   padding: 16px;
 
@@ -62,7 +56,6 @@
 }
 
 .filter-panel-footer {
-  flex-direction: column;
   gap: 16px;
   min-width: 420px;
   min-height: 130px;

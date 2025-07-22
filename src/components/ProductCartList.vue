@@ -8,7 +8,7 @@
     </p>
     <div
       v-else
-      class="cart-wrapper display-flex"
+      class="cart-wrapper display-flex flex-direction-column"
     >
       <p class="cart-title">
         My Shopping Cart
@@ -18,7 +18,7 @@
       </p>
 
       <div class="cart-content display-flex">
-        <div class="cart-items display-flex">
+        <div class="cart-items display-flex flex-direction-column">
           <product-cart
             v-for="product in getAddedCartProducts.products"
             :key="product.id"
@@ -128,4 +128,3 @@ export default {
 ></style>
 <style lang="scss" scoped src="@/styles/layout/base-products.scss"></style>
 <style lang="scss" src="@/styles/components/button.scss" scoped></style>
-<style lang="scss" scoped src="@/styles/abstracts/root.scss"></style>
