@@ -69,7 +69,7 @@ export default {
           this.$router.push({ name: ROUTE_NAMES.LOGIN_PAGE });
         }
       }
-    },
+    }
   },
 };
 </script>
@@ -78,10 +78,3 @@ export default {
   lang="scss"
   src="/home/dhan-zstch1544/Vue/mobile-applications/src/styles.scss"
 />
-
-<style>
-* {
-  font-family: 'Lilita One', sans-serif;
-  font-weight: 600;
-}
-</style>
