@@ -76,5 +76,5 @@ export default {
 
 <style
   lang="scss"
-  src="/home/dhan-zstch1544/Vue/mobile-applications/src/styles.scss"
+  src="/home/dhan-zstch1544/Vue/mobile-applications/src/styles/styles.scss"
 />
